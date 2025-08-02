@@ -1,0 +1,20 @@
+pre-commit:
+  parallel: true
+  commands:
+    lint-staged:
+      run: pnpm exec lint-staged
+
+pre-push:
+  parallel: true
+  commands:
+    audit-check:
+      run: pnpm audit
+    type-check:
+      run: pnpm run type-check
+    unit-test:
+      run: pnpm run test -- --passWithNoTests
+
+commit-msg:
+  commands:
+    lint-commit-msg:
+      run: pnpm exec commitlint --edit {1}
