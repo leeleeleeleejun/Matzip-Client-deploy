@@ -15,7 +15,10 @@ export const Flex: FlexType = ({ as, className, children, ...restProps }) => {
   const Component = as || 'div'
 
   return (
-    <Component className={cn('ui:flex', className)} {...restProps}>
+    <Component
+      className={cn('ui:flex ui:items-center', className)}
+      {...restProps}
+    >
       {children}
     </Component>
   )
