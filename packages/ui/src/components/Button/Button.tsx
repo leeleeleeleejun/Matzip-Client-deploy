@@ -18,7 +18,13 @@ export type ButtonType = <C extends ElementType = 'button'>(
   props: PropsWithChildren<Props<C>>,
 ) => JSX.Element
 
-export const Button: ButtonType = ({ as, className, size, children }) => {
+export const Button: ButtonType = ({
+  as,
+  className,
+  size,
+  children,
+  restProps,
+}) => {
   const Component = as || 'button'
 
   return (
@@ -33,6 +39,7 @@ export const Button: ButtonType = ({ as, className, size, children }) => {
         BUTTON_SIZE[size],
         className,
       )}
+      {...restProps}
     >
       <Text as={'span'} variant={BUTTON_FONT_SIZE[size]}>
         {children}
