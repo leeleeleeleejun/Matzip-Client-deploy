@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "type": "module",
   "private": true,
+  "msw": {
+    "workerDirectory": "./public"
+  },
   "scripts": {
     "dev": "next dev --port 3000 --turbopack",
     "build": "next build",
@@ -17,6 +20,7 @@
     "@suspensive/react": "^3.3.2",
     "@tanstack/react-query": "^5.84.1",
     "@tanstack/react-query-devtools": "^5.84.1",
+    "axios": "^1.11.0",
     "motion": "^12.23.12",
     "next": "^15.4.2",
     "react": "^19.1.0",
@@ -40,6 +44,7 @@
     "autoprefixer": "^10.4.20",
     "eslint": "^9.32.0",
     "jsdom": "^26.1.0",
+    "msw": "^2.10.5",
     "postcss": "^8.5.3",
     "tailwindcss": "^4.1.5",
     "typescript": "5.8.2",

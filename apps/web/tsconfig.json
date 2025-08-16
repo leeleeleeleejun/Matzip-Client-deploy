@@ -10,7 +10,7 @@
     /* alias */
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
+      "@/*": ["app/*"],
       "@repo/ui/components/*": ["../../packages/ui/src/components/*"]
     },
 

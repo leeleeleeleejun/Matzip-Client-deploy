@@ -3,6 +3,8 @@ import './globals.css'
 import type { Metadata } from 'next'
 import QueryProvider from './QueryClientProvider'
 import localFont from 'next/font/local'
+import { initServerMSW } from '@/_mocks/initMSW'
+import { MSWProvider } from '@/_mocks/MSWProvider'
 import { Column } from '@repo/ui/components/Layout/Column'
 
 export const metadata: Metadata = {
@@ -16,21 +18,25 @@ const pretendard = localFont({
   weight: '45 920',
 })
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  await initServerMSW()
+
   return (
-    <html lang='ko'>
+    <html lang='ko' suppressHydrationWarning={true}>
       <body className={pretendard.className}>
-        <QueryProvider>
-          <div className={'flex h-svh justify-center bg-gray-50'}>
-            <Column className={'relative w-[450px] max-w-[450px] bg-white'}>
-              {children}
-            </Column>
-          </div>
-        </QueryProvider>
+        <MSWProvider>
+          <QueryProvider>
+            <div className={'flex h-svh justify-center bg-gray-50'}>
+              <Column className={'relative w-[450px] max-w-[450px] bg-white'}>
+                {children}
+              </Column>
+            </div>
+          </QueryProvider>
+        </MSWProvider>
       </body>
     </html>
   )
