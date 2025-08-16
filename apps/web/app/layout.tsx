@@ -23,7 +23,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  initServerMSW()
+  await initServerMSW()
 
   return (
     <html lang='ko' suppressHydrationWarning={true}>

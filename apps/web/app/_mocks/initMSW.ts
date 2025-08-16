@@ -1,4 +1,4 @@
-export const initServerMSW = () => {
+export const initServerMSW = async () => {
   // 서버에서만 실행되는 MSW 초기화
   if (typeof window === 'undefined' && process.env.NODE_ENV === 'development') {
     import('./server').then(({ server }) => {
