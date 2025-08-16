@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "type": "module",
   "private": true,
+  "msw": {
+    "workerDirectory": "./public"
+  },
   "scripts": {
     "dev": "next dev --port 3000 --turbopack",
     "build": "next build",
@@ -40,10 +43,16 @@
     "autoprefixer": "^10.4.20",
     "eslint": "^9.32.0",
     "jsdom": "^26.1.0",
+    "msw": "^2.10.5",
     "postcss": "^8.5.3",
     "tailwindcss": "^4.1.5",
     "typescript": "5.8.2",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }

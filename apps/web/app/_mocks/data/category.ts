@@ -1,0 +1,17 @@
+export const category = [
+  { id: 1, name: '치킨', iconKey: 'chicken' },
+  { id: 2, name: '햄버거', iconKey: 'burger' },
+  { id: 3, name: '한식', iconKey: 'korean' },
+  { id: 4, name: '분식', iconKey: 'bunsik' },
+  { id: 5, name: '중식', iconKey: 'chinese' },
+  { id: 6, name: '양식', iconKey: 'western' },
+  { id: 7, name: '샐러드', iconKey: 'salad' },
+  { id: 8, name: '일식', iconKey: 'japanese' },
+  { id: 9, name: '카페', iconKey: 'cafe' },
+  { id: 10, name: '피자', iconKey: 'pizza' },
+  { id: 11, name: '멕시칸', iconKey: 'mexican' },
+  { id: 12, name: '아시안', iconKey: 'asian' },
+  { id: 13, name: '찜·탕', iconKey: 'soup' },
+  { id: 14, name: '고기·구이', iconKey: 'meat' },
+  { id: 15, name: '도시락', iconKey: 'lunchbox' },
+]
