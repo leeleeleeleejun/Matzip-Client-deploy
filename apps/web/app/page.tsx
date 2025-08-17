@@ -20,6 +20,7 @@ export default function Page() {
       prefetch={async (queryClient) => {
         await queryClient.prefetchQuery(useCategoryQueries.list())
         await queryClient.prefetchQuery(usePlaceQueries.rankingList('likes'))
+        await queryClient.prefetchQuery(usePlaceQueries.rankingList('views'))
       }}
     >
       <OnlyLeftHeader icon={'logo'} name={'맛집'} />
