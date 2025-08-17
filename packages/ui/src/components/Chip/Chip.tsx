@@ -3,34 +3,14 @@ import type { ElementType, JSX, PropsWithChildren } from 'react'
 import type { PolymorphicComponentProps } from '../../polymorphics'
 import { useState } from 'react'
 import { cn } from '../../utils/cn'
-import { Icon } from '../Icon'
+import { Icon, type IconType } from '../Icon'
 import { Text } from '../Text'
-
-const CHIP_TAGS = {
-  SOLO_FRIENDLY: {
-    label: '혼밥하기 좋은',
-    icon: 'fingerUp',
-  },
-  VALUE_FOR_MONEY: {
-    label: '가성비 좋은',
-    icon: 'calculator',
-  },
-  GOOD_AMBIENCE: {
-    label: '분위기 좋은',
-    icon: 'blingBling',
-  },
-  KIND_SERVICE: {
-    label: '친절해요',
-    icon: 'waiter',
-  },
-} as const
-
-type ChipTagKey = keyof typeof CHIP_TAGS
 
 export type ChipProps<C extends ElementType> = PolymorphicComponentProps<
   C,
   {
-    chipType: ChipTagKey
+    icon: IconType
+    label: string
     onToggle?: () => void
   }
 >
@@ -50,24 +30,27 @@ export type ChipType = <C extends ElementType = 'button'>(
  *
  * @param as 렌더링할 HTML 태그 또는 컴포넌트
  * @param className 추가 CSS 클래스
- * @param chipType 표시할 Chip 타입
+ * @param icon 표시할 아이콘 타입
+ * @param label Chip에 표시할 텍스트 라벨
  * @param onToggle 클릭 시 실행할 콜백 함수
  * @param restProps 나머지 Props
  *
  * @returns 렌더링된 Chip 요소
  *
  * @example
- * <Chip type="SOLO_FRIENDLY" onToggle={() => console.log('클릭됨')} />
+ * ```tsx
+ * <Chip icon="fingerUp" label="혼밥하기 좋은" onToggle={() => console.log('클릭됨')} />
+ * ```
  */
 export const Chip: ChipType = ({
   as,
   className,
-  chipType,
+  icon,
+  label,
   onToggle,
   ...restProps
 }) => {
-  const Component = as || 'button'
-  const { icon, label } = CHIP_TAGS[chipType]
+  const Component = as || 'div'
   const [isActive, setIsActive] = useState(false)
 
   const onClick = () => {
