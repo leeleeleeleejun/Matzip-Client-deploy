@@ -77,7 +77,7 @@ export const Chip: ChipType = ({
       onClick={onClick}
       {...restProps}
     >
-      <Icon type={icon} size={14} />
+      <Icon type={icon} size={16} />
       <Text as={'span'} variant={'caption1'} className={'ui:text-gray-300'}>
         {label}
       </Text>
