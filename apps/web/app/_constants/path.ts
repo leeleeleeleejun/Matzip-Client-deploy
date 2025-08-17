@@ -1,5 +1,8 @@
+import { RankingPlaceSort } from '@/_apis/schemas/place'
+
 export const API_PATH = {
   CATEGORY: '/categories',
+  RANKING: (sort: RankingPlaceSort) => `/places/ranking?sort=${sort}`,
 }
 
 export const CLIENT_PATH = {
