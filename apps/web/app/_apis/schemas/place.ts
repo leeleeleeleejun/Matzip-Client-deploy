@@ -13,7 +13,7 @@ export type RankingPlaceSort = 'views' | 'likes'
 
 export const RankingPlaceSchema = BasePlaceSchema.extend({
   isLiked: z.boolean(),
-  likeCount: z.number(),
+  likeCount: z.number().int().nonnegative(),
 })
 
 export type BasePlace = z.infer<typeof BasePlaceSchema>
