@@ -3,6 +3,7 @@ import type { PolymorphicComponentProps } from '../../polymorphics'
 import { cn } from '../../utils/cn'
 
 type FontSize =
+  | 'micro' // 10px
   | 'xs' // 12px
   | 'sm' // 14px
   | 'base' // 16px
@@ -37,6 +38,7 @@ export type TypographyVariant =
   | 'caption2'
 
 const fontSizeClasses: Record<FontSize, string> = {
+  micro: 'ui:text-[10px]',
   xs: 'ui:text-xs',
   sm: 'ui:text-sm',
   base: 'ui:text-base',

@@ -31,8 +31,9 @@ export const TabItem = ({ path, label, icon, iconSize = 26 }: TabItemProps) => {
       />
       {label && (
         <Text
+          fontSize={'micro'}
           fontWeight={'normal'}
-          className={cn('text-[10px]', active ? 'text-main' : 'text-gray-200')}
+          className={cn(active ? 'text-main' : 'text-gray-200')}
         >
           {label}
         </Text>
