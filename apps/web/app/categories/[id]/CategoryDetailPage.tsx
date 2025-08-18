@@ -8,7 +8,7 @@ import { Text } from '@repo/ui/components/Text'
 import { Header } from '@repo/ui/components/Header'
 import { Column, Flex } from '@repo/ui/components/Layout'
 import { HeaderBackButton } from '@/_components/HeaderBackButton'
-import { RowCategories } from './_components/RowCategories/'
+import { RowCategories, Places } from './_components'
 
 type Props = {
   initId: string
@@ -36,8 +36,9 @@ export const CategoryDetailPage = ({ initId }: Props) => {
         }
         className={'border-b-1 border-gray-50'}
       />
-      <Column className={'px-5 py-2.5'}>
+      <Column className={'gap-2.5 px-5 py-2.5'}>
         <RowCategories id={id} categories={categories} setIdFunc={setIdFunc} />
+        <Places id={id} />
       </Column>
     </>
   )
