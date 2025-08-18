@@ -36,6 +36,7 @@ const ScrollHintGradient = () => (
       'right-[-1px] top-0',
       'h-full w-10',
       'z-10',
+      'pointer-events-none',
       'bg-gradient-to-l from-white to-transparent',
     )}
   />
