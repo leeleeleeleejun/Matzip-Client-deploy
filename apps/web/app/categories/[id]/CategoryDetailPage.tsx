@@ -1,0 +1,44 @@
+'use client'
+
+import { useState } from 'react'
+import { useSuspenseQuery } from '@tanstack/react-query'
+import { useCategoryQueries } from '@/_apis/queries/category'
+import { Icon } from '@repo/ui/components/Icon'
+import { Text } from '@repo/ui/components/Text'
+import { Header } from '@repo/ui/components/Header'
+import { Column, Flex } from '@repo/ui/components/Layout'
+import { HeaderBackButton } from '@/_components/HeaderBackButton'
+import { RowCategories } from './_components/RowCategories/'
+
+type Props = {
+  initId: string
+}
+
+export const CategoryDetailPage = ({ initId }: Props) => {
+  const [id, setId] = useState(initId)
+
+  const { data: categories } = useSuspenseQuery(useCategoryQueries.list())
+  const activeCategory = categories.filter((category) => category.id === id)[0]
+
+  const setIdFunc = (id: string) => {
+    setId(id)
+  }
+
+  return (
+    <>
+      <Header
+        left={<HeaderBackButton />}
+        center={
+          <Flex className={'gap-1.5'}>
+            <Icon type={activeCategory?.iconKey || 'logo'} />
+            <Text variant={'heading2'}>{activeCategory?.name}</Text>
+          </Flex>
+        }
+        className={'border-b-1 border-gray-50'}
+      />
+      <Column className={'px-5 py-2.5'}>
+        <RowCategories id={id} categories={categories} setIdFunc={setIdFunc} />
+      </Column>
+    </>
+  )
+}
