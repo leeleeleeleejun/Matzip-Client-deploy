@@ -31,7 +31,9 @@ export const CategoryDetailPage = ({ initId }: Props) => {
         center={
           <Flex className={'gap-1.5'}>
             <Icon type={activeCategory?.iconKey || 'logo'} />
-            <Text variant={'heading2'}>{activeCategory?.name}</Text>
+            <Text variant={'heading2'} className={'pr-6'}>
+              {activeCategory?.name}
+            </Text>
           </Flex>
         }
         className={'border-b-1 border-gray-50'}
