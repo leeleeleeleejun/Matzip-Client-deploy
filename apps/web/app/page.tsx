@@ -6,7 +6,7 @@ import { Categories } from '@/_components/Categories'
 import { BottomNavigation } from '@/_components/BottomNavigation'
 import { OnlyLeftHeader } from '@repo/ui/components/Header'
 import { SearchBar } from '@repo/ui/components/SearchBar'
-import { Column } from '@repo/ui/components/Layout'
+import { VerticalScrollArea } from '@repo/ui/components/Layout'
 import { Banner } from '@/_components/Banner'
 import {
   MostLikesPlaces,
@@ -25,13 +25,13 @@ export default function Page() {
     >
       <OnlyLeftHeader icon={'logo'} name={'맛집'} />
       <SearchBar href={CLIENT_PATH.PLACE_SEARCH} className={'mx-5 mb-5'} />
-      <Column className={'scrollbar-hide gap-4 overflow-auto'}>
+      <VerticalScrollArea className={'gap-4'}>
         <Categories />
         <Banner contents={[1, 2, 3, 4]} />
         <MostLikesPlaces />
         <Divider />
         <MostViewsPlaces />
-      </Column>
+      </VerticalScrollArea>
       <BottomNavigation />
     </HydrationBoundaryPage>
   )

@@ -11,7 +11,7 @@ type Props = {
 
 export const RowCategories = ({ id, categories, setIdFunc }: Props) => {
   return (
-    <div className={'relative'}>
+    <div className={'relative px-5 py-2.5'}>
       <Flex className={'scrollbar-hide gap-4 overflow-x-auto'}>
         {categories.map((category) => (
           <CategoryItem
