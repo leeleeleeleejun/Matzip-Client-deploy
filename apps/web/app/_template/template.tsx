@@ -9,6 +9,7 @@ interface TemplateProps {
 export default function Template({ children }: TemplateProps) {
   return (
     <motion.div
+      className='flex h-full flex-col'
       initial={{ x: 10, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       exit={{ x: -10, opacity: 0 }}

@@ -1,15 +1,18 @@
-import { Text } from '@repo/ui/components/Text'
-import { Column, Flex } from '@repo/ui/components/Layout'
-import { Icon } from '@repo/ui/components/Icon'
-import { BasePlace } from '@/_apis/schemas/place'
-import { Chip } from '@repo/ui/components/Chip'
+import Link from 'next/link'
+import { CLIENT_PATH } from '@/_constants/path'
+import type { BasePlace } from '@/_apis/schemas/place'
 import { cn } from '@repo/ui/utils/cn'
+import { Text } from '@repo/ui/components/Text'
+import { Icon } from '@repo/ui/components/Icon'
+import { Chip } from '@repo/ui/components/Chip'
+import { Column, Flex } from '@repo/ui/components/Layout'
 
 type Props = {
   showBorder?: boolean
 } & BasePlace
 
 export const PlaceListItem = ({
+  placeId,
   placeName,
   address,
   categories,
@@ -25,21 +28,22 @@ export const PlaceListItem = ({
         'border-b-1 border-gray-50': showBorder,
       })}
     >
-      {/*Todo: Link 태그로 감싸기 -> 상세페이지로 이동*/}
-      <Flex className={'gap-1'}>
-        <Text variant={'title2'}>{placeName}</Text>
-        <Icon type={mainCategoryIcon} size={16} />
-      </Flex>
-      <Text variant={'caption2'} className={'text-gray-300'}>
-        {address}
-      </Text>
-      {tags.length > 0 && (
+      <Link href={CLIENT_PATH.PLACE_DETAIL(placeId)}>
         <Flex className={'gap-1'}>
-          {tags.map((tag) => (
-            <Chip key={tag.id} icon={tag.iconKey} label={tag.name} />
-          ))}
+          <Text variant={'title2'}>{placeName}</Text>
+          <Icon type={mainCategoryIcon} size={16} />
         </Flex>
-      )}
+        <Text variant={'caption2'} className={'text-gray-300'}>
+          {address}
+        </Text>
+        {tags.length > 0 && (
+          <Flex className={'gap-1'}>
+            {tags.map((tag) => (
+              <Chip key={tag.id} icon={tag.iconKey} label={tag.name} />
+            ))}
+          </Flex>
+        )}
+      </Link>
     </Column>
   )
 }

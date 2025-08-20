@@ -1,13 +1,13 @@
+import type { IconType } from '@repo/ui/components/Icon'
+import type { BasePlace } from '@/_apis/schemas/place'
 import { Column } from '@repo/ui/components/Layout'
-import { IconType } from '@repo/ui/components/Icon'
 import { SubTitle } from '@/_components/SubTitle'
-import { RankingPlace } from '@/_apis/schemas/place'
 import { PlaceListItem } from '@/_components/PlaceListItem'
 
 type Props = {
   title: string
   icon: IconType
-  places: RankingPlace[]
+  places: BasePlace[]
 }
 
 export const RankingPlaceList = ({ title, icon, places }: Props) => {

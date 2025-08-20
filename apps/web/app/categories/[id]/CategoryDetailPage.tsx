@@ -6,7 +6,7 @@ import { useCategoryQueries } from '@/_apis/queries/category'
 import { Icon } from '@repo/ui/components/Icon'
 import { Text } from '@repo/ui/components/Text'
 import { Header } from '@repo/ui/components/Header'
-import { Column, Flex } from '@repo/ui/components/Layout'
+import { Flex } from '@repo/ui/components/Layout'
 import { HeaderBackButton } from '@/_components/HeaderBackButton'
 import { RowCategories, Places } from './_components'
 
@@ -38,10 +38,8 @@ export const CategoryDetailPage = ({ initId }: Props) => {
         }
         className={'border-b-1 border-gray-50'}
       />
-      <Column className={'gap-2.5 px-5 py-2.5'}>
-        <RowCategories id={id} categories={categories} setIdFunc={setIdFunc} />
-        <Places id={id} />
-      </Column>
+      <RowCategories id={id} categories={categories} setIdFunc={setIdFunc} />
+      <Places id={id} />
     </>
   )
 }
