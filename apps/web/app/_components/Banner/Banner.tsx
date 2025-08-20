@@ -70,7 +70,8 @@ export const Banner = ({ contents, minHeight = 150 }: Props) => {
   return (
     <div ref={sliderRef} className={'keen-slider'} style={{ minHeight }}>
       {contents.map((content, index) => (
-        <div key={index} className='keen-slider__slide bg-gray-100'>
+        //TODO: bg 색상 고민 하기
+        <div key={index} className='keen-slider__slide bg-white'>
           {content}
         </div>
       ))}
