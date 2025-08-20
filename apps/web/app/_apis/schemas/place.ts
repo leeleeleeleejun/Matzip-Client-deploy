@@ -14,7 +14,7 @@ export const PlaceDetailSchema = BasePlaceSchema.extend({
     z.object({
       photoId: z.number().transform(String),
       photoUrl: z.url(),
-      displayOrder: z.number().transform(String),
+      displayOrder: z.number(),
     }),
   ),
   location: z.object({
