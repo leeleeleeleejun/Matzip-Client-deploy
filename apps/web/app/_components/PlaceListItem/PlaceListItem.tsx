@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { CLIENT_PATH } from '@/_constants/path'
 import type { BasePlace } from '@/_apis/schemas/place'
 import { cn } from '@repo/ui/utils/cn'
@@ -22,13 +21,14 @@ export const PlaceListItem = ({
   const mainCategoryIcon = categories[0]?.iconKey || 'logo'
 
   return (
-    <Column
-      as={'li'}
-      className={cn('gap-1', 'pb-4 pt-2.5', {
-        'border-b-1 border-gray-50': showBorder,
-      })}
-    >
-      <Link href={CLIENT_PATH.PLACE_DETAIL(placeId)}>
+    <li>
+      <Column
+        as={'a'}
+        className={cn('gap-1', 'pb-4 pt-2.5', {
+          'border-b-1 border-gray-50': showBorder,
+        })}
+        href={CLIENT_PATH.PLACE_DETAIL(placeId)}
+      >
         <Flex className={'gap-1'}>
           <Text variant={'title2'}>{placeName}</Text>
           <Icon type={mainCategoryIcon} size={16} />
@@ -43,7 +43,7 @@ export const PlaceListItem = ({
             ))}
           </Flex>
         )}
-      </Link>
-    </Column>
+      </Column>
+    </li>
   )
 }
