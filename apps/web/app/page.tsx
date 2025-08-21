@@ -1,6 +1,5 @@
 import { CLIENT_PATH } from '@/_constants/path'
 import { useCategoryQueries } from '@/_apis/queries/category'
-import { usePlaceQueries } from '@/_apis/queries/place'
 import { Header } from '@repo/ui/components/Header'
 import { SearchBar } from '@repo/ui/components/SearchBar'
 import { Flex, VerticalScrollArea } from '@repo/ui/components/Layout'
@@ -22,8 +21,6 @@ export default function Page() {
     <HydrationBoundaryPage
       prefetch={async (queryClient) => {
         await queryClient.prefetchQuery(useCategoryQueries.list())
-        await queryClient.prefetchQuery(usePlaceQueries.byRanking('likes'))
-        await queryClient.prefetchQuery(usePlaceQueries.byRanking('views'))
       }}
     >
       <Header
