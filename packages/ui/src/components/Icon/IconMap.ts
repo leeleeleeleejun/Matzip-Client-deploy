@@ -31,7 +31,7 @@ import { Logo } from './assets/icons/header/logo'
 import { Heart as HeaderHeart } from './assets/icons/header/heart'
 import { User as HeaderUser } from './assets/icons/header/user'
 import { ShakingHeart } from './assets/icons/header/shakingHeart'
-
+//여기저기
 import { ArrowLeft } from './assets/icons/arrowLeft'
 import { ArrowRight } from './assets/icons/arrowRight'
 import { Search } from './assets/icons/search'
@@ -45,6 +45,7 @@ import { Cry } from './assets/icons/cry'
 import { KakaoLogo } from './assets/icons/kakaoLogo'
 import { Crosshairs } from './assets/icons/crosshairs'
 import { DoubleHeart } from './assets/icons/doubleHeart'
+import { SwapArrow } from './assets/icons/swapArrow'
 
 export const iconMap = {
   // 메뉴
@@ -84,6 +85,7 @@ export const iconMap = {
   headerUser: HeaderUser,
   shakingHeart: ShakingHeart,
 
+  //여기저기
   arrowLeft: ArrowLeft,
   arrowRight: ArrowRight,
   search: Search,
@@ -97,6 +99,7 @@ export const iconMap = {
   kakaoLogo: KakaoLogo,
   crosshairs: Crosshairs,
   doubleHeart: DoubleHeart,
+  swapArrow: SwapArrow,
 }
 
 export type IconType = keyof typeof iconMap
