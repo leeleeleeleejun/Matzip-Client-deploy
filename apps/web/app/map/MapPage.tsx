@@ -8,8 +8,10 @@ import { toLatLng } from '@/map/_utils/toLatLng'
 import { useCenterMapToCurrentLocation } from '@/map/_hooks/useCenterMapToCurrentLocation'
 import { PlaceList } from '@/map/_components/PlaceList'
 import { CurrentLocationButton } from '@/map/_components/CurrentLocationButton'
+import { useCampusStore } from '@/_store/campus'
 
 export const MapPage = () => {
+  const { campus } = useCampusStore()
   const [map, setMap] = useState<naver.maps.Map | null>(null)
   const [isCenteredOnUser, setIsCenteredOnUser] = useState(false)
   const CenterMapToCurrentLocation = useCenterMapToCurrentLocation(map)
@@ -33,7 +35,7 @@ export const MapPage = () => {
         className={cn('map-wrapper', 'w-full', 'h-full')}
         onTouchEnd={onCenterChanged}
       >
-        <NaverMap ref={setMap} center={toLatLng(CAMPUS_LOCATION.singwan)} />
+        <NaverMap ref={setMap} center={toLatLng(CAMPUS_LOCATION[campus])} />
       </Container>
       <PlaceList />
     </>
