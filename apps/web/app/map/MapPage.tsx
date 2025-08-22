@@ -13,6 +13,7 @@ import { cn } from '@repo/ui/utils/cn'
 import { toLatLng } from './_utils/toLatLng'
 import { useWatchLocation } from './_hooks/useWatchLocation'
 import { PlaceList } from './_components/PlaceList'
+import { CampusButtonBax } from './_components/CampusButtom'
 import { UserMarker, PlaceMarker } from './_components/Marker'
 import { CurrentLocationButton } from './_components/CurrentLocationButton'
 
@@ -57,6 +58,7 @@ export const MapPage = () => {
         onClick={centerMapToUserLocation}
         isCenteredOnUser={isCenteredOnUser}
       />
+      <CampusButtonBax map={map} />
       <Container
         className={cn('map-wrapper', 'w-full', 'h-full')}
         onTouchEnd={onCenterChanged}

@@ -10,5 +10,31 @@ export const CAMPUS_LOCATION = {
   yesan: { latitude: 36.66990298154316, longitude: 126.85937468290652 },
 } as const
 
+export const CAMPUS_COLOR = {
+  singwan: {
+    text: 'text-red',
+    background: 'bg-red-light',
+    border: {
+      default: 'border-red-light',
+      active: 'border-red',
+    },
+  },
+  cheonan: {
+    text: 'text-blue',
+    background: 'bg-blue-light',
+    border: {
+      default: 'border-blue-light',
+      active: 'border-blue',
+    },
+  },
+  yesan: {
+    text: 'text-yellow',
+    background: 'bg-yellow-light',
+    border: {
+      default: 'border-yellow-light',
+      active: 'border-yellow',
+    },
+  },
+} as const
 export type CampusType = keyof typeof CAMPUS
 export const CAMPUS_LIST = Object.keys(CAMPUS) as CampusType[]
