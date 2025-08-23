@@ -6,13 +6,15 @@ import { cn } from '@repo/ui/utils/cn'
 
 type Props = {
   category: Category
-  addCategories: VoidFunction
+  addCategory: VoidFunction
+  removeCategory: VoidFunction
   includeInCategories: boolean
 }
 
 export const CategoryItem = ({
   category,
-  addCategories,
+  addCategory,
+  removeCategory,
   includeInCategories,
 }: Props) => {
   const { name, iconKey } = category
@@ -22,8 +24,7 @@ export const CategoryItem = ({
       className={cn('items-center gap-1', {
         'opacity-40': includeInCategories,
       })}
-      onClick={addCategories}
-      disabled={includeInCategories}
+      onClick={includeInCategories ? removeCategory : addCategory}
     >
       <Icon type={iconKey} size={40} />
       <Text

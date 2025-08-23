@@ -6,12 +6,12 @@ import { Text } from '@repo/ui/components/Text'
 
 type Props = {
   choiceCategories: CategoryType[]
-  removeCategories: (category: CategoryType) => void
+  removeCategory: (category: CategoryType) => void
 }
 
 export const ChoiceCategoryBox = ({
   choiceCategories,
-  removeCategories,
+  removeCategory,
 }: Props) => {
   const MAX_COUNT = 5
   const slots = Array.from({ length: MAX_COUNT }, (_, index) => {
@@ -41,7 +41,7 @@ export const ChoiceCategoryBox = ({
                 >
                   <ChoiceCategoryItem
                     category={category}
-                    removeCategories={() => removeCategories(category)}
+                    removeCategory={() => removeCategory(category)}
                   />
                 </motion.div>
               ) : (

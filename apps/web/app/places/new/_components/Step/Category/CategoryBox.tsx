@@ -4,13 +4,15 @@ import { CategoryItem } from '@/places/new/_components/Step/Category/CategoryIte
 
 type Props = {
   categories: CategoryType[]
-  addCategories: (category: CategoryType) => void
+  addCategory: (category: CategoryType) => void
+  removeCategory: (category: CategoryType) => void
   includeInCategories: (category: CategoryType) => boolean
 }
 
 export const CategoryBox = ({
   categories,
-  addCategories,
+  addCategory,
+  removeCategory,
   includeInCategories,
 }: Props) => {
   return (
@@ -19,7 +21,8 @@ export const CategoryBox = ({
         <CategoryItem
           key={category.id}
           category={category}
-          addCategories={() => addCategories(category)}
+          addCategory={() => addCategory(category)}
+          removeCategory={() => removeCategory(category)}
           includeInCategories={includeInCategories(category)}
         />
       ))}

@@ -11,7 +11,7 @@ export const Category = () => {
   const { data: categories } = useSuspenseQuery(useCategoryQueries.list())
   const [choiceCategories, setChoiceCategories] = useState<CategoryType[]>([])
 
-  const addCategories = (category: CategoryType) => {
+  const addCategory = (category: CategoryType) => {
     if (choiceCategories.length >= 5 || includeInCategories(category)) {
       // Todo: Toast 처리
       return
@@ -19,7 +19,7 @@ export const Category = () => {
     setChoiceCategories((prev) => [...prev, category])
   }
 
-  const removeCategories = (category: CategoryType) => {
+  const removeCategory = (category: CategoryType) => {
     if (choiceCategories.length === 0) {
       // Todo: Toast 처리
       return
@@ -39,11 +39,12 @@ export const Category = () => {
       />
       <ChoiceCategoryBox
         choiceCategories={choiceCategories}
-        removeCategories={removeCategories}
+        removeCategory={removeCategory}
       />
       <CategoryBox
         categories={categories}
-        addCategories={addCategories}
+        addCategory={addCategory}
+        removeCategory={removeCategory}
         includeInCategories={includeInCategories}
       />
       <Button size={'medium'} className={'mt-auto w-full'}>
