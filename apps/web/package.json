@@ -30,6 +30,7 @@
     "next": "^15.4.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-hook-form": "^7.62.0",
     "react-naver-maps": "^0.1.4",
     "react-spring-bottom-sheet": "^3.5.0-alpha.0",
     "zod": "^4.0.17",

@@ -156,6 +156,9 @@ importers:
       react-dom:
         specifier: ^19.1.0
         version: 19.1.0(react@19.1.0)
+      react-hook-form:
+        specifier: ^7.62.0
+        version: 7.62.0(react@19.1.0)
       react-naver-maps:
         specifier: ^0.1.4
         version: 0.1.4(react-dom@19.1.0)(react@19.1.0)
@@ -6608,8 +6611,8 @@ packages:
       loader-utils: 3.3.1
       next: 15.4.5(@babel/core@7.28.0)(react-dom@19.1.0)(react@19.0.0)
       node-polyfill-webpack-plugin: 2.0.1(webpack@5.101.0)
-      postcss: 8.5.6
-      postcss-loader: 8.1.1(postcss@8.5.6)(typescript@5.8.2)(webpack@5.101.0)
+      postcss: 8.5.3
+      postcss-loader: 8.1.1(postcss@8.5.3)(typescript@5.8.2)(webpack@5.101.0)
       react: 19.0.0
       react-dom: 19.1.0(react@19.0.0)
       react-refresh: 0.14.2
@@ -13245,6 +13248,15 @@ packages:
     dependencies:
       react: 19.1.0
       scheduler: 0.26.0
+
+  /react-hook-form@7.62.0(react@19.1.0):
+    resolution: {integrity: sha512-7KWFejc98xqG/F4bAxpL41NB3o1nnvQO1RWZT3TqRZYL8RryQETGfEdVnJN2fy1crCiBLLjkRBVK05j24FxJGA==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18 || ^19
+    dependencies:
+      react: 19.1.0
+    dev: false
 
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
