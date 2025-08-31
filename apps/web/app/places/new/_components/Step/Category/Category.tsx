@@ -9,13 +9,13 @@ import { ChoiceCategoryBox } from './ChoiceCategoryBox'
 import { Title } from '../../Tilte'
 import { Button } from '@repo/ui/components/Button'
 
-export const Category = ({
-  setValue,
-  getValues,
-}: {
+type Props = {
   setValue: UseFormSetValue<NewPlaceRequest>
   getValues: () => NewPlaceRequest
-}) => {
+  isSubmitting: boolean
+}
+
+export const Category = ({ setValue, getValues, isSubmitting }: Props) => {
   const { data: categories } = useSuspenseQuery(useCategoryQueries.list())
   const initialValues = getValues().categoryIds
   const initialCategory = categories.filter((category) =>
@@ -68,7 +68,11 @@ export const Category = ({
         removeCategory={removeCategory}
         includeInCategories={includeInCategories}
       />
-      <Button size={'medium'} className={'ui:min-w-full mt-auto'}>
+      <Button
+        size={'medium'}
+        className={'ui:min-w-full mt-auto'}
+        disabled={isSubmitting}
+      >
         등록하기
       </Button>
     </>

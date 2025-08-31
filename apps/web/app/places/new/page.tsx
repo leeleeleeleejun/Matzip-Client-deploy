@@ -1,6 +1,6 @@
 'use client'
 
-import { type SubmitHandler, useForm } from 'react-hook-form'
+import { type FieldErrors, type SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { addToast } from '@heroui/react'
 import {
@@ -52,7 +52,7 @@ const PlaceNewPage = () => {
     setValue,
     getValues,
     trigger,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<NewPlaceRequest>({
     resolver: zodResolver(NewPlaceRequestSchema),
     defaultValues: {
@@ -66,6 +66,13 @@ const PlaceNewPage = () => {
   })
 
   const onSubmit: SubmitHandler<NewPlaceRequest> = (data) => console.log(data)
+  const onError = (errors: FieldErrors<NewPlaceRequest>) => {
+    if (errors.categoryIds) {
+      addToast({
+        title: errors.categoryIds.message,
+      })
+    }
+  }
 
   return (
     <>
@@ -81,7 +88,7 @@ const PlaceNewPage = () => {
       />
       <Column
         as={'form'}
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(onSubmit, onError)}
         className={'min-h-0 flex-1 p-5'}
       >
         <Step name={'CAMPUS'}>
@@ -134,7 +141,11 @@ const PlaceNewPage = () => {
           />
         </Step>
         <Step name={'CATEGORY'}>
-          <Category setValue={setValue} getValues={getValues} />
+          <Category
+            setValue={setValue}
+            getValues={getValues}
+            isSubmitting={isSubmitting}
+          />
         </Step>
       </Column>
     </>
