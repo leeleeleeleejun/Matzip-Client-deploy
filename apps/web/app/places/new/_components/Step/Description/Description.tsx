@@ -7,10 +7,13 @@ import { Tags } from '@/places/new/_components/Step/Description/Tags'
 
 type Props = {
   control: Control<NewPlaceRequest>
+  getValues: () => NewPlaceRequest
   nextStep: VoidFunction
 }
 
-export const Description = ({ control, nextStep }: Props) => {
+export const Description = ({ control, getValues, nextStep }: Props) => {
+  const tagInitialValues = getValues().tagIds
+
   return (
     <>
       <Title
@@ -24,7 +27,7 @@ export const Description = ({ control, nextStep }: Props) => {
         )}
         name={'description'}
       />
-      <Tags control={control} />
+      <Tags control={control} tagInitialValues={tagInitialValues} />
       <Button
         size={'medium'}
         className={'ui:min-w-full mt-auto'}

@@ -9,6 +9,7 @@ import { Column, Flex } from '@repo/ui/components/Layout'
 import { Text } from '@repo/ui/components/Text'
 import { Icon } from '@repo/ui/components/Icon'
 import { HeaderBackButton } from '@/_components/HeaderBackButton'
+import { HeaderHomeButton } from './_components/HeaderHomeButton'
 import {
   Campus,
   PlaceSearch,
@@ -17,7 +18,6 @@ import {
   Description,
   Category,
 } from './_components/Step'
-import { HeaderHomeButton } from '@/places/new/_components/HeaderHomeButton'
 
 export type StepType =
   | 'CAMPUS'
@@ -113,6 +113,7 @@ const PlaceNewPage = () => {
         <Step name={'DESCRIPTION'}>
           <Description
             control={control}
+            getValues={getValues}
             nextStep={() => {
               nextStep('CATEGORY')
             }}

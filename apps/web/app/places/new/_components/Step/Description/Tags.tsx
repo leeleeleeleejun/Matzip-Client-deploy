@@ -5,32 +5,38 @@ import { Flex } from '@repo/ui/components/Layout'
 import { Chip } from '@repo/ui/components/Chip'
 
 const CHIP_TAGS: {
-  id: number
+  id: string
   label: string
   icon: IconType
 }[] = [
   {
-    id: 1,
+    id: '1',
     label: '혼밥하기 좋은',
     icon: 'fingerUp',
   },
   {
-    id: 2,
+    id: '2',
     label: '가성비 좋은',
     icon: 'calculator',
   },
   {
-    id: 3,
+    id: '3',
     label: '분위기 좋은',
     icon: 'blingBling',
   },
   {
-    id: 4,
+    id: '4',
     label: '친절해요',
     icon: 'waiter',
   },
 ]
-export const Tags = ({ control }: { control: Control<NewPlaceRequest> }) => {
+
+type Props = {
+  control: Control<NewPlaceRequest>
+  tagInitialValues: string[]
+}
+
+export const Tags = ({ control, tagInitialValues }: Props) => {
   return (
     <Controller
       control={control}
@@ -58,7 +64,8 @@ export const Tags = ({ control }: { control: Control<NewPlaceRequest> }) => {
                 key={category.id}
                 icon={category.icon}
                 label={category.label}
-                onToggle={() => handleToggle(String(category.id))}
+                onToggle={() => handleToggle(category.id)}
+                initialActiveValue={tagInitialValues.includes(category.id)}
               />
             ))}
           </Flex>
