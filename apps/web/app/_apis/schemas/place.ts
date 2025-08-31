@@ -43,7 +43,7 @@ export const PlaceDetailSchema = BasePlaceSchema.extend({
 export const NewPlaceRequestSchema = z.object({
   kakaoPlaceId: z.string(),
   campus: z.enum(CAMPUS_LIST),
-  description: z.string(),
+  description: z.string().nonempty('설명을 입력해주세요'),
   menus: z.array(
     z.object({
       name: z.string(),
@@ -52,7 +52,9 @@ export const NewPlaceRequestSchema = z.object({
     }),
   ),
   tagIds: z.array(z.string()),
-  categoryIds: z.array(z.string()),
+  categoryIds: z
+    .array(z.string())
+    .min(1, '카테고리를 최소 1개 이상 선택해주세요'),
 })
 
 export type RankingPlaceSort = 'views' | 'likes'

@@ -1,7 +1,12 @@
 'use client'
 
 import { type SubmitHandler, useForm } from 'react-hook-form'
-import { type NewPlaceRequest } from '@/_apis/schemas/place'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { addToast } from '@heroui/react'
+import {
+  type NewPlaceRequest,
+  NewPlaceRequestSchema,
+} from '@/_apis/schemas/place'
 import { useFunnel } from '@/_hooks/useFunnel'
 import { useCampusStore } from '@/_store/campus'
 import { Header } from '@repo/ui/components/Header'
@@ -46,8 +51,10 @@ const PlaceNewPage = () => {
     control,
     setValue,
     getValues,
-    // formState: { errors },
+    trigger,
+    formState: { errors },
   } = useForm<NewPlaceRequest>({
+    resolver: zodResolver(NewPlaceRequestSchema),
     defaultValues: {
       campus: initCampus,
       kakaoPlaceId: '',
@@ -114,7 +121,14 @@ const PlaceNewPage = () => {
           <Description
             control={control}
             getValues={getValues}
-            nextStep={() => {
+            nextStep={async () => {
+              const valid = await trigger('description')
+              if (!valid) {
+                addToast({
+                  title: errors.description?.message || '설명을 입력해주세요!',
+                })
+                return
+              }
               nextStep('CATEGORY')
             }}
           />
