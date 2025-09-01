@@ -18,7 +18,7 @@ import { HeaderHomeButton } from './_components/HeaderHomeButton'
 import {
   Campus,
   PlaceSearch,
-  PlaceCheck,
+  PlacePreview,
   RecommendedMenu,
   Description,
   Category,
@@ -27,7 +27,7 @@ import {
 export type StepType =
   | 'CAMPUS'
   | 'PLACE_SEARCH'
-  | 'PLACE_CHECK'
+  | 'PLACE_PREVIEW'
   | 'RECOMMENDED_MENU'
   | 'DESCRIPTION'
   | 'CATEGORY'
@@ -35,7 +35,7 @@ export type StepType =
 const STEP_ORDER: Record<StepType, string> = {
   CAMPUS: '1',
   PLACE_SEARCH: '2',
-  PLACE_CHECK: '3',
+  PLACE_PREVIEW: '3',
   RECOMMENDED_MENU: '4',
   DESCRIPTION: '5',
   CATEGORY: '6',
@@ -104,12 +104,12 @@ const PlaceNewPage = () => {
             campus={getValues().campus}
             setValue={setValue}
             nextStep={() => {
-              nextStep('PLACE_CHECK')
+              nextStep('PLACE_PREVIEW')
             }}
           />
         </Step>
-        <Step name={'PLACE_CHECK'}>
-          <PlaceCheck
+        <Step name={'PLACE_PREVIEW'}>
+          <PlacePreview
             setValue={setValue}
             nextStep={() => {
               nextStep('RECOMMENDED_MENU')

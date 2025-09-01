@@ -1,6 +1,6 @@
 export * from './Campus'
 export * from './PlaceSearch'
-export * from './PlaceCheck'
+export * from './PlacePreview'
 export * from './RecommendedMenu'
 export * from './Description'
 export * from './Category'
