@@ -10,8 +10,17 @@ type Props = {
 }
 
 export const Menus = ({ menus }: Props) => {
-  const recommendedMenu = menus.filter((menu) => menu.isRecommended)
-  const unRecommendedMenu = menus.filter((menu) => !menu.isRecommended)
+  const { recommendedMenu, unRecommendedMenu } = menus.reduce(
+    (acc, menu) => {
+      if (menu.isRecommended) acc.recommendedMenu.push(menu)
+      else acc.unRecommendedMenu.push(menu)
+      return acc
+    },
+    {
+      recommendedMenu: [] as typeof menus,
+      unRecommendedMenu: [] as typeof menus,
+    },
+  )
 
   return (
     <Column className={'gap-2.5'}>
@@ -19,6 +28,17 @@ export const Menus = ({ menus }: Props) => {
       <Column
         className={cn('gap-2.5', 'rounded-xl', 'bg-gray-50', 'px-4 py-3')}
       >
+        {/*메뉴 존재 유무*/}
+        {menus.length === 0 && (
+          <Text
+            fontSize={'sm'}
+            fontWeight={'semibold'}
+            className={'mx-auto my-3'}
+          >
+            등록된 메뉴가 존재하지 않습니다
+          </Text>
+        )}
+        {/*추천 메뉴 존재 유무*/}
         {recommendedMenu.length > 0 && (
           <>
             <Text variant={'caption1'} className={'text-gray-300'}>

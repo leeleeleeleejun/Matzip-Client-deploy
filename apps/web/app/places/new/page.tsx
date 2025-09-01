@@ -112,7 +112,11 @@ const PlaceNewPage = () => {
           <PlacePreview
             setValue={setValue}
             nextStep={() => {
-              nextStep('RECOMMENDED_MENU')
+              const step =
+                getValues().menus.length > 0
+                  ? 'RECOMMENDED_MENU'
+                  : 'DESCRIPTION'
+              nextStep(step)
             }}
           />
         </Step>
