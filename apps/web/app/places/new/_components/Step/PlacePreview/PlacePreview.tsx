@@ -9,6 +9,7 @@ import { Text } from '@repo/ui/components/Text'
 import { Button } from '@repo/ui/components/Button'
 import { Column, Flex, VerticalScrollArea } from '@repo/ui/components/Layout'
 import { Icon } from '@repo/ui/components/Icon'
+import { AlreadyRegistered } from './AlreadyRegistered'
 
 type Props = {
   setValue: UseFormSetValue<NewPlaceRequest>
@@ -18,8 +19,13 @@ type Props = {
 export const PlacePreview = ({ setValue, nextStep }: Props) => {
   // Todo: 테스트용 api 요청 삭제 예정 (id prop으로 전달받을 예정)
   const { data } = useSuspenseQuery(usePlaceQueries.byPreview('1'))
-  const { placeName, photos, menus, location } = data
+  const { alreadyRegistered, placeName, photos, menus, location } = data
   setValue('menus', menus)
+
+  if (alreadyRegistered) {
+    return <AlreadyRegistered placeName={placeName} />
+  }
+
   return (
     <>
       <VerticalScrollArea className={'flex-1'}>
