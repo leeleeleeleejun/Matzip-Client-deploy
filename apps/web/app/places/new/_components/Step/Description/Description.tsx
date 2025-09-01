@@ -18,7 +18,7 @@ export const Description = ({ control, getValues, nextStep }: Props) => {
     <>
       <Title
         title={'내가 알리고 싶은 맛집의 비밀은?'}
-        description={'아쉬운 점도 함께 자유롭게 작성할 수록 좋아요!'}
+        description={'아쉬운 점도 함께 자유롭게 작성할수록 좋아요!'}
       />
       <Controller
         control={control}
