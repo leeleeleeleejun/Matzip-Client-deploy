@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'motion/react'
 import { CLIENT_PATH } from '@/_constants/path'
 import { type PlaceByMap } from '@/_apis/schemas/place'
@@ -8,7 +9,7 @@ import { Icon } from '@repo/ui/components/Icon'
 import { Column, Flex } from '@repo/ui/components/Layout'
 
 export const PreviewPlace = ({ place }: { place: PlaceByMap }) => {
-  const { placeId, placeName, categories, address } = place
+  const { placeId, placeName, categories, address, photos } = place
   const mainCategoryIcon = categories[0]?.iconKey || 'logo'
 
   return (
@@ -33,6 +34,24 @@ export const PreviewPlace = ({ place }: { place: PlaceByMap }) => {
           <Text variant='caption2' className='text-gray-300'>
             {address}
           </Text>
+          <Flex className='mt-1 gap-2'>
+            {photos.map((photo) => (
+              <Flex
+                key={photo.photoId}
+                className={
+                  'h-12.5 w-12.5 overflow-hidden rounded-xl bg-gray-100'
+                }
+              >
+                <Image
+                  src={photo.photoUrl}
+                  width={50}
+                  height={50}
+                  alt={`place-photo-${photo.displayOrder}`}
+                  className={'object-cover'}
+                />
+              </Flex>
+            ))}
+          </Flex>
         </Column>
         <Icon type='arrowRight' color='--color-gray-200' />
       </Link>

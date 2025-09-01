@@ -87,6 +87,26 @@ export const PlacesWithLocation = [
       latitude: 36.469,
       longitude: 127.14,
     },
+    photos: [
+      {
+        photoId: 101,
+        photoUrl:
+          'https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20211025_113%2F1635154893487eIc0z_JPEG%2FbPjCPpI1NOW3XI2xDY6PFrQP.jpg',
+        displayOrder: 0,
+      },
+      {
+        photoId: 102,
+        photoUrl:
+          'https://search.pstatic.net/common/?src=https%3A%2F%2Fpup-review-phinf.pstatic.net%2FMjAyNTA3MjNfNzkg%2FMDAxNzUzMjYzMDcwMDI4.YZPG9RYk5jn6jJtaNcaba70NF9uqeD_o8hY4xJ9xc6Eg.mMpLZc8GqkgQAslKGy-gPgAjiktsTSUGuMPQbNdIDWYg.JPEG%2F20250723_182109.jpg',
+        displayOrder: 1,
+      },
+      {
+        photoId: 103,
+        photoUrl:
+          'https://search.pstatic.net/common/?autoRotate=true&type=w560_sharpen&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20250320_70%2F17424487939563OCfq_JPEG%2F%25C7%25C3%25B7%25B9%25C0%25CC%25BD%25BA_2.jpg',
+        displayOrder: 2,
+      },
+    ],
     categories: [
       { id: 3, name: '한식', iconKey: 'korean' },
       { id: 14, name: '고기·구이', iconKey: 'meat' },
@@ -104,6 +124,26 @@ export const PlacesWithLocation = [
       latitude: 36.469,
       longitude: 127.141,
     },
+    photos: [
+      {
+        photoId: 101,
+        photoUrl:
+          'https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20211025_113%2F1635154893487eIc0z_JPEG%2FbPjCPpI1NOW3XI2xDY6PFrQP.jpg',
+        displayOrder: 0,
+      },
+      {
+        photoId: 102,
+        photoUrl:
+          'https://search.pstatic.net/common/?src=https%3A%2F%2Fpup-review-phinf.pstatic.net%2FMjAyNTA3MjNfNzkg%2FMDAxNzUzMjYzMDcwMDI4.YZPG9RYk5jn6jJtaNcaba70NF9uqeD_o8hY4xJ9xc6Eg.mMpLZc8GqkgQAslKGy-gPgAjiktsTSUGuMPQbNdIDWYg.JPEG%2F20250723_182109.jpg',
+        displayOrder: 1,
+      },
+      {
+        photoId: 103,
+        photoUrl:
+          'https://search.pstatic.net/common/?autoRotate=true&type=w560_sharpen&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20250320_70%2F17424487939563OCfq_JPEG%2F%25C7%25C3%25B7%25B9%25C0%25CC%25BD%25BA_2.jpg',
+        displayOrder: 2,
+      },
+    ],
     categories: [
       { id: 4, name: '분식', iconKey: 'bunsik' },
       { id: 3, name: '한식', iconKey: 'korean' },
@@ -118,6 +158,26 @@ export const PlacesWithLocation = [
       latitude: 36.469,
       longitude: 127.142,
     },
+    photos: [
+      {
+        photoId: 101,
+        photoUrl:
+          'https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20211025_113%2F1635154893487eIc0z_JPEG%2FbPjCPpI1NOW3XI2xDY6PFrQP.jpg',
+        displayOrder: 0,
+      },
+      {
+        photoId: 102,
+        photoUrl:
+          'https://search.pstatic.net/common/?src=https%3A%2F%2Fpup-review-phinf.pstatic.net%2FMjAyNTA3MjNfNzkg%2FMDAxNzUzMjYzMDcwMDI4.YZPG9RYk5jn6jJtaNcaba70NF9uqeD_o8hY4xJ9xc6Eg.mMpLZc8GqkgQAslKGy-gPgAjiktsTSUGuMPQbNdIDWYg.JPEG%2F20250723_182109.jpg',
+        displayOrder: 1,
+      },
+      {
+        photoId: 103,
+        photoUrl:
+          'https://search.pstatic.net/common/?autoRotate=true&type=w560_sharpen&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20250320_70%2F17424487939563OCfq_JPEG%2F%25C7%25C3%25B7%25B9%25C0%25CC%25BD%25BA_2.jpg',
+        displayOrder: 2,
+      },
+    ],
     categories: [{ id: 4, name: '중식', iconKey: 'chinese' }],
     tags: [{ id: 7, name: '분위기 좋은', iconKey: 'blingBling' }],
   },
