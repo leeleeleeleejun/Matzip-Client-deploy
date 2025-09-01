@@ -6,7 +6,7 @@ import type { NewPlaceRequest } from '@/_apis/schemas/place'
 import type { Category as CategoryType } from '@/_apis/schemas/category'
 import { CategoryBox } from './CategoryBox'
 import { ChoiceCategoryBox } from './ChoiceCategoryBox'
-import { Title } from '../../Tilte'
+import { Title } from '../../Title'
 import { Button } from '@repo/ui/components/Button'
 
 type Props = {

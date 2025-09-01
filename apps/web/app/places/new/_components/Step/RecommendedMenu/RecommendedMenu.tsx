@@ -1,7 +1,7 @@
 import { CheckboxGroup, Checkbox } from '@heroui/react'
 import { type Control, Controller } from 'react-hook-form'
 import type { NewPlaceRequest } from '@/_apis/schemas/place'
-import { Title } from '@/places/new/_components/Tilte'
+import { Title } from '@/places/new/_components/Title'
 import { Text } from '@repo/ui/components/Text'
 import { JustifyBetween } from '@repo/ui/components/Layout'
 import { Button } from '@repo/ui/components/Button'

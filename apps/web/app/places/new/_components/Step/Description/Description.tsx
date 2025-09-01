@@ -1,4 +1,4 @@
-import { Title } from '@/places/new/_components/Tilte'
+import { Title } from '@/places/new/_components/Title'
 import { Textarea } from '@repo/ui/components/Textarea'
 import { Button } from '@repo/ui/components/Button'
 import { type Control, Controller } from 'react-hook-form'
