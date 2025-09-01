@@ -45,7 +45,7 @@ export const PlacePreview = ({ setValue, nextStep }: Props) => {
             <Image
               key={photo.displayOrder}
               src={photo.photoUrl}
-              alt='place-photo'
+              alt={`place-photo-${photo.displayOrder}`}
               width={450}
               height={180}
               className={'max-h-[180px] object-contain'}
