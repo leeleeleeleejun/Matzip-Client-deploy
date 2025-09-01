@@ -12,6 +12,7 @@ export type ChipProps<C extends ElementType> = PolymorphicComponentProps<
     icon: IconType
     label: string
     onToggle?: () => void
+    initialActiveValue?: boolean
   }
 >
 
@@ -33,6 +34,7 @@ export type ChipType = <C extends ElementType = 'div'>(
  * @param icon 표시할 아이콘 타입
  * @param label Chip에 표시할 텍스트 라벨
  * @param onToggle 클릭 시 실행할 콜백 함수
+ * @param initialActiveValue 토글 초기값
  * @param restProps 나머지 Props
  *
  * @returns 렌더링된 Chip 요소
@@ -48,10 +50,11 @@ export const Chip: ChipType = ({
   icon,
   label,
   onToggle,
+  initialActiveValue = false,
   ...restProps
 }) => {
   const Component = as || 'div'
-  const [isActive, setIsActive] = useState(false)
+  const [isActive, setIsActive] = useState(initialActiveValue)
 
   const onClick = () => {
     if (onToggle) {

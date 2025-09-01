@@ -1,0 +1,159 @@
+'use client'
+
+import { type FieldErrors, type SubmitHandler, useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { addToast } from '@heroui/react'
+import {
+  type NewPlaceRequest,
+  NewPlaceRequestSchema,
+} from '@/_apis/schemas/place'
+import { useFunnel } from '@/_hooks/useFunnel'
+import { useCampusStore } from '@/_store/campus'
+import { Header } from '@repo/ui/components/Header'
+import { Column, Flex } from '@repo/ui/components/Layout'
+import { Text } from '@repo/ui/components/Text'
+import { Icon } from '@repo/ui/components/Icon'
+import { HeaderBackButton } from '@/_components/HeaderBackButton'
+import { HeaderHomeButton } from './_components/HeaderHomeButton'
+import {
+  Campus,
+  PlaceSearch,
+  PlacePreview,
+  RecommendedMenu,
+  Description,
+  Category,
+} from './_components/Step'
+
+export type StepType =
+  | 'CAMPUS'
+  | 'PLACE_SEARCH'
+  | 'PLACE_PREVIEW'
+  | 'RECOMMENDED_MENU'
+  | 'DESCRIPTION'
+  | 'CATEGORY'
+
+const STEP_ORDER: Record<StepType, string> = {
+  CAMPUS: '1',
+  PLACE_SEARCH: '2',
+  PLACE_PREVIEW: '3',
+  RECOMMENDED_MENU: '4',
+  DESCRIPTION: '5',
+  CATEGORY: '6',
+}
+
+const PlaceNewPage = () => {
+  const { Step, nextStep } = useFunnel<StepType>(STEP_ORDER)
+
+  const { campus: initCampus } = useCampusStore()
+  const {
+    // register,
+    handleSubmit,
+    control,
+    setValue,
+    getValues,
+    trigger,
+    formState: { errors, isSubmitting },
+  } = useForm<NewPlaceRequest>({
+    resolver: zodResolver(NewPlaceRequestSchema),
+    defaultValues: {
+      campus: initCampus,
+      kakaoPlaceId: '',
+      menus: [],
+      description: '',
+      tagIds: [],
+      categoryIds: [],
+    },
+  })
+
+  const onSubmit: SubmitHandler<NewPlaceRequest> = (data) => console.log(data)
+  const onError = (errors: FieldErrors<NewPlaceRequest>) => {
+    if (errors.categoryIds) {
+      addToast({
+        title: errors.categoryIds.message,
+      })
+    }
+  }
+
+  return (
+    <>
+      <Header
+        left={<HeaderBackButton />}
+        center={
+          <Flex className={'gap-1.5'}>
+            <Icon type={'shakingHeart'} />
+            <Text variant={'heading2'}>맛집 알리기</Text>
+          </Flex>
+        }
+        right={<HeaderHomeButton />}
+      />
+      <Column
+        as={'form'}
+        onSubmit={handleSubmit(onSubmit, onError)}
+        className={'min-h-0 flex-1 p-5'}
+      >
+        <Step name={'CAMPUS'}>
+          <Campus
+            control={control}
+            nextStep={() => {
+              nextStep('PLACE_SEARCH')
+            }}
+          />
+        </Step>
+        <Step name={'PLACE_SEARCH'}>
+          <PlaceSearch
+            campus={getValues().campus}
+            setValue={setValue}
+            nextStep={() => {
+              nextStep('PLACE_PREVIEW')
+            }}
+          />
+        </Step>
+        <Step name={'PLACE_PREVIEW'}>
+          <PlacePreview
+            setValue={setValue}
+            nextStep={() => {
+              const step =
+                getValues().menus.length > 0
+                  ? 'RECOMMENDED_MENU'
+                  : 'DESCRIPTION'
+              nextStep(step)
+            }}
+          />
+        </Step>
+        <Step name={'RECOMMENDED_MENU'}>
+          <RecommendedMenu
+            control={control}
+            nextStep={() => {
+              nextStep('DESCRIPTION')
+            }}
+          />
+        </Step>
+        <Step name={'DESCRIPTION'}>
+          <Description
+            control={control}
+            getValues={getValues}
+            nextStep={async () => {
+              const valid = await trigger('description')
+              if (!valid) {
+                addToast({
+                  title: errors.description?.message || '설명을 입력해주세요!',
+                })
+                return
+              }
+              nextStep('CATEGORY')
+            }}
+          />
+        </Step>
+        <Step name={'CATEGORY'}>
+          <Category
+            setValue={setValue}
+            getValues={getValues}
+            isSubmitting={isSubmitting}
+          />
+        </Step>
+      </Column>
+    </>
+  )
+}
+
+export default PlaceNewPage
