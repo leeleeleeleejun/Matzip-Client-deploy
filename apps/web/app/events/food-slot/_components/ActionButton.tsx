@@ -1,5 +1,6 @@
 import { motion } from 'motion/react'
 import { Spinner } from '@heroui/react'
+import { Icon } from '@repo/ui/components/Icon'
 
 export const ActionButton = ({
   isSpinning,
@@ -27,7 +28,7 @@ export const ActionButton = ({
         </>
       ) : (
         <>
-          <span>🎯</span>
+          <Icon type={'target'} />
           <span>슬롯머신 돌리기</span>
         </>
       )}
