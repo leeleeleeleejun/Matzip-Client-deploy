@@ -22,8 +22,8 @@ export const API_PATH = {
     },
     LIKE: {
       GET: '/places/like',
-      POST: (id: string) => `places/${id}/like`,
-      DELETE: (id: string) => `places/${id}/like`,
+      POST: (id: string) => `/places/${id}/like`,
+      DELETE: (id: string) => `/places/${id}/like`,
     },
   },
   KAKAO: {
