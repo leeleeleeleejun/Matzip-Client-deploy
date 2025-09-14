@@ -3,8 +3,9 @@
 import { useEffect, useRef, useState } from 'react'
 import Matter, { Engine, Runner, World, Bodies, Body, Events } from 'matter-js'
 import { cn } from '@repo/ui/utils/cn'
+import { Column } from '@repo/ui/components/Layout'
 
-export const LottoBalls: React.FC = () => {
+export const LottoBalls = () => {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const ballRefs = useRef<HTMLDivElement[]>([])
   const engineRef = useRef<Engine | null>(null)
@@ -24,10 +25,10 @@ export const LottoBalls: React.FC = () => {
     engine.gravity.y = 1
 
     // 터널링 방지를 위한 엔진 설정
-    engine.constraintIterations = 2 // 기본값보다 증가
-    engine.positionIterations = 6 // 기본값보다 증가
-    engine.velocityIterations = 4 // 기본값보다 증가
-    engine.enableSleeping = false // 슬리핑 비활성화
+    engine.constraintIterations = 2
+    engine.positionIterations = 6
+    engine.velocityIterations = 4
+    engine.enableSleeping = false
 
     engineRef.current = engine
     const world = engine.world
@@ -156,30 +157,40 @@ export const LottoBalls: React.FC = () => {
   ]
 
   return (
-    <div className='flex flex-col items-center gap-4'>
-      <div
-        ref={containerRef}
-        className='relative rounded-full border border-white/40 bg-white/20 shadow-inner backdrop-blur-md'
-        style={{
-          width: 200,
-          height: 200,
-          boxShadow:
-            'inset 0 4px 20px rgba(255,255,255,0.4), 0 8px 30px rgba(0,0,0,0.25)',
-        }}
-      >
-        {Array.from({ length: 15 }).map((_, i) => (
-          <div
-            key={i}
-            ref={(el) => {
-              ballRefs.current[i] = el!
-            }}
-            className={cn(
-              'absolute flex h-6 w-6 rounded-full',
-              colors[i % colors.length],
-            )}
-          />
-        ))}
-      </div>
+    <Column className='items-center gap-4'>
+      <Column className={'items-center'}>
+        <div
+          ref={containerRef}
+          className={cn(
+            'relative',
+            'h-50 w-50',
+            'rounded-full',
+            'shadow-[inset_0_4px_20px_rgba(255,255,255,0.4),_0_0px_10px_rgba(0,0,0,0.25)]',
+          )}
+        >
+          {Array.from({ length: 15 }).map((_, i) => (
+            <div
+              key={i}
+              ref={(el) => {
+                ballRefs.current[i] = el!
+              }}
+              className={cn(
+                'absolute h-6 w-6 rounded-full',
+                colors[i % colors.length],
+              )}
+            />
+          ))}
+        </div>
+        <div
+          className={cn(
+            'z-10',
+            'w-32',
+            '-mt-4',
+            'rounded-full',
+            'border-10 border-red-400',
+          )}
+        />
+      </Column>
 
       <button
         onClick={handleToggle}
@@ -187,6 +198,6 @@ export const LottoBalls: React.FC = () => {
       >
         {isRunning ? '멈춤' : '튀기기'}
       </button>
-    </div>
+    </Column>
   )
 }
