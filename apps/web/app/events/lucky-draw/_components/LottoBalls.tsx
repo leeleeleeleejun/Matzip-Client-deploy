@@ -1,17 +1,20 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import Matter, { Engine, Runner, World, Bodies, Body, Events } from 'matter-js'
 import { cn } from '@repo/ui/utils/cn'
 import { Column } from '@repo/ui/components/Layout'
 
-export const LottoBalls = () => {
+interface LottoBallsProps {
+  isRunning: boolean
+}
+
+export const LottoBalls = ({ isRunning }: LottoBallsProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const ballRefs = useRef<HTMLDivElement[]>([])
   const engineRef = useRef<Engine | null>(null)
   const runnerRef = useRef<Runner | null>(null)
   const ballsRef = useRef<Matter.Body[]>([])
-  const [isRunning, setIsRunning] = useState(false)
 
   useEffect(() => {
     const container = containerRef.current
@@ -20,11 +23,8 @@ export const LottoBalls = () => {
     const width = container.clientWidth
     const radius = width / 2
 
-    // 엔진 생성 및 터널링 방지 설정
     const engine = Engine.create()
     engine.gravity.y = 1
-
-    // 터널링 방지를 위한 엔진 설정
     engine.constraintIterations = 2
     engine.positionIterations = 6
     engine.velocityIterations = 4
@@ -75,13 +75,12 @@ export const LottoBalls = () => {
     ballsRef.current = balls
     World.add(world, balls)
 
-    // DOM 동기화
+    // DOM 업데이트
     const updateDOM = () => {
       balls.forEach((ball, i) => {
         const el = ballRefs.current[i]
         if (!el) return
 
-        // ✅ isRunning 상태일 때만 최소 속도 유지
         if (isRunning) {
           const speed = Math.hypot(ball.velocity.x, ball.velocity.y)
           const minSpeed = 2
@@ -92,11 +91,10 @@ export const LottoBalls = () => {
             })
           }
         } else {
-          // 멈춤 상태에서는 점진적으로 공기 저항 증가
           const currentSpeed = Math.hypot(ball.velocity.x, ball.velocity.y)
           if (currentSpeed > 0.1) {
             Body.setVelocity(ball, {
-              x: ball.velocity.x * 0.98, // 점진적으로 속도 감소
+              x: ball.velocity.x * 0.98,
               y: ball.velocity.y * 0.98,
             })
             Body.setAngularVelocity(ball, ball.angularVelocity * 0.98)
@@ -106,13 +104,11 @@ export const LottoBalls = () => {
         el.style.transform = `translate(${ball.position.x - 12}px, ${ball.position.y - 12}px) rotate(${ball.angle}rad)`
       })
     }
-
     Events.on(engine, 'afterUpdate', updateDOM)
 
-    // Runner 생성 (항상 실행)
     const runner = Runner.create()
     runnerRef.current = runner
-    Runner.run(runner, engine) // ✅ 항상 실행 (버튼으로 물리조건만 바꿈)
+    Runner.run(runner, engine)
 
     return () => {
       Events.off(engine, 'afterUpdate', updateDOM)
@@ -120,33 +116,28 @@ export const LottoBalls = () => {
       World.clear(world, false)
       Engine.clear(engine)
     }
-  }, [isRunning]) // ✅ isRunning을 dependency에 추가
+  }, [isRunning])
 
-  // 버튼 토글
-  const handleToggle = () => {
+  useEffect(() => {
     if (!engineRef.current) return
 
     if (isRunning) {
-      // ✅ 멈춤 상태
-      engineRef.current.gravity.y = 1 // 바닥으로 떨어지게
-      ballsRef.current.forEach((ball) => {
-        Body.setVelocity(ball, { x: 0, y: 0 })
-        Body.setAngularVelocity(ball, 0)
-      })
-    } else {
-      // ✅ 튀기기 상태
-      engineRef.current.gravity.y = 0 // 중력 제거
+      engineRef.current.gravity.y = 0
       ballsRef.current.forEach((ball) => {
         Body.setVelocity(ball, {
-          x: (Math.random() - 0.5) * 6, // 속도 더 줄임
+          x: (Math.random() - 0.5) * 6,
           y: (Math.random() - 0.5) * 6,
         })
         Body.setAngularVelocity(ball, (Math.random() - 0.5) * 0.1)
       })
+    } else {
+      engineRef.current.gravity.y = 1
+      ballsRef.current.forEach((ball) => {
+        Body.setVelocity(ball, { x: 0, y: 0 })
+        Body.setAngularVelocity(ball, 0)
+      })
     }
-
-    setIsRunning(!isRunning)
-  }
+  }, [isRunning])
 
   const colors = [
     'bg-yellow-400',
@@ -158,7 +149,7 @@ export const LottoBalls = () => {
 
   return (
     <Column className='items-center gap-4'>
-      <Column className={'items-center'}>
+      <Column className='items-center'>
         <div
           ref={containerRef}
           className={cn(
@@ -191,13 +182,6 @@ export const LottoBalls = () => {
           )}
         />
       </Column>
-
-      <button
-        onClick={handleToggle}
-        className='rounded-md bg-blue-500 px-4 py-2 text-white'
-      >
-        {isRunning ? '멈춤' : '튀기기'}
-      </button>
     </Column>
   )
 }
