@@ -1,15 +1,12 @@
 'use client'
 
+import { useState } from 'react'
 import { Column, JustifyBetween } from '@repo/ui/components/Layout'
-import { useFunnel } from '@/_hooks/useFunnel'
 import { NavBarItem } from './_components/NavBarItem'
-import { Result } from './_components/Pages'
+import { Participation, Result } from './_components/Pages'
 
 export type StepType = 'participation' | 'result'
-const STEP_ORDER: Record<StepType, string> = {
-  participation: 'participation',
-  result: 'result',
-}
+
 const STEP_NAME = {
   participation: '응모 하기',
   result: '응모 결과',
@@ -17,7 +14,7 @@ const STEP_NAME = {
 const TABS: StepType[] = ['participation', 'result']
 
 export const LuckyDraw = () => {
-  const { nextStep, Step, step } = useFunnel(STEP_ORDER, 'tab')
+  const [currentTab, setCurrentTab] = useState<StepType>('participation')
 
   return (
     <>
@@ -26,17 +23,16 @@ export const LuckyDraw = () => {
           {TABS.map((tab) => (
             <NavBarItem
               key={tab}
-              isActive={step === tab}
+              isActive={currentTab === tab}
               name={STEP_NAME[tab]}
               onClick={() => {
-                nextStep(tab)
+                setCurrentTab(tab)
               }}
             />
           ))}
         </JustifyBetween>
-        <Step name={'result'}>
-          <Result />
-        </Step>
+        {currentTab === 'participation' && <Participation />}
+        {currentTab === 'result' && <Result />}
       </Column>
     </>
   )
