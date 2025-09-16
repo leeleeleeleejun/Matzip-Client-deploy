@@ -7,7 +7,7 @@ import { Button } from '@repo/ui/components/Button'
 import { Column } from '@repo/ui/components/Layout'
 import { LottoBalls } from '../../LottoBalls'
 import { ParticipationStatus } from '../../ParticipationStatus'
-import { ResultModal } from '../../ResultModal'
+import { ResultModal } from './ResultModal'
 
 export const Result = () => {
   const [isRunning, setIsRunning] = useState(false)
