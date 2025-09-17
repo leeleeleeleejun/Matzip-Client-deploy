@@ -1,4 +1,6 @@
-export const event = {
+import type { Event, EventResult } from '@/_apis/schemas/event'
+
+export const event: Event = {
   eventId: '1',
   prize: {
     description: 'BHC 뿌링클 치킨 기프티콘 1장',
@@ -10,4 +12,11 @@ export const event = {
   usedTicketsCount: 3,
   remainingTicketsCount: 3,
   eventEndDate: '2025-12-18T00:00:00.000000',
+}
+
+export const eventResult: EventResult = {
+  eventId: '1',
+  isWinner: true,
+  participantsCount: 3,
+  usedTicketsCount: 3,
 }

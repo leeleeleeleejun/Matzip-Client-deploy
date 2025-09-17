@@ -13,4 +13,12 @@ export const EventSchema = z.object({
   eventEndDate: z.string(),
 })
 
+export const EventResultSchema = z.object({
+  eventId: z.string(),
+  isWinner: z.boolean(),
+  participantsCount: z.number(),
+  usedTicketsCount: z.number(),
+})
+
 export type Event = z.infer<typeof EventSchema>
+export type EventResult = z.infer<typeof EventResultSchema>
