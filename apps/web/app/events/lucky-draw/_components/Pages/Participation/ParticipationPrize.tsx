@@ -7,12 +7,16 @@ type Props = {
   description: string
   totalWinnersCount: number
   imageUrl: string
+  participantsCount: number
+  usedTicketsCount: number
 }
 
 export const ParticipationPrize = ({
   description,
   totalWinnersCount,
   imageUrl,
+  participantsCount,
+  usedTicketsCount,
 }: Props) => (
   <Column className={'items-center gap-3'}>
     <Text fontSize={'2xl'} fontWeight={'bold'}>
@@ -24,7 +28,10 @@ export const ParticipationPrize = ({
         <Text variant={'title3'}>총 당첨자: {totalWinnersCount}명</Text>
       </Column>
       <Image src={imageUrl} alt={'상품 이미지'} width={200} height={200} />
-      <ParticipationStatus participantsCount={100} usedTicketsCount={100} />
+      <ParticipationStatus
+        participantsCount={participantsCount}
+        usedTicketsCount={usedTicketsCount}
+      />
     </Column>
   </Column>
 )

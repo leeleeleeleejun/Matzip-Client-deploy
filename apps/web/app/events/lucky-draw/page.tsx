@@ -4,10 +4,16 @@ import { Flex } from '@repo/ui/components/Layout'
 import { Icon } from '@repo/ui/components/Icon'
 import { Text } from '@repo/ui/components/Text'
 import { LuckyDraw } from './LuckyDraw'
+import { HydrationBoundaryPage } from '@/HydrationBoundaryPage'
+import { useEventQueries } from '@/_apis/queries/event'
 
 const Page = () => {
   return (
-    <>
+    <HydrationBoundaryPage
+      prefetch={async (queryClient) => {
+        await queryClient.prefetchQuery(useEventQueries.info())
+      }}
+    >
       <Header
         left={<HeaderBackButton />}
         center={
@@ -19,7 +25,7 @@ const Page = () => {
         className={'border-b-1 border-gray-50'}
       />
       <LuckyDraw />
-    </>
+    </HydrationBoundaryPage>
   )
 }
 
