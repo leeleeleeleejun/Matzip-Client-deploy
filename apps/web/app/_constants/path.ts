@@ -25,6 +25,11 @@ export const API_PATH = {
     SEARCH: (query: string, categoryCode: string, x: number, y: number) =>
       `https://dapi.kakao.com/v2/local/search/keyword.json?query=${query}&category_group_code=${categoryCode}&x=${x}&y=${y}`,
   },
+  EVENT: {
+    INFO: '/events',
+    PARTICIPATIONS: '/events/participations',
+    RESULT: '/events/results',
+  },
 }
 
 export const CLIENT_PATH = {
