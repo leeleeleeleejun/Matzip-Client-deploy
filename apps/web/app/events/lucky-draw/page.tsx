@@ -6,6 +6,7 @@ import { Text } from '@repo/ui/components/Text'
 import { LuckyDraw } from './LuckyDraw'
 import { HydrationBoundaryPage } from '@/HydrationBoundaryPage'
 import { useEventQueries } from '@/_apis/queries/event'
+import { InfoPopover } from './_components/InfoPopover'
 
 const Page = () => {
   return (
@@ -25,6 +26,7 @@ const Page = () => {
             <Text variant={'heading2'}>행운 복권</Text>
           </Flex>
         }
+        right={<InfoPopover />}
         className={'border-b-1 border-gray-50'}
       />
       <LuckyDraw />
