@@ -38,7 +38,12 @@ export const Campus = ({ control, nextStep }: Props) => {
           </RadioGroup>
         )}
       />
-      <Button size={'medium'} className={'ui:min-w-full'} onClick={nextStep}>
+      <Button
+        size={'medium'}
+        type={'button'}
+        className={'ui:min-w-full'}
+        onClick={nextStep}
+      >
         다음
       </Button>
     </>

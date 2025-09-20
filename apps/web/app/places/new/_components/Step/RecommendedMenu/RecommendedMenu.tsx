@@ -71,7 +71,12 @@ export const RecommendedMenu = ({ control, nextStep }: Props) => {
           )
         }}
       />
-      <Button size={'medium'} className={'ui:min-w-full'} onClick={nextStep}>
+      <Button
+        size={'medium'}
+        type={'button'}
+        className={'ui:min-w-full'}
+        onClick={nextStep}
+      >
         다음
       </Button>
     </>

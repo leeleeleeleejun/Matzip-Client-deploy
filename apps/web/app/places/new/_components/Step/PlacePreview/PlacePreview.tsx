@@ -58,6 +58,7 @@ export const PlacePreview = ({ setValue, nextStep }: Props) => {
           <Menus menus={menus} />
           <Button
             size={'medium'}
+            type={'button'}
             className={'ui:min-w-full mt-10'}
             onClick={nextStep}
           >
