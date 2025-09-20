@@ -16,6 +16,7 @@ import { Icon } from '@repo/ui/components/Icon'
 import { HeaderBackButton } from '@/_components/HeaderBackButton'
 import { HeaderHomeButton } from './_components/HeaderHomeButton'
 import {
+  EventWelcome,
   Campus,
   PlaceSearch,
   PlacePreview,
@@ -25,6 +26,7 @@ import {
 } from './_components/Step'
 
 export type StepType =
+  | 'EVENT_WELCOME'
   | 'CAMPUS'
   | 'PLACE_SEARCH'
   | 'PLACE_PREVIEW'
@@ -33,6 +35,7 @@ export type StepType =
   | 'CATEGORY'
 
 const STEP_ORDER: Record<StepType, string> = {
+  EVENT_WELCOME: 'welcome',
   CAMPUS: '1',
   PLACE_SEARCH: '2',
   PLACE_PREVIEW: '3',
@@ -91,6 +94,13 @@ const PlaceNewPage = () => {
         onSubmit={handleSubmit(onSubmit, onError)}
         className={'min-h-0 flex-1 p-5'}
       >
+        <Step name={'EVENT_WELCOME'}>
+          <EventWelcome
+            nextStep={() => {
+              nextStep('CAMPUS')
+            }}
+          />
+        </Step>
         <Step name={'CAMPUS'}>
           <Campus
             control={control}

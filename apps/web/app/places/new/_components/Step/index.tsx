@@ -1,3 +1,4 @@
+export * from './EventWelcome'
 export * from './Campus'
 export * from './PlaceSearch'
 export * from './PlacePreview'
