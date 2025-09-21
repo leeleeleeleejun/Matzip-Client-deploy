@@ -23,6 +23,7 @@ import {
   RecommendedMenu,
   Description,
   Category,
+  Success,
 } from './_components/Step'
 
 export type StepType =
@@ -33,6 +34,7 @@ export type StepType =
   | 'RECOMMENDED_MENU'
   | 'DESCRIPTION'
   | 'CATEGORY'
+  | 'SUCCESS'
 
 const STEP_ORDER: Record<StepType, string> = {
   EVENT_WELCOME: 'welcome',
@@ -42,6 +44,7 @@ const STEP_ORDER: Record<StepType, string> = {
   RECOMMENDED_MENU: '4',
   DESCRIPTION: '5',
   CATEGORY: '6',
+  SUCCESS: 'success',
 }
 
 const PlaceNewPage = () => {
@@ -159,7 +162,13 @@ const PlaceNewPage = () => {
             setValue={setValue}
             getValues={getValues}
             isSubmitting={isSubmitting}
+            nextStep={() => {
+              nextStep('SUCCESS')
+            }}
           />
+        </Step>
+        <Step name={'SUCCESS'}>
+          <Success />
         </Step>
       </Column>
     </>
