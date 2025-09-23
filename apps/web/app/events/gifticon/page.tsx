@@ -1,31 +1,17 @@
 import Image from 'next/image'
 import { CLIENT_PATH } from '@/_constants/path'
-import { HeaderBackButton } from '@/_components/HeaderBackButton'
-import { Header } from '@repo/ui/components/Header'
-import { Column, Flex } from '@repo/ui/components/Layout'
-import { Icon } from '@repo/ui/components/Icon'
+import { Column } from '@repo/ui/components/Layout'
 import { Text } from '@repo/ui/components/Text'
 import { cn } from '@repo/ui/utils/cn'
 
 const Page = () => {
   return (
-    <>
-      <Header
-        left={<HeaderBackButton />}
-        center={
-          <Flex className={'gap-1.5'}>
-            <Icon type={'headerGift'} />
-            <Text variant={'heading2'}>기프티콘</Text>
-          </Flex>
-        }
-      />
-      <div className={'grid grid-cols-2 gap-2.5 p-5'}>
-        <Gifticon />
-        <Gifticon />
-        <Gifticon />
-        <Gifticon />
-      </div>
-    </>
+    <div className={'grid grid-cols-2 gap-2.5 p-5'}>
+      <Gifticon />
+      <Gifticon />
+      <Gifticon />
+      <Gifticon />
+    </div>
   )
 }
 
