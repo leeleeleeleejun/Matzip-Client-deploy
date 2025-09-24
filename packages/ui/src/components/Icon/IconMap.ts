@@ -32,6 +32,8 @@ import { Heart as HeaderHeart } from './assets/icons/header/heart'
 import { User as HeaderUser } from './assets/icons/header/user'
 import { ShakingHeart } from './assets/icons/header/shakingHeart'
 import { Gift as HeaderGift } from './assets/icons/header/gift'
+import { Pencil as HeaderPencil } from './assets/icons/header/pencil'
+
 //여기저기
 import { ArrowLeft } from './assets/icons/arrowLeft'
 import { ArrowRight } from './assets/icons/arrowRight'
@@ -98,6 +100,7 @@ export const iconMap = {
   headerUser: HeaderUser,
   shakingHeart: ShakingHeart,
   headerGift: HeaderGift,
+  headerPencil: HeaderPencil,
 
   //여기저기
   arrowLeft: ArrowLeft,
