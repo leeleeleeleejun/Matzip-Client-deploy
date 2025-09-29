@@ -51,7 +51,7 @@ export const CLIENT_PATH = {
   LIKES: '/likes',
   PROFILE: '/profile',
   REQUESTS: '/requests',
-  REQUEST_DETAIL: (id: string) => `/requests/${id}`,
+  REQUEST_DETAIL: (id: string | number) => `/requests/${id}`,
   EVENTS_FOOD_SLOT: '/events/food-slot',
   EVENTS_LUCKY_DRAW: '/events/lucky-draw',
   EVENT_GIFTICON: '/events/gifticon',
