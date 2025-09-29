@@ -64,14 +64,6 @@ export const NewPlaceRequestSchema = z.object({
   menus,
 })
 
-export const PlaceByStatusSchema = z.object({
-  placeId: z.number().transform(String),
-  placeName: z.string(),
-  categories: z.array(CategorySchema),
-  requestDate: z.string(),
-  registerStatus: z.enum(['PENDING', 'APPROVED', 'REJECTED']),
-})
-
 export type RankingPlaceSort = 'views' | 'likes'
 export type MapBounds = {
   minLatitude: number
@@ -85,4 +77,3 @@ export type PlaceByMap = z.infer<typeof PlaceByMapSchema>
 export type PlaceDetail = z.infer<typeof PlaceDetailSchema>
 export type PlaceByPreview = z.infer<typeof PlaceByPreviewSchema>
 export type NewPlaceRequest = z.infer<typeof NewPlaceRequestSchema>
-export type PlaceByStatus = z.infer<typeof PlaceByStatusSchema>

@@ -4,7 +4,7 @@ import { cn } from '@repo/ui/utils/cn'
 import { Text } from '@repo/ui/components/Text'
 import { Icon } from '@repo/ui/components/Icon'
 import { StatusChip } from '../StatusChip'
-import type { PlaceByStatus } from '@/_apis/schemas/place'
+import type { Request } from '@/_apis/schemas/request'
 
 export const PlaceListItem = ({
   // placeId,
@@ -12,7 +12,7 @@ export const PlaceListItem = ({
   categories,
   requestDate,
   registerStatus,
-}: PlaceByStatus) => {
+}: Request) => {
   const mainCategoryIcon = categories[0]?.iconKey || 'logo'
 
   return (

@@ -1,7 +1,7 @@
-import type { PlaceByStatus } from '@/_apis/schemas/place'
+import type { Request } from '@/_apis/schemas/request'
 import { COLOR_VARIANTS } from '@repo/ui/consts/colorVariant'
 
-export type RegisterStatus = PlaceByStatus['registerStatus']
+export type RegisterStatus = Request['registerStatus']
 
 export const STATUS_COLOR: Record<
   RegisterStatus,
