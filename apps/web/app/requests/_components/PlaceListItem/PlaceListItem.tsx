@@ -1,9 +1,9 @@
+import { CLIENT_PATH } from '@/_constants/path'
 import { Column, Flex, JustifyBetween } from '@repo/ui/components/Layout'
 import { cn } from '@repo/ui/utils/cn'
-import { CLIENT_PATH } from '@/_constants/path'
 import { Text } from '@repo/ui/components/Text'
 import { Icon } from '@repo/ui/components/Icon'
-import { StatusChip } from '@/places/_components/StatusChip'
+import { StatusChip } from '../StatusChip'
 import type { PlaceByStatus } from '@/_apis/schemas/place'
 
 export const PlaceListItem = ({
