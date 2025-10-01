@@ -2,19 +2,16 @@
 
 import Image from 'next/image'
 import { useSuspenseQuery } from '@tanstack/react-query'
+
 import { useRequestQueries } from '@/_apis/queries/request'
 import { Header } from '@repo/ui/components/Header'
-import { HeaderBackButton } from '@/_components/HeaderBackButton'
 import { Text } from '@repo/ui/components/Text'
-import { StatusChip } from '@/requests/_components/StatusChip'
 import { Column, VerticalScrollArea } from '@repo/ui/components/Layout'
 import { Banner } from '@/_components/Banner'
-import {
-  Description,
-  Location,
-  Menus,
-  SubTitle,
-} from '@/places/[id]/_components'
+import { HeaderBackButton } from '@/_components/HeaderBackButton'
+import { Description, Location, Menus } from '@/places/[id]/_components'
+import { StatusChip } from '@/requests/_components/StatusChip'
+import { RejectedReason } from './_components/RejectedReason'
 
 export const RequestDetailPage = ({ id }: { id: string }) => {
   const { data } = useSuspenseQuery(useRequestQueries.detail(id))
@@ -41,12 +38,7 @@ export const RequestDetailPage = ({ id }: { id: string }) => {
       />
       <VerticalScrollArea className={'flex-1'}>
         {rejectedReason && registerStatus === 'REJECTED' && (
-          <Column className={'px-5 py-3'}>
-            <SubTitle icon={'x'} title={'등록 거절 사유'} />
-            <Text variant={'body2'} className={'whitespace-pre-wrap'}>
-              {description}
-            </Text>
-          </Column>
+          <RejectedReason rejectedReason={rejectedReason} />
         )}
         <Banner
           contents={photos.map((photo) => (
