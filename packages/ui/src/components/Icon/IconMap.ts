@@ -31,6 +31,9 @@ import { Logo } from './assets/icons/header/logo'
 import { Heart as HeaderHeart } from './assets/icons/header/heart'
 import { User as HeaderUser } from './assets/icons/header/user'
 import { ShakingHeart } from './assets/icons/header/shakingHeart'
+import { Gift as HeaderGift } from './assets/icons/header/gift'
+import { Pencil as HeaderPencil } from './assets/icons/header/pencil'
+
 //여기저기
 import { ArrowLeft } from './assets/icons/arrowLeft'
 import { ArrowRight } from './assets/icons/arrowRight'
@@ -56,6 +59,9 @@ import { Congratulation } from './assets/icons/congratulation'
 import { Ticket } from './assets/icons/ticket'
 import { QuestionMark } from './assets/icons/questionMark'
 import { Gift } from './assets/icons/gift'
+import { Pencil } from './assets/icons/pencil'
+import { Paper } from './assets/icons/paper'
+import { X } from './assets/icons/x'
 
 export const iconMap = {
   // 메뉴
@@ -94,6 +100,8 @@ export const iconMap = {
   headerHeart: HeaderHeart,
   headerUser: HeaderUser,
   shakingHeart: ShakingHeart,
+  headerGift: HeaderGift,
+  headerPencil: HeaderPencil,
 
   //여기저기
   arrowLeft: ArrowLeft,
@@ -120,6 +128,9 @@ export const iconMap = {
   ticket: Ticket,
   questionMark: QuestionMark,
   gift: Gift,
+  pencil: Pencil,
+  paper: Paper,
+  x: X,
 }
 
 export type IconType = keyof typeof iconMap
