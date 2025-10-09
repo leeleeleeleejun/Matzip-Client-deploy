@@ -88,7 +88,7 @@ export const Banner = ({
   return (
     <div
       ref={sliderRef}
-      className={'keen-slider relative'}
+      className={'keen-slider ui:relative'}
       style={{ minHeight }}
     >
       {contents.map((content, index) => (
@@ -98,7 +98,7 @@ export const Banner = ({
         </div>
       ))}
       {showIndicator && loaded && instanceRef.current && (
-        <Flex className='absolute bottom-3 left-1/2 -translate-x-1/2 gap-2'>
+        <Flex className='ui:absolute ui:bottom-3 ui:left-1/2 ui:-translate-x-1/2 ui:gap-2'>
           {[
             ...Array(
               instanceRef.current?.track.details.slides.length ?? 0,
@@ -110,8 +110,8 @@ export const Banner = ({
                 instanceRef.current?.moveToIdx(idx)
               }}
               className={cn(
-                'block h-1 w-1 rounded-full transition-colors duration-300',
-                currentSlide === idx ? 'bg-gray-100' : 'bg-gray-50',
+                'ui:block ui:h-1 ui:w-1 ui:rounded-full ui:transition-colors ui:duration-300',
+                currentSlide === idx ? 'ui:bg-gray-100' : 'ui:bg-gray-50',
               )}
             />
           ))}
