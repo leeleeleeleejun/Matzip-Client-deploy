@@ -17,6 +17,13 @@ type Tag = {
   iconKey: IconType
 }
 
+export type Request = {
+  placeId: string
+  placeName: string
+  icon: IconType
+  requestDate: string
+}
+
 export type RequestDetail = {
   placeId: string
   placeName: string

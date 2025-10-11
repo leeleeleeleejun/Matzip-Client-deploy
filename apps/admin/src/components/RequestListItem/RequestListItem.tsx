@@ -1,15 +1,8 @@
 import { Column, Flex } from '@repo/ui/components/Layout'
 import { cn } from '@repo/ui/utils/cn'
 import { Text } from '@repo/ui/components/Text'
-import { Icon, type IconType } from '@repo/ui/components/Icon'
+import { Icon } from '@repo/ui/components/Icon'
 import { CLIENT_PATH } from '@/consts/path'
-
-export type Request = {
-  placeId: string
-  placeName: string
-  icon: IconType
-  requestDate: string
-}
 
 export const RequestListItem = ({
   placeId,
