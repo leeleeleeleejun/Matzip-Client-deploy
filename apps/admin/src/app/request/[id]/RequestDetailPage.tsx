@@ -1,3 +1,5 @@
+'use client'
+
 import { Header } from '@repo/ui/components/Header'
 import { Icon } from '@repo/ui/components/Icon'
 import { Text } from '@repo/ui/components/Text'
@@ -8,19 +10,25 @@ import { Location } from './_components/Location/Location'
 import { Menus } from './_components/Menus/Menus'
 import { Description } from './_components/Description'
 import { ActionButtonGroup } from './_components/ActionButtonGroup'
+import { useDisclosure } from '@heroui/react'
+import { RejectModal } from '@/app/request/[id]/_components/RejectModal'
+import { useRouter } from 'next/navigation'
 
 export const RequestDetailPage = () => {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure()
+  const { back } = useRouter()
+
   return (
     <>
       <Header
         left={
-          <button>
+          <button onClick={back}>
             <Icon type={'arrowLeft'} />
           </button>
         }
         center={<Text variant={'heading2'}>우돈탄 다산본점</Text>}
       />
-      <VerticalScrollArea className={'flex-1'}>
+      <VerticalScrollArea className={'flex-1 py-5'}>
         <Banner contents={[]} />
         <Column className={'flex-1 justify-around gap-4 px-5'}>
           <Location />
@@ -65,9 +73,10 @@ export const RequestDetailPage = () => {
               '그래도 짬뽕 양도 많고 불맛 나서 괜춘'
             }
           />
-          <ActionButtonGroup />
+          <ActionButtonGroup onOpen={onOpen} />
         </Column>
       </VerticalScrollArea>
+      <RejectModal isOpen={isOpen} onOpenChange={onOpenChange} />
     </>
   )
 }

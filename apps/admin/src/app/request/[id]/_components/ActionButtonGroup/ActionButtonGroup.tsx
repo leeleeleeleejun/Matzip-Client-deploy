@@ -2,9 +2,14 @@ import { Flex } from '@repo/ui/components/Layout'
 import { cn } from '@repo/ui/utils/cn'
 import { COLOR_VARIANTS } from '@repo/ui/consts/colorVariant'
 
-export const ActionButtonGroup = () => (
+type Props = {
+  onOpen: VoidFunction
+}
+
+export const ActionButtonGroup = ({ onOpen }: Props) => (
   <Flex className={'gap-10'}>
     <button
+      onClick={onOpen}
       className={cn(
         'w-full',
         'rounded-lg',
