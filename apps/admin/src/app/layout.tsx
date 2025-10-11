@@ -2,6 +2,7 @@ import './globals.css'
 import '@repo/ui/styles.css'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
+import { HeroUIProvider } from '@heroui/system'
 import { Column } from '@repo/ui/components/Layout'
 import { NaverMapProvider } from '@/app/NaverMapProvider'
 
@@ -24,13 +25,15 @@ export default function RootLayout({
   return (
     <html lang='ko' suppressHydrationWarning={true}>
       <body className={pretendard.className}>
-        <div className={'flex h-svh justify-center bg-[#FEFCF9]'}>
+        <HeroUIProvider>
           <NaverMapProvider>
-            <Column className={'relative w-full max-w-[450px] bg-white'}>
-              {children}
-            </Column>
+            <div className={'flex h-svh justify-center bg-[#FEFCF9]'}>
+              <Column className={'relative w-full max-w-[450px] bg-white'}>
+                {children}
+              </Column>
+            </div>
           </NaverMapProvider>
-        </div>
+        </HeroUIProvider>
       </body>
     </html>
   )

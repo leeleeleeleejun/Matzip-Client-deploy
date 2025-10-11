@@ -155,6 +155,15 @@ importers:
 
   apps/admin:
     dependencies:
+      '@heroui/react':
+        specifier: 'catalog:'
+        version: 2.8.2(@types/react@19.1.0)(framer-motion@12.23.12(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(tailwindcss@4.1.5)
+      '@heroui/system':
+        specifier: 'catalog:'
+        version: 2.4.20(@heroui/theme@2.4.20(tailwindcss@4.1.5))(framer-motion@12.23.12(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@heroui/theme':
+        specifier: 'catalog:'
+        version: 2.4.20(tailwindcss@4.1.5)
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
