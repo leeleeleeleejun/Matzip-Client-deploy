@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Container, NaverMap } from 'react-naver-maps'
-import { type Coord, toLatLng } from '@/map/_utils/toLatLng'
+import { type Coord, toLatLng } from '@repo/utils/toLatLng'
 import { PlaceMarker } from '@/map/_components/Marker'
 import { SubTitle } from '../SubTitle'
 import { Column } from '@repo/ui/components/Layout'
