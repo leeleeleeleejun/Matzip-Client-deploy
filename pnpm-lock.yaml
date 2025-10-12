@@ -167,9 +167,6 @@ importers:
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
-      '@repo/utils':
-        specifier: workspace:*
-        version: link:../../packages/utils
       next:
         specifier: 'catalog:'
         version: 15.5.2(@babel/core@7.28.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -331,9 +328,6 @@ importers:
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
-      '@repo/utils':
-        specifier: workspace:*
-        version: link:../../packages/utils
       '@suspensive/react':
         specifier: ^3.3.2
         version: 3.3.2(react@19.1.0)
@@ -542,25 +536,6 @@ importers:
       tailwindcss:
         specifier: 'catalog:'
         version: 4.1.5
-      typescript:
-        specifier: 'catalog:'
-        version: 5.8.2
-
-  packages/utils:
-    dependencies:
-      react:
-        specifier: ^19
-        version: 19.1.0
-    devDependencies:
-      '@repo/eslint-config':
-        specifier: workspace:*
-        version: link:../eslint-config
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
-      eslint:
-        specifier: 'catalog:'
-        version: 9.32.0(jiti@2.4.2)
       typescript:
         specifier: 'catalog:'
         version: 5.8.2
@@ -11275,9 +11250,7 @@ snapshots:
       metro-runtime: 0.83.1
     transitivePeerDependencies:
       - '@babel/core'
-      - bufferutil
       - supports-color
-      - utf-8-validate
 
   '@react-native/normalize-colors@0.81.0': {}
 

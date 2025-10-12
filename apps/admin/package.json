@@ -18,7 +18,6 @@
     "@heroui/system": "catalog:",
     "@heroui/theme": "catalog:",
     "@repo/ui": "workspace:*",
-    "@repo/utils": "workspace:*",
     "react-naver-maps": "catalog:"
   },
   "devDependencies": {

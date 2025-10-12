@@ -1,5 +1,5 @@
 import type { IconType } from '@repo/ui/components/Icon'
-import type { Coord } from '@repo/utils/toLatLng'
+import { Coord } from '../_utils/toLatLng'
 
 type Photo = { photoId: string; photoUrl: string; displayOrder: number }
 
