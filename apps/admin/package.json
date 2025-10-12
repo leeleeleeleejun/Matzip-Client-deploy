@@ -14,7 +14,11 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "next": "catalog:",
-    "@repo/ui": "workspace:*"
+    "@heroui/react": "catalog:",
+    "@heroui/system": "catalog:",
+    "@heroui/theme": "catalog:",
+    "@repo/ui": "workspace:*",
+    "react-naver-maps": "catalog:"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "catalog:",
@@ -26,6 +30,7 @@
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "@tailwindcss/postcss": "catalog:",
+    "@types/navermaps": "catalog:",
     "postcss": "catalog:",
     "tailwindcss":"catalog:",
     "autoprefixer": "catalog:",

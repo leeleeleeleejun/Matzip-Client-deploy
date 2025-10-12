@@ -45,6 +45,9 @@ catalogs:
     '@testing-library/user-event':
       specifier: ^14.6.1
       version: 14.6.1
+    '@types/navermaps':
+      specifier: ^3.9.1
+      version: 3.9.1
     '@types/node':
       specifier: ^22.15.30
       version: 22.15.30
@@ -84,6 +87,9 @@ catalogs:
     jsdom:
       specifier: ^26.1.0
       version: 26.1.0
+    keen-slider:
+      specifier: ^6.8.6
+      version: 6.8.6
     motion:
       specifier: ^12.23.12
       version: 12.23.12
@@ -99,6 +105,9 @@ catalogs:
     react-dom:
       specifier: ^19.1.0
       version: 19.1.0
+    react-naver-maps:
+      specifier: ^0.1.4
+      version: 0.1.4
     storybook:
       specifier: ^9.1.0
       version: 9.1.0
@@ -146,6 +155,15 @@ importers:
 
   apps/admin:
     dependencies:
+      '@heroui/react':
+        specifier: 'catalog:'
+        version: 2.8.2(@types/react@19.1.0)(framer-motion@12.23.12(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(tailwindcss@4.1.5)
+      '@heroui/system':
+        specifier: 'catalog:'
+        version: 2.4.20(@heroui/theme@2.4.20(tailwindcss@4.1.5))(framer-motion@12.23.12(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@heroui/theme':
+        specifier: 'catalog:'
+        version: 2.4.20(tailwindcss@4.1.5)
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -158,6 +176,9 @@ importers:
       react-dom:
         specifier: 'catalog:'
         version: 19.1.0(react@19.1.0)
+      react-naver-maps:
+        specifier: 'catalog:'
+        version: 0.1.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
     devDependencies:
       '@next/eslint-plugin-next':
         specifier: 'catalog:'
@@ -174,6 +195,9 @@ importers:
       '@tailwindcss/postcss':
         specifier: 'catalog:'
         version: 4.1.5
+      '@types/navermaps':
+        specifier: 'catalog:'
+        version: 3.9.1
       '@types/node':
         specifier: 'catalog:'
         version: 22.15.30
@@ -319,9 +343,6 @@ importers:
       framer-motion:
         specifier: 'catalog:'
         version: 12.23.12(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      keen-slider:
-        specifier: ^6.8.6
-        version: 6.8.6
       matter-js:
         specifier: ^0.20.0
         version: 0.20.0
@@ -341,7 +362,7 @@ importers:
         specifier: ^7.62.0
         version: 7.62.0(react@19.1.0)
       react-naver-maps:
-        specifier: ^0.1.4
+        specifier: 'catalog:'
         version: 0.1.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-spring-bottom-sheet:
         specifier: ^3.5.0-alpha.0
@@ -384,7 +405,7 @@ importers:
         specifier: ^0.20.0
         version: 0.20.0
       '@types/navermaps':
-        specifier: ^3.9.1
+        specifier: 'catalog:'
         version: 3.9.1
       '@types/node':
         specifier: 'catalog:'
@@ -478,6 +499,9 @@ importers:
       clsx:
         specifier: 'catalog:'
         version: 2.1.1
+      keen-slider:
+        specifier: 'catalog:'
+        version: 6.8.6
       motion:
         specifier: 'catalog:'
         version: 12.23.12(react-dom@19.1.0(react@19.0.0))(react@19.0.0)
