@@ -1,0 +1,39 @@
+{
+  "name": "admin",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port 3001 --turbopack",
+    "build": "next build --turbopack",
+    "start": "next start",
+    "lint": "next lint --max-warnings 0",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "next": "catalog:",
+    "@heroui/react": "catalog:",
+    "@heroui/system": "catalog:",
+    "@heroui/theme": "catalog:",
+    "@repo/ui": "workspace:*",
+    "react-naver-maps": "catalog:"
+  },
+  "devDependencies": {
+    "@next/eslint-plugin-next": "catalog:",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/tailwind-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "typescript": "catalog:",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@tailwindcss/postcss": "catalog:",
+    "@types/navermaps": "catalog:",
+    "postcss": "catalog:",
+    "tailwindcss":"catalog:",
+    "autoprefixer": "catalog:",
+    "eslint": "catalog:"
+  }
+}

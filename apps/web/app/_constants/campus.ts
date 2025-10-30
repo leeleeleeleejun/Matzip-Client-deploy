@@ -1,3 +1,5 @@
+import { COLOR_VARIANTS } from '@repo/ui/consts/colorVariant'
+
 export const CAMPUS = {
   singwan: '신관',
   cheonan: '천안',
@@ -11,30 +13,9 @@ export const CAMPUS_LOCATION = {
 } as const
 
 export const CAMPUS_COLOR = {
-  singwan: {
-    text: 'text-red',
-    background: 'bg-red-light',
-    border: {
-      default: 'border-red-light',
-      active: 'border-red',
-    },
-  },
-  cheonan: {
-    text: 'text-blue',
-    background: 'bg-blue-light',
-    border: {
-      default: 'border-blue-light',
-      active: 'border-blue',
-    },
-  },
-  yesan: {
-    text: 'text-yellow',
-    background: 'bg-yellow-light',
-    border: {
-      default: 'border-yellow-light',
-      active: 'border-yellow',
-    },
-  },
+  singwan: COLOR_VARIANTS.red,
+  cheonan: COLOR_VARIANTS.blue,
+  yesan: COLOR_VARIANTS.yellow,
 } as const
 export type CampusType = keyof typeof CAMPUS
 export const CAMPUS_LIST = Object.keys(CAMPUS) as CampusType[]

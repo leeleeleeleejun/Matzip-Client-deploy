@@ -3,13 +3,14 @@ import { useSuspenseQuery } from '@tanstack/react-query'
 import type { UseFormSetValue } from 'react-hook-form'
 import type { NewPlaceRequest } from '@/_apis/schemas/place'
 import { usePlaceQueries } from '@/_apis/queries/place'
-import { Banner } from '@/_components/Banner'
+import { Banner } from '@repo/ui/components/Banner'
 import { Location, Menus } from '@/places/[id]/_components'
 import { Text } from '@repo/ui/components/Text'
 import { Button } from '@repo/ui/components/Button'
 import { Column, Flex, VerticalScrollArea } from '@repo/ui/components/Layout'
 import { Icon } from '@repo/ui/components/Icon'
 import { AlreadyRegistered } from './AlreadyRegistered'
+import { Title } from '@/places/new/_components/Title'
 
 type Props = {
   setValue: UseFormSetValue<NewPlaceRequest>
@@ -29,6 +30,12 @@ export const PlacePreview = ({ setValue, nextStep }: Props) => {
   return (
     <>
       <VerticalScrollArea className={'flex-1'}>
+        <Title
+          title={'찾으시는 맛집이 이곳이 맞나요?'}
+          description={
+            '선택하신 맛집 정보를 확인하고 맞다면 다음 단계로 진행해주세요!'
+          }
+        />
         <Flex
           className={
             'mb-5 w-full justify-center gap-3 rounded-lg bg-gray-50 py-3'
@@ -58,6 +65,7 @@ export const PlacePreview = ({ setValue, nextStep }: Props) => {
           <Menus menus={menus} />
           <Button
             size={'medium'}
+            type={'button'}
             className={'ui:min-w-full mt-10'}
             onClick={nextStep}
           >

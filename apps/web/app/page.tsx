@@ -11,10 +11,14 @@ import {
   MostViewsPlaces,
 } from '@/_components/RankingPlaceList'
 import { HydrationBoundaryPage } from '@/HydrationBoundaryPage'
-import { Banner } from '@/_components/Banner'
+import { Banner } from '@repo/ui/components/Banner'
 import { Categories } from '@/_components/Categories'
 import { CampusSelector } from '@/_components/CampusSelector'
 import { BottomNavigation } from '@/_components/BottomNavigation'
+import {
+  FoodSlotMachineBanner,
+  LuckyDrawBanner,
+} from '@/_components/eventBanners'
 
 export default function Page() {
   return (
@@ -37,7 +41,12 @@ export default function Page() {
       <SearchBar href={CLIENT_PATH.PLACE_SEARCH} className={'mx-5 mb-5'} />
       <VerticalScrollArea className={'gap-4'}>
         <Categories />
-        <Banner contents={[1, 2, 3, 4]} />
+        <Banner
+          contents={[
+            <FoodSlotMachineBanner key='banner-1' />,
+            <LuckyDrawBanner key='banner-2' />,
+          ]}
+        />
         <MostLikesPlaces />
         <Divider />
         <MostViewsPlaces />

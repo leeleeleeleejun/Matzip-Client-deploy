@@ -20,10 +20,24 @@ export const API_PATH = {
       PREVIEW: (kakaoPlaceId: string) =>
         `/places/preview?kakaoPlaceId=${kakaoPlaceId}`,
     },
+    LIKE: {
+      GET: '/places/like',
+      POST: (id: string) => `/places/${id}/like`,
+      DELETE: (id: string) => `/places/${id}/like`,
+    },
   },
   KAKAO: {
     SEARCH: (query: string, categoryCode: string, x: number, y: number) =>
       `https://dapi.kakao.com/v2/local/search/keyword.json?query=${query}&category_group_code=${categoryCode}&x=${x}&y=${y}`,
+  },
+  EVENT: {
+    INFO: '/events',
+    PARTICIPATIONS: '/events/participations',
+    RESULT: '/events/results',
+  },
+  REQUEST: {
+    LIST: '/requests/places',
+    DETAIL: (id: string) => `/requests/places/${id}`,
   },
 }
 
@@ -36,4 +50,10 @@ export const CLIENT_PATH = {
   CATEGORY_DETAIL: (id: string | number) => `/categories/${id}`,
   LIKES: '/likes',
   PROFILE: '/profile',
+  REQUESTS: '/requests',
+  REQUEST_DETAIL: (id: string | number) => `/requests/${id}`,
+  EVENTS_FOOD_SLOT: '/events/food-slot',
+  EVENTS_LUCKY_DRAW: '/events/lucky-draw',
+  EVENT_GIFTICON: '/events/gifticon',
+  EVENT_GIFTICON_DETAIL: (id: string | number) => `/events/gifticon/${id}`,
 }

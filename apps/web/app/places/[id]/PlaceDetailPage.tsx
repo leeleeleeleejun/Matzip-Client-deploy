@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { usePlaceQueries } from '@/_apis/queries/place'
-import { Banner } from '@/_components/Banner'
+import { Banner } from '@repo/ui/components/Banner'
 import { HeaderBackButton } from '@/_components/HeaderBackButton'
 import { Text } from '@repo/ui/components/Text'
 import { Header } from '@repo/ui/components/Header'
@@ -12,14 +12,15 @@ import { Description, LikeButton, Location, Menus } from './_components'
 
 export const PlaceDetailPage = ({ id }: { id: string }) => {
   const { data } = useSuspenseQuery(usePlaceQueries.detail(id))
-  const { placeName, photos, menus, description, location } = data
+  const { placeId, placeName, photos, menus, description, location, isLiked } =
+    data
 
   return (
     <>
       <Header
         left={<HeaderBackButton />}
         center={<Text variant={'heading2'}>{placeName}</Text>}
-        right={<LikeButton />}
+        right={<LikeButton placeId={placeId} initIsLiked={isLiked} />}
       />
       <VerticalScrollArea className={'flex-1'}>
         <Banner
@@ -34,6 +35,7 @@ export const PlaceDetailPage = ({ id }: { id: string }) => {
             />
           ))}
           minHeight={180}
+          showIndicator={true}
         />
         <Column className={'flex-1 justify-around gap-4 p-5'}>
           <Location location={location} />
