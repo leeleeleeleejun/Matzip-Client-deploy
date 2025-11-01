@@ -9,15 +9,21 @@ import { Column } from '@repo/ui/components/Layout'
 import { NaverMapProvider } from '@/NaverMapProvider'
 import { HeroProvider } from '@/HeroProvider'
 
+const SITE_URL = new URL('https://knu-matzip.vercel.app')
+
 export const metadata: Metadata = {
-  title: '공주대 맛집',
-  description: '공주대학교 캠퍼스별 근처 맛집',
+  metadataBase: SITE_URL,
+  title: {
+    template: '공주대 맛집 | %s',
+    default: '공주대 맛집',
+  },
+  description: '공주대학교 캠퍼스(천안, 공주, 예산) 근처 맛집을 찾아보세요.',
   openGraph: {
     title: '공주대 맛집',
-    description: `공주대학교 캠퍼스별 근처 맛집`,
+    description: '공주대학교 캠퍼스별 맛집 정보',
     locale: 'ko-KR',
-    siteName: 'knu-matzip.vercel.app',
-    url: `https://knu-matzip.vercel.app`,
+    siteName: '공주대 맛집',
+    url: '/',
     type: 'website',
   },
   // verification: {
