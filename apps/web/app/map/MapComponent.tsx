@@ -18,7 +18,7 @@ import { UserMarker, PlaceMarker } from './_components/Marker'
 import { CurrentLocationButton } from './_components/CurrentLocationButton'
 import { PreviewPlace } from './_components/PreviewPlace'
 
-export const MapPage = () => {
+const MapComponent = () => {
   const [map, setMap] = useState<naver.maps.Map | null>(null)
   const [isCenteredOnUser, setIsCenteredOnUser] = useState(false)
   const [currentBounds, setCurrentBounds] = useState<MapBounds | null>(null)
@@ -102,3 +102,5 @@ export const MapPage = () => {
     </>
   )
 }
+
+export default MapComponent

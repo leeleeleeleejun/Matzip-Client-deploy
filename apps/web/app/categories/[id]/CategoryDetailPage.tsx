@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useCategoryQueries } from '@/_apis/queries/category'
 import { Icon } from '@repo/ui/components/Icon'
@@ -9,20 +9,23 @@ import { Header } from '@repo/ui/components/Header'
 import { Flex } from '@repo/ui/components/Layout'
 import { HeaderBackButton } from '@/_components/HeaderBackButton'
 import { RowCategories, Places } from './_components'
+import { Suspense, useEffect } from 'react'
+import { Spinner } from '@heroui/react'
 
-type Props = {
-  initId: string
-}
-
-export const CategoryDetailPage = ({ initId }: Props) => {
-  const [id, setId] = useState(initId)
-
+export const CategoryDetailPage = () => {
   const { data: categories } = useSuspenseQuery(useCategoryQueries.list())
-  const activeCategory = categories.find((category) => category.id === id)
+  const activeCategoryId = usePathname().split('/')[2] || '0'
+  const activeCategory = categories.find(
+    (category) => category.id === activeCategoryId,
+  )
 
   const setIdFunc = (id: string) => {
-    setId(id)
+    window.history.replaceState(null, '', `/categories/${id}`)
   }
+
+  useEffect(() => {
+    document.title = `공주대 맛집 | ${activeCategory?.name}`
+  }, [activeCategory])
 
   return (
     <>
@@ -38,8 +41,15 @@ export const CategoryDetailPage = ({ initId }: Props) => {
         }
         className={'border-b-1 border-gray-50'}
       />
-      <RowCategories id={id} categories={categories} setIdFunc={setIdFunc} />
-      <Places id={id} />
+      <RowCategories
+        id={activeCategoryId}
+        categories={categories}
+        setIdFunc={setIdFunc}
+      />
+      {/*Todo: 맛집 리스트 스켈레톤으로 변경하기*/}
+      <Suspense fallback={<Spinner className={'my-auto'} />}>
+        <Places id={activeCategoryId} />
+      </Suspense>
     </>
   )
 }
