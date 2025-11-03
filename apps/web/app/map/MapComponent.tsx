@@ -50,6 +50,11 @@ const MapComponent = () => {
     setIsCenteredOnUser(true)
   }
 
+  const centerMapToCampus = () => {
+    handleRefreshClick()
+    setIsCenteredOnUser(false)
+  }
+
   const onCenterChanged = () => {
     setIsCenteredOnUser(false)
     setPreviewPlaceId(null)
@@ -70,7 +75,7 @@ const MapComponent = () => {
         isCenteredOnUser={isCenteredOnUser}
         previewPlaceId={previewPlaceId}
       />
-      <CampusButtonBax map={map} onCenterChanged={onCenterChanged} />
+      <CampusButtonBax map={map} centerMapToCampus={centerMapToCampus} />
       <Container
         className={cn('map-wrapper', 'w-full', 'h-full')}
         onTouchEnd={onCenterChanged}
