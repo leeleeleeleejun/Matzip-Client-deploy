@@ -17,7 +17,8 @@ export const PlaceQueryKeys = {
     [...PlaceQueryKeys.all(), 'ranking', sort, campus] as const,
   byCategory: (id: string, campus: CampusType) =>
     [...PlaceQueryKeys.all(), 'category', id, campus] as const,
-  byMap: () => [...PlaceQueryKeys.all(), 'map'] as const,
+  byMap: (bounds: MapBounds | null) =>
+    [...PlaceQueryKeys.all(), 'map', bounds] as const,
   byPreview: (kakaoPlaceId: string) =>
     [...PlaceQueryKeys.all(), 'preview', kakaoPlaceId] as const,
   byLike: () => [...PlaceQueryKeys.all(), 'like'] as const,
@@ -44,7 +45,7 @@ export const usePlaceQueries = {
 
   byMap: (bounds: MapBounds | null) => {
     return queryOptions({
-      queryKey: PlaceQueryKeys.byMap(),
+      queryKey: PlaceQueryKeys.byMap(bounds),
       queryFn: () => {
         if (!bounds) return Promise.resolve([])
         return getPlacesByMap(bounds)
