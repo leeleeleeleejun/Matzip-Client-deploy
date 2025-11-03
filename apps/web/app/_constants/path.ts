@@ -5,7 +5,7 @@ export const API_PATH = {
   CATEGORY: '/categories',
   PLACES: {
     BY_CATEGORY: (id: string, campus: CampusType) =>
-      `/places?categoryId=${id}&campus=${campus}`,
+      `/categories/${id}/places&campus=${campus}`,
     BY_RANKING: (sort: RankingPlaceSort, campus: CampusType) =>
       `/places/ranking?sort=${sort}&campus=${campus}`,
     BY_MAP: ({
@@ -14,7 +14,7 @@ export const API_PATH = {
       maxLatitude,
       maxLongitude,
     }: MapBounds) =>
-      `/places?northEastLatitude=${maxLatitude}&northEastLongitudede=${maxLongitude}&southWestLatitude=${minLatitude}&southWestLongitude=${minLongitude}`,
+      `/places?maxLat=${maxLatitude}&maxLng=${maxLongitude}&minLat=${minLatitude}&minLng=${minLongitude}`,
     DETAIL: (id: string) => `/places/${id}`,
     NEW: {
       PREVIEW: (kakaoPlaceId: string) =>
