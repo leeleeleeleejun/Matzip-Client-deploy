@@ -5,7 +5,7 @@ export const API_PATH = {
   CATEGORY: '/categories',
   PLACES: {
     BY_CATEGORY: (id: string, campus: CampusType) =>
-      `/categories/${id}/places&campus=${campus}`,
+      `/categories/${id}/places?campus=${campus}`,
     BY_RANKING: (sort: RankingPlaceSort, campus: CampusType) =>
       `/places/ranking?sort=${sort}&campus=${campus}`,
     BY_MAP: ({
