@@ -39,6 +39,9 @@ export const API_PATH = {
     LIST: '/requests/places',
     DETAIL: (id: string) => `/requests/places/${id}`,
   },
+  AUTH: {
+    AUTHORIZE: '/auth/authorize',
+  },
 }
 
 export const CLIENT_PATH = {
