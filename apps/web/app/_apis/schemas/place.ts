@@ -9,6 +9,7 @@ const location = z.object({
 
 const menus = z.array(
   z.object({
+    menuId: z.number(),
     name: z.string(),
     price: z.number(),
     isRecommended: z.boolean(),
@@ -17,7 +18,7 @@ const menus = z.array(
 
 const photos = z.array(
   z.object({
-    photoId: z.number().transform(String),
+    photoId: z.nullable(z.number().transform(String)),
     photoUrl: z.url(),
     displayOrder: z.number(),
   }),
