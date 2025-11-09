@@ -19,6 +19,7 @@ export const API_PATH = {
     NEW: {
       PREVIEW: (kakaoPlaceId: string) =>
         `/places/preview?kakaoPlaceId=${kakaoPlaceId}`,
+      CREATE: '/places',
     },
     LIKE: {
       GET: '/places/like',

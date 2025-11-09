@@ -9,6 +9,8 @@ import {
   type MapBounds,
   type PlaceByMap,
   type PlaceByPreview,
+  type NewPlaceRequest,
+  type NewPlaceResponse,
   BasePlaceSchema,
   PlaceByMapSchema,
   PlaceDetailSchema,
@@ -98,4 +100,17 @@ export const getPlacesByLike = async (): Promise<BasePlace[]> => {
   const { data: response } = await axiosInstance.get(API_PATH.PLACES.LIKE.GET)
   const { data } = response
   return BasePlaceSchema.array().parse(data)
+}
+
+export const createNewPlace = async (
+  placeData: NewPlaceRequest,
+): Promise<NewPlaceResponse> => {
+  const dataSet = {
+    ...placeData,
+    campus: placeData.campus.toUpperCase(),
+    tagIds: placeData.tagIds.map(Number),
+    categoryIds: placeData.categoryIds.map(Number),
+  }
+  const { data } = await axiosInstance.post(API_PATH.PLACES.NEW.CREATE, dataSet)
+  return data
 }

@@ -78,3 +78,6 @@ export type PlaceByMap = z.infer<typeof PlaceByMapSchema>
 export type PlaceDetail = z.infer<typeof PlaceDetailSchema>
 export type PlaceByPreview = z.infer<typeof PlaceByPreviewSchema>
 export type NewPlaceRequest = z.infer<typeof NewPlaceRequestSchema>
+export type NewPlaceResponse = {
+  status: 'OK' | 'ERROR'
+}
