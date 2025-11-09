@@ -5,7 +5,7 @@ import {
   // PlaceDetail,
   Places,
   // PlacesWithLocation,
-  PlacePreview,
+  // PlacePreview,
 } from '../data/place'
 
 export const PlaceHandlers = [
@@ -34,9 +34,9 @@ export const PlaceHandlers = [
   // http.get(addBaseUrl(API_PATH.PLACES.DETAIL('1')), () => {
   //   return HttpResponse.json(PlaceDetail)
   // }),
-  http.get(addBaseUrl(API_PATH.PLACES.NEW.PREVIEW('1')), () => {
-    return HttpResponse.json(PlacePreview)
-  }),
+  // http.get(addBaseUrl(API_PATH.PLACES.NEW.PREVIEW('1')), () => {
+  //   return HttpResponse.json(PlacePreview)
+  // }),
   http.get(addBaseUrl(API_PATH.PLACES.LIKE.GET), () => {
     return HttpResponse.json(Places)
   }),

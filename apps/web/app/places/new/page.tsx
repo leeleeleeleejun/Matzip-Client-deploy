@@ -24,8 +24,6 @@ import {
   RecommendedMenu,
   Description,
   Category,
-  Success,
-  Fail,
 } from './_components/Step'
 
 export type StepType =
@@ -170,12 +168,6 @@ const PlaceNewPage = () => {
             getValues={getValues}
             isLoading={isSubmitting || isPending}
           />
-        </Step>
-        <Step name={'SUCCESS'}>
-          <Success />
-        </Step>
-        <Step name={'FAIL'}>
-          <Fail />
         </Step>
       </Column>
     </>

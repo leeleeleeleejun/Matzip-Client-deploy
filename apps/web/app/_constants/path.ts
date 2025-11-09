@@ -46,6 +46,8 @@ export const CLIENT_PATH = {
   MAIN: '/',
   MAP: '/map',
   PLACE_NEW: '/places/new',
+  PLACE_NEW_SUCCESS: '/places/new/success',
+  PLACE_NEW_FAIL: '/places/new/fail',
   PLACE_SEARCH: '/places/search',
   PLACE_DETAIL: (id: string | number) => `/places/${id}`,
   CATEGORY_DETAIL: (id: string | number) => `/categories/${id}`,

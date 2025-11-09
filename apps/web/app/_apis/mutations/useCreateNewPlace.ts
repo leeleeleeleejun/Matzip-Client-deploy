@@ -1,15 +1,25 @@
 import { useMutation } from '@tanstack/react-query'
 import type { NewPlaceRequest } from '@/_apis/schemas/place'
 import { createNewPlace } from '@/_apis/services/place'
+import { useRouter } from 'next/navigation'
+import { CLIENT_PATH } from '@/_constants/path'
 
 export const useCreateNewPlace = () => {
+  const { replace } = useRouter()
+
   return useMutation({
     mutationFn: async (placeData: NewPlaceRequest) =>
       await createNewPlace(placeData),
-    onSuccess: () => {
-      //Todo: success, fail을 step이 아닌 페이지로 관리 (replace)
-      //Todo: 성공 시 success 페이지로 이동
+    onSuccess: (res) => {
+      if (res.status === 'OK') {
+        replace(CLIENT_PATH.PLACE_NEW_SUCCESS)
+      } else {
+        replace(CLIENT_PATH.PLACE_NEW_FAIL)
+      }
     },
-    onError: (error) => console.error(error),
+    onError: (error) => {
+      console.error(error)
+      replace(CLIENT_PATH.PLACE_NEW_FAIL)
+    },
   })
 }
