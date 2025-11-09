@@ -36,11 +36,11 @@ export const UserMarker = ({ position }: { position: Coord }) => {
 export const PlaceMarker = ({
   icon,
   position,
-  handlePreviewPlace,
+  handlePreviewPlace = () => {},
 }: {
   icon: IconType
   position: Coord
-  handlePreviewPlace: VoidFunction
+  handlePreviewPlace?: VoidFunction
 }) => {
   const naverMaps = useNavermaps()
   const MarkerIcon = ReactDOMServer.renderToString(
