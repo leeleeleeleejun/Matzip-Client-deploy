@@ -13,13 +13,15 @@ import { AlreadyRegistered } from './AlreadyRegistered'
 import { Title } from '@/places/new/_components/Title'
 
 type Props = {
+  getValues: () => NewPlaceRequest
   setValue: UseFormSetValue<NewPlaceRequest>
   nextStep: VoidFunction
 }
 
-export const PlacePreview = ({ setValue, nextStep }: Props) => {
-  // Todo: 테스트용 api 요청 삭제 예정 (id prop으로 전달받을 예정)
-  const { data } = useSuspenseQuery(usePlaceQueries.byPreview('1'))
+export const PlacePreview = ({ getValues, setValue, nextStep }: Props) => {
+  const { data } = useSuspenseQuery(
+    usePlaceQueries.byPreview(getValues().kakaoPlaceId),
+  )
   const { alreadyRegistered, placeName, photos, menus, location } = data
   setValue('menus', menus)
 

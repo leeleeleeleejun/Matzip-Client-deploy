@@ -13,16 +13,18 @@ import { cn } from '@repo/ui/utils/cn'
 import { toLatLng } from './_utils/toLatLng'
 import { useWatchLocation } from './_hooks/useWatchLocation'
 import { PlaceList } from './_components/PlaceList'
-import { CampusButtonBax } from './_components/CampusButtom'
+import { CampusButtonBox } from './_components/CampusButtom'
 import { UserMarker, PlaceMarker } from './_components/Marker'
 import { CurrentLocationButton } from './_components/CurrentLocationButton'
 import { PreviewPlace } from './_components/PreviewPlace'
+import { RefreshButton } from './_components/RefreshButton'
 
 const MapComponent = () => {
   const [map, setMap] = useState<naver.maps.Map | null>(null)
   const [isCenteredOnUser, setIsCenteredOnUser] = useState(false)
   const [currentBounds, setCurrentBounds] = useState<MapBounds | null>(null)
   const [previewPlaceId, setPreviewPlaceId] = useState<string | null>(null)
+  const [showUpdateButton, setShowUpdateButton] = useState(false)
 
   const { campus } = useCampusStore()
   const { userLocation } = useWatchLocation()
@@ -32,7 +34,8 @@ const MapComponent = () => {
     ? data.find((place) => place.placeId === previewPlaceId)!
     : null
 
-  const updateBoundsFromMap = useCallback(() => {
+  const refreshMapBounds = useCallback(() => {
+    // bounds 업데이트 시 query update
     if (!map) return
     const bounds = map.getBounds()
     setCurrentBounds({
@@ -43,36 +46,52 @@ const MapComponent = () => {
     })
   }, [map])
 
+  const handleRefreshClick = () => {
+    setShowUpdateButton(false)
+    refreshMapBounds()
+  }
+
   const centerMapToUserLocation = () => {
     if (!map || !userLocation) return
     map.setCenter(toLatLng(userLocation))
-    updateBoundsFromMap()
     setIsCenteredOnUser(true)
+    handleRefreshClick()
+  }
+
+  const centerMapToCampus = () => {
+    handleRefreshClick()
+    setIsCenteredOnUser(false)
   }
 
   const onCenterChanged = () => {
     setIsCenteredOnUser(false)
-    setPreviewPlaceId(null)
+    setShowUpdateButton(true)
   }
 
   const handlePreviewPlace = (placeId: string) => {
     setPreviewPlaceId(placeId)
   }
 
-  useEffect(() => {
-    updateBoundsFromMap()
-  }, [updateBoundsFromMap])
+  const resetPreviewPlace = () => {
+    setPreviewPlaceId(null)
+  }
+
+  useEffect(refreshMapBounds, [refreshMapBounds])
 
   return (
     <>
+      {showUpdateButton && (
+        <RefreshButton handleRefreshClick={handleRefreshClick} />
+      )}
       <CurrentLocationButton
         onClick={centerMapToUserLocation}
         isCenteredOnUser={isCenteredOnUser}
         previewPlaceId={previewPlaceId}
       />
-      <CampusButtonBax map={map} onCenterChanged={onCenterChanged} />
+      <CampusButtonBox map={map} centerMapToCampus={centerMapToCampus} />
       <Container
         className={cn('map-wrapper', 'w-full', 'h-full')}
+        onClick={resetPreviewPlace}
         onTouchEnd={onCenterChanged}
         onMouseUp={onCenterChanged}
       >

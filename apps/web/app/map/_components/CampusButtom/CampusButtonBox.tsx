@@ -13,7 +13,7 @@ import { Column } from '@repo/ui/components/Layout'
 
 type Props = {
   map: naver.maps.Map | null
-  onCenterChanged: VoidFunction
+  centerMapToCampus: VoidFunction
 }
 
 /**
@@ -22,7 +22,7 @@ type Props = {
  *
  * @example
  * ```tsx
- * <CampusButtonBax map={map} />
+ * <CampusButtonBox map={map} />
  * ```
  *
  * @param {object} props
@@ -30,7 +30,7 @@ type Props = {
  *
  * @returns 캠퍼스 선택 버튼 그룹 UI
  */
-export const CampusButtonBax = ({ map, onCenterChanged }: Props) => {
+export const CampusButtonBox = ({ map, centerMapToCampus }: Props) => {
   const { campus: initCampus } = useCampusStore()
   const [activeCampus, setActiveCampus] = useState<CampusType>(initCampus)
 
@@ -39,7 +39,7 @@ export const CampusButtonBax = ({ map, onCenterChanged }: Props) => {
 
     setActiveCampus(campus)
     map.setCenter(toLatLng(CAMPUS_LOCATION[campus]))
-    onCenterChanged()
+    centerMapToCampus()
   }
 
   return (

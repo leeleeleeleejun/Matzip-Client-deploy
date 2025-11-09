@@ -9,6 +9,8 @@ import {
   type MapBounds,
   type PlaceByMap,
   type PlaceByPreview,
+  type NewPlaceRequest,
+  type NewPlaceResponse,
   BasePlaceSchema,
   PlaceByMapSchema,
   PlaceDetailSchema,
@@ -23,9 +25,10 @@ export const getPlacesByRanking = async (
   sort: RankingPlaceSort,
   campus: CampusType,
 ): Promise<BasePlace[]> => {
-  const { data } = await axiosInstance.get(
+  const { data: response } = await axiosInstance.get(
     API_PATH.PLACES.BY_RANKING(sort, campus),
   )
+  const { data } = response
   return BasePlaceSchema.array().parse(data)
 }
 
@@ -33,9 +36,10 @@ export const getPlacesByCategory = async (
   id: string,
   campus: CampusType,
 ): Promise<BasePlace[]> => {
-  const { data } = await axiosInstance.get(
+  const { data: response } = await axiosInstance.get(
     API_PATH.PLACES.BY_CATEGORY(id, campus),
   )
+  const { data } = response
   return BasePlaceSchema.array().parse(data)
 }
 
@@ -45,7 +49,7 @@ export const getPlacesByMap = async ({
   maxLatitude,
   maxLongitude,
 }: MapBounds): Promise<PlaceByMap[]> => {
-  const { data } = await axiosInstance.get(
+  const { data: response } = await axiosInstance.get(
     API_PATH.PLACES.BY_MAP({
       minLatitude,
       minLongitude,
@@ -53,12 +57,13 @@ export const getPlacesByMap = async ({
       maxLongitude,
     }),
   )
-
+  const { data } = response
   return PlaceByMapSchema.array().parse(data)
 }
 
 export const getPlaceDetail = async (id: string): Promise<PlaceDetail> => {
-  const { data } = await axiosInstance.get(API_PATH.PLACES.DETAIL(id))
+  const { data: response } = await axiosInstance.get(API_PATH.PLACES.DETAIL(id))
+  const { data } = response
   return PlaceDetailSchema.parse(data)
 }
 
@@ -78,20 +83,33 @@ export const getSearchPlaceByKakao = async ({
       },
     },
   )
-
   return data
 }
 
 export const getPlaceByPreview = async (
   kakaoPlaceId: string,
 ): Promise<PlaceByPreview> => {
-  const { data } = await axiosInstance.get(
+  const { data: response } = await axiosInstance.get(
     API_PATH.PLACES.NEW.PREVIEW(kakaoPlaceId),
   )
+  const { data } = response
   return PlaceByPreviewSchema.parse(data)
 }
 
 export const getPlacesByLike = async (): Promise<BasePlace[]> => {
-  const { data } = await axiosInstance.get(API_PATH.PLACES.LIKE.GET)
+  const { data: response } = await axiosInstance.get(API_PATH.PLACES.LIKE.GET)
+  const { data } = response
   return BasePlaceSchema.array().parse(data)
+}
+
+export const createNewPlace = async (
+  placeData: NewPlaceRequest,
+): Promise<NewPlaceResponse> => {
+  const dataSet = {
+    ...placeData,
+    tagIds: placeData.tagIds.map(Number),
+    categoryIds: placeData.categoryIds.map(Number),
+  }
+  const { data } = await axiosInstance.post(API_PATH.PLACES.NEW.CREATE, dataSet)
+  return data
 }

@@ -7,6 +7,6 @@ type CampusStore = {
 }
 
 export const useCampusStore = create<CampusStore>((set) => ({
-  campus: 'singwan',
+  campus: 'SINGWAN',
   setCampus: (campus: CampusType) => set({ campus: campus }),
 }))

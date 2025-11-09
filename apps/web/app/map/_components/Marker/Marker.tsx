@@ -36,7 +36,7 @@ export const UserMarker = ({ position }: { position: Coord }) => {
 export const PlaceMarker = ({
   icon,
   position,
-  handlePreviewPlace,
+  handlePreviewPlace = () => {},
 }: {
   icon: IconType
   position: Coord
@@ -52,7 +52,10 @@ export const PlaceMarker = ({
 
   return (
     <Marker
-      onClick={handlePreviewPlace}
+      onClick={(e) => {
+        e.pointerEvent.stopPropagation()
+        handlePreviewPlace()
+      }}
       position={new naverMaps.LatLng(toLatLng(position))}
       icon={{
         content: MarkerIcon,

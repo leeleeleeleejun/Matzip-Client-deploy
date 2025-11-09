@@ -8,7 +8,8 @@ import {
 } from '@/_apis/schemas/event'
 
 export const getEventInfo = async (): Promise<Event> => {
-  const { data } = await axiosInstance.get(API_PATH.EVENT.INFO)
+  const { data: response } = await axiosInstance.get(API_PATH.EVENT.INFO)
+  const { data } = response
   return EventSchema.parse(data)
 }
 
@@ -16,11 +17,16 @@ export const participationEvent = async (body: {
   eventId: string
   ticketsCount: number
 }) => {
-  const { data } = await axiosInstance.post(API_PATH.EVENT.PARTICIPATIONS, body)
+  const { data: response } = await axiosInstance.post(
+    API_PATH.EVENT.PARTICIPATIONS,
+    body,
+  )
+  const { data } = response
   return data
 }
 
 export const getEventResult = async (): Promise<EventResult | null> => {
-  const { data } = await axiosInstance.get(API_PATH.EVENT.RESULT)
+  const { data: response } = await axiosInstance.get(API_PATH.EVENT.RESULT)
+  const { data } = response
   return EventResultSchema.parse(data)
 }
