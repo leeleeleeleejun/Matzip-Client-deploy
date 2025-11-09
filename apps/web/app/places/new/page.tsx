@@ -126,6 +126,7 @@ const PlaceNewPage = () => {
         </Step>
         <Step name={'PLACE_PREVIEW'}>
           <PlacePreview
+            getValues={getValues}
             setValue={setValue}
             nextStep={() => {
               const step =
