@@ -107,7 +107,6 @@ export const createNewPlace = async (
 ): Promise<NewPlaceResponse> => {
   const dataSet = {
     ...placeData,
-    campus: placeData.campus.toUpperCase(),
     tagIds: placeData.tagIds.map(Number),
     categoryIds: placeData.categoryIds.map(Number),
   }
