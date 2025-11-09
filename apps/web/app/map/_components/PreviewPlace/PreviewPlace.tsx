@@ -37,7 +37,7 @@ export const PreviewPlace = ({ place }: { place: PlaceByMap }) => {
           <Flex className='mt-1 gap-2'>
             {photos.map((photo) => (
               <Flex
-                key={photo.photoId}
+                key={photo.photoId || photo.displayOrder}
                 className={
                   'h-12.5 w-12.5 overflow-hidden rounded-xl bg-gray-100'
                 }
