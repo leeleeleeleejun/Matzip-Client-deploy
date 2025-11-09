@@ -7,13 +7,17 @@ type Response = {
 }
 
 export const addLike = async (placeId: string): Promise<Response> => {
-  const { data } = await axiosInstance.post(API_PATH.PLACES.LIKE.POST(placeId))
+  const { data: response } = await axiosInstance.post(
+    API_PATH.PLACES.LIKE.POST(placeId),
+  )
+  const { data } = response
   return data
 }
 
 export const removeLike = async (placeId: string): Promise<Response> => {
-  const { data } = await axiosInstance.delete(
+  const { data: response } = await axiosInstance.delete(
     API_PATH.PLACES.LIKE.DELETE(placeId),
   )
+  const { data } = response
   return data
 }
