@@ -2,18 +2,25 @@
 
 import { useState } from 'react'
 import { Column } from '@repo/ui/components/Layout'
-import { Container, NaverMap } from 'react-naver-maps'
+import { Container, Marker, NaverMap } from 'react-naver-maps'
 import { Text } from '@repo/ui/components/Text'
+import { toLatLng } from '../../_utils/toLatLng'
+import type { RequestDetail } from '../../_api/types'
 
-export const Location = () => {
+type Props = {
+  location: RequestDetail['location']
+}
+
+export const Location = ({ location }: Props) => {
   const [, setMap] = useState<naver.maps.Map | null>(null)
+  const setLocation = toLatLng(location)
 
   return (
     <Column className={'gap-1.5'}>
       <Text>위치</Text>
       <Container className={'h-[150px] overflow-hidden rounded-xl'}>
-        <NaverMap ref={setMap}>
-          {/*<PlaceMarker position={location} icon={'logo'} />*/}
+        <NaverMap ref={setMap} defaultCenter={setLocation}>
+          <Marker position={setLocation} icon={'logo'} />
         </NaverMap>
       </Container>
     </Column>

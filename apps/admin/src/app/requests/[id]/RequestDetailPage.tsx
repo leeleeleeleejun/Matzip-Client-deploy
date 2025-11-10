@@ -54,7 +54,7 @@ export const RequestDetailPage = ({ data }: Props) => {
           />
         )}
         <Column className={'flex-1 justify-around gap-4 px-5'}>
-          <Location />
+          <Location location={location} />
           <Menus menus={menus} />
           <Description description={description} tags={tags} />
           <ActionButtonGroup onOpen={onOpen} />
