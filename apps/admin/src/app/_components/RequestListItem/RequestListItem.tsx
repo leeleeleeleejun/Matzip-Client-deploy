@@ -8,7 +8,7 @@ import { Request } from '@/app/_api/types'
 export const RequestListItem = ({
   placeId,
   placeName,
-  icon,
+  categories,
   requestDate,
 }: Request) => (
   <li>
@@ -21,7 +21,7 @@ export const RequestListItem = ({
         <Text as={'span'} variant={'title2'}>
           {placeName}
         </Text>
-        <Icon type={icon} size={18} />
+        <Icon type={categories[0]?.iconKey || 'logo'} size={18} />
       </Flex>
       <Text variant={'caption2'} className={'text-gray-200'}>
         등록 신청 일자: {requestDate}
