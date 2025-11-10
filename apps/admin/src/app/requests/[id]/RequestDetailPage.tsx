@@ -24,7 +24,8 @@ type Props = {
 export const RequestDetailPage = ({ data }: Props) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
   const { back } = useRouter()
-  const { placeName, menus, description, tags, photos } = data
+  const { placeId, placeName, menus, description, tags, photos, location } =
+    data
 
   return (
     <>
@@ -57,10 +58,14 @@ export const RequestDetailPage = ({ data }: Props) => {
           <Location location={location} />
           <Menus menus={menus} />
           <Description description={description} tags={tags} />
-          <ActionButtonGroup onOpen={onOpen} />
+          <ActionButtonGroup onOpen={onOpen} placeId={placeId} />
         </Column>
       </VerticalScrollArea>
-      <RejectModal isOpen={isOpen} onOpenChange={onOpenChange} />
+      <RejectModal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        placeId={placeId}
+      />
     </>
   )
 }
