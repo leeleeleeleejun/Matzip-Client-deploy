@@ -6,7 +6,7 @@ type Photo = { photoId: string; photoUrl: string; displayOrder: number }
 type Menu = { name: string; price: number; isRecommended: boolean }
 
 export type RequestDetail = {
-  placeId: string
+  placeId: number
   placeName: string
   requestDate: string
   photos: Photo[]

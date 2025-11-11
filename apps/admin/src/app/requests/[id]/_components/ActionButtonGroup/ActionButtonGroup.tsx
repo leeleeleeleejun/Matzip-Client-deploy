@@ -4,7 +4,7 @@ import { COLOR_VARIANTS } from '@repo/ui/consts/colorVariant'
 import { requestReview } from '@/app/requests/[id]/_api/services/request'
 
 type Props = {
-  placeId: string
+  placeId: number
   onOpen: VoidFunction
 }
 

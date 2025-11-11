@@ -1,5 +1,3 @@
-'use client'
-
 import { useState } from 'react'
 import { Column } from '@repo/ui/components/Layout'
 import { Container, Marker, NaverMap } from 'react-naver-maps'

@@ -14,7 +14,7 @@ import { requestReview } from '@/app/requests/[id]/_api/services/request'
 type Props = {
   isOpen: boolean
   onOpenChange: VoidFunction
-  placeId: string
+  placeId: number
 }
 
 export const RejectModal = ({ isOpen, onOpenChange, placeId }: Props) => {

@@ -9,9 +9,12 @@ export const getRequestDetail = async (id: string): Promise<RequestDetail> => {
   // return data
 }
 
-export const requestReview = async (id: string, review: RequestReview) => {
+export const requestReview = async (id: number, review: RequestReview) => {
   const response = await fetch(BASE_URL + API_PATH.REQUEST.POST(id), {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
     body: JSON.stringify(review),
   })
   if (!response.ok) {
