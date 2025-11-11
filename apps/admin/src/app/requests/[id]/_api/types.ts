@@ -22,3 +22,5 @@ export type RequestReview = {
   status: 'APPROVED' | 'REJECTED'
   rejectedReason: string | null
 }
+
+export type HandleReview = (rejectedReason?: string) => Promise<void>

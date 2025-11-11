@@ -11,6 +11,8 @@ import { Column, VerticalScrollArea } from '@repo/ui/components/Layout'
 import { Banner } from '@repo/ui/components/Banner'
 
 import type { RequestDetail } from './_api/types'
+import { CLIENT_PATH } from '@/consts/path'
+import { requestReview } from './_api/services/request'
 import { Location } from './_components/Location/Location'
 import { Menus } from './_components/Menus/Menus'
 import { Description } from './_components/Description'
@@ -23,9 +25,22 @@ type Props = {
 
 export const RequestDetailPage = ({ data }: Props) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
-  const { back } = useRouter()
+  const { back, replace } = useRouter()
   const { placeId, placeName, menus, description, tags, photos, location } =
     data
+
+  const handleReview = async (rejectedReason?: string) => {
+    const status = rejectedReason ? 'REJECTED' : 'APPROVED'
+    const reason = rejectedReason ?? null // rejectedReason이 있으면 그 값을, 없으면 null을 사용
+
+    await requestReview(placeId, {
+      status,
+      rejectedReason: reason,
+    })
+
+    alert('완료했슈~')
+    replace(CLIENT_PATH.MAIN)
+  }
 
   return (
     <>
@@ -58,13 +73,13 @@ export const RequestDetailPage = ({ data }: Props) => {
           <Location location={location} />
           <Menus menus={menus} />
           <Description description={description} tags={tags} />
-          <ActionButtonGroup onOpen={onOpen} placeId={placeId} />
+          <ActionButtonGroup onOpen={onOpen} handleReview={handleReview} />
         </Column>
       </VerticalScrollArea>
       <RejectModal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        placeId={placeId}
+        handleReview={handleReview}
       />
     </>
   )

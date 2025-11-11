@@ -6,22 +6,19 @@ import {
   ModalFooter,
   ModalHeader,
 } from '@heroui/react'
+import type { HandleReview } from '../../_api/types'
 import { cn } from '@repo/ui/utils/cn'
 import { Textarea } from '@repo/ui/components/Textarea'
 import { COLOR_VARIANTS } from '@repo/ui/consts/colorVariant'
-import { requestReview } from '@/app/requests/[id]/_api/services/request'
 
 type Props = {
   isOpen: boolean
   onOpenChange: VoidFunction
-  placeId: number
+  handleReview: HandleReview
 }
 
-export const RejectModal = ({ isOpen, onOpenChange, placeId }: Props) => {
+export const RejectModal = ({ isOpen, onOpenChange, handleReview }: Props) => {
   const [value, setValue] = useState('')
-  const rejected = async (rejectedReason: string) => {
-    await requestReview(placeId, { status: 'REJECTED', rejectedReason })
-  }
 
   return (
     <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement={'center'}>
@@ -33,7 +30,7 @@ export const RejectModal = ({ isOpen, onOpenChange, placeId }: Props) => {
         <ModalFooter>
           <button
             onClick={() => {
-              rejected(value)
+              handleReview(value)
             }}
             className={cn(
               'w-full',

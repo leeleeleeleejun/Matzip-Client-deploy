@@ -1,21 +1,14 @@
 import { Flex } from '@repo/ui/components/Layout'
 import { cn } from '@repo/ui/utils/cn'
 import { COLOR_VARIANTS } from '@repo/ui/consts/colorVariant'
-import { requestReview } from '@/app/requests/[id]/_api/services/request'
+import type { HandleReview } from '../../_api/types'
 
 type Props = {
-  placeId: number
+  handleReview: HandleReview
   onOpen: VoidFunction
 }
 
-export const ActionButtonGroup = ({ placeId, onOpen }: Props) => {
-  const approved = async () => {
-    await requestReview(placeId, {
-      status: 'APPROVED',
-      rejectedReason: null,
-    })
-  }
-
+export const ActionButtonGroup = ({ handleReview, onOpen }: Props) => {
   return (
     <Flex className={'gap-10'}>
       <button
@@ -38,7 +31,7 @@ export const ActionButtonGroup = ({ placeId, onOpen }: Props) => {
           COLOR_VARIANTS.blue.text,
           COLOR_VARIANTS.blue.background,
         )}
-        onClick={approved}
+        onClick={() => handleReview()}
       >
         등록
       </button>
