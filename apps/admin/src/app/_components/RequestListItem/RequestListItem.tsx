@@ -15,6 +15,7 @@ export const RequestListItem = ({
   <li>
     <Column
       as={Link}
+      prefetch={false}
       href={CLIENT_PATH.REQUEST_DETAIL(placeId)}
       className={cn('gap-1', 'py-3.5', 'border-b-1 border-gray-50')}
     >

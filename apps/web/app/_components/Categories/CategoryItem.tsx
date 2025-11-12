@@ -8,6 +8,7 @@ import { Column } from '@repo/ui/components/Layout'
 export const CategoryItem = ({ id, name, iconKey }: Category) => (
   <Column
     as={Link}
+    prefetch={false}
     href={CLIENT_PATH.CATEGORY_DETAIL(id)}
     className={'items-center gap-1'}
   >
