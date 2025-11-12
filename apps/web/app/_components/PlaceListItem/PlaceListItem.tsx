@@ -27,6 +27,7 @@ export const PlaceListItem = ({
     <li>
       <Column
         as={Link}
+        prefetch={false}
         className={cn('gap-1', 'pb-4 pt-2.5', {
           'border-b-1 border-gray-50': showBorder,
         })}

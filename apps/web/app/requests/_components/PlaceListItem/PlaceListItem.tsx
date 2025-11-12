@@ -20,6 +20,7 @@ export const PlaceListItem = ({
     <li>
       <JustifyBetween
         as={Link}
+        prefetch={false}
         href={CLIENT_PATH.REQUEST_DETAIL('1')}
         className={cn('gap-1', 'py-3.5', 'border-b-1 border-gray-50')}
       >
