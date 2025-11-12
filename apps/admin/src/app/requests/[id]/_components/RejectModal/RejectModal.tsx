@@ -6,6 +6,7 @@ import {
   ModalFooter,
   ModalHeader,
 } from '@heroui/react'
+import type { HandleReview } from '../../_api/types'
 import { cn } from '@repo/ui/utils/cn'
 import { Textarea } from '@repo/ui/components/Textarea'
 import { COLOR_VARIANTS } from '@repo/ui/consts/colorVariant'
@@ -13,9 +14,10 @@ import { COLOR_VARIANTS } from '@repo/ui/consts/colorVariant'
 type Props = {
   isOpen: boolean
   onOpenChange: VoidFunction
+  handleReview: HandleReview
 }
 
-export const RejectModal = ({ isOpen, onOpenChange }: Props) => {
+export const RejectModal = ({ isOpen, onOpenChange, handleReview }: Props) => {
   const [value, setValue] = useState('')
 
   return (
@@ -27,8 +29,9 @@ export const RejectModal = ({ isOpen, onOpenChange }: Props) => {
         </ModalBody>
         <ModalFooter>
           <button
-            // Todo: 등록 거절 api 연결
-            onClick={() => {}}
+            onClick={() => {
+              handleReview(value)
+            }}
             className={cn(
               'w-full',
               'rounded-lg',
