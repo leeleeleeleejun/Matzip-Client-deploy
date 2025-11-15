@@ -1,5 +1,16 @@
+'use client'
+
+import { getToken } from '@/_apis/services/login'
+import { useEffect } from 'react'
+
 const LoginSuccessPage = () => {
-  // Todo: accessToken 요청
+  useEffect(() => {
+    ;(async () => {
+      const data = await getToken()
+      console.log(data)
+    })()
+  })
+
   return <div></div>
 }
 
