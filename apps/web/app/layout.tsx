@@ -61,6 +61,12 @@ export default async function RootLayout({
           </QueryProvider>
         </MSWProvider>
       </body>
+      <script
+        async
+        src='https://t1.kakaocdn.net/kakao_js_sdk/2.7.9/kakao.min.js'
+        integrity='sha384-JpLApTkB8lPskhVMhT+m5Ln8aHlnS0bsIexhaak0jOhAkMYedQoVghPfSpjNi9K1'
+        crossOrigin='anonymous'
+      ></script>
     </html>
   )
 }
