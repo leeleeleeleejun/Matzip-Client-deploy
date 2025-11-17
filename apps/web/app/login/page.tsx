@@ -1,13 +1,9 @@
-import Link from 'next/link'
 import { Icon } from '@repo/ui/components/Icon'
 import { Column } from '@repo/ui/components/Layout'
 import { Text } from '@repo/ui/components/Text'
-import { API_PATH } from '@/_constants/path'
+import { LoginButton } from './components/LoginButton'
 
 const LoginPage = () => {
-  const BASE_URL = process.env.NEXT_PUBLIC_API_URL || ''
-  const CLIENT_URL = process.env.NEXT_PUBLIC_CLIENT_URL || ''
-
   return (
     <Column className={'h-full px-5 py-10'}>
       <Column className={'my-auto items-center pb-5'}>
@@ -17,13 +13,7 @@ const LoginPage = () => {
           맛집
         </Text>
       </Column>
-      <Link
-        href={BASE_URL + API_PATH.AUTH.AUTHORIZE(CLIENT_URL)}
-        className={'relative rounded-lg bg-[#FEE500] p-3 text-center'}
-      >
-        <Icon type={'kakaoLogo'} className={'absolute left-[20px]'} />
-        <Text>카카오 로그인</Text>
-      </Link>
+      <LoginButton />
     </Column>
   )
 }
