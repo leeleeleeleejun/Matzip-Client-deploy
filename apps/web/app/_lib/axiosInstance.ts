@@ -1,5 +1,10 @@
-import axios, { AxiosResponse } from 'axios'
+import axios, {
+  AxiosError,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from 'axios'
 import { getCookie } from 'cookies-next'
+import { getToken } from '@/_apis/services/login'
 
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -31,12 +36,27 @@ axiosInstance.interceptors.request.use(
 )
 
 axiosInstance.interceptors.response.use(
-  // Todo: 재발급 로직 추가 필요
-
   (response: AxiosResponse) => response.data,
-  (error) => {
-    if (error.response?.status === 401 && typeof window !== 'undefined') {
-      window.location.href = '/login'
+  async (error: AxiosError): Promise<AxiosResponse | AxiosError> => {
+    const originalRequest = error.config as InternalAxiosRequestConfig & {
+      _retry?: boolean
+    }
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true
+
+      try {
+        const { accessToken: newAccessToken } = await getToken()
+
+        if (originalRequest.headers) {
+          originalRequest.headers.Authorization = newAccessToken
+            ? `Bearer ${newAccessToken}`
+            : ''
+        }
+
+        return await axiosInstance(originalRequest)
+      } catch (refreshError) {
+        return Promise.reject(refreshError)
+      }
     }
     return Promise.reject(error)
   },

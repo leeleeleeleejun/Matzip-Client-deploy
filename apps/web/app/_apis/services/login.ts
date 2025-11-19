@@ -1,6 +1,6 @@
 import { API_PATH, CLIENT_PATH } from '@/_constants/path'
-import axiosInstance from '@/_lib/axiosInstance'
-import { setCookie } from 'cookies-next'
+import { setCookie, deleteCookie } from 'cookies-next'
+import axios from 'axios'
 
 const CLIENT_URL = process.env.NEXT_PUBLIC_CLIENT_URL || ''
 const KAKAO_CLIENT_ID = process.env.NEXT_PUBLIC_KAKAO_CLIENT_ID || ''
@@ -26,9 +26,32 @@ export const getToken = async (): Promise<{
   accessToken: string
   accessTokenExpiresIn: number
 }> => {
-  const res = await axiosInstance.post(API_PATH.AUTH.TOKEN)
-  const { data } = res
-  const { accessToken } = data
-  setCookie('accessToken', accessToken)
-  return res.data
+  try {
+    const res = await axios.post(
+      process.env.NEXT_PUBLIC_API_URL + API_PATH.AUTH.TOKEN,
+      {},
+      {
+        withCredentials: true,
+      },
+    )
+
+    const { data } = res
+    const { accessToken, accessTokenExpiresIn } = data.data
+    const expireDate = new Date(Date.now() + accessTokenExpiresIn)
+
+    setCookie('accessToken', accessToken, {
+      expiresIn: expireDate,
+    })
+
+    return res.data
+  } catch (error) {
+    console.error('토큰 재발급 실패(세션 만료):', error)
+    deleteCookie('accessToken')
+
+    if (typeof window !== 'undefined') {
+      window.location.href = CLIENT_PATH.LOGIN
+    }
+
+    throw error
+  }
 }
