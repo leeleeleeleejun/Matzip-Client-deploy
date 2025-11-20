@@ -2,7 +2,7 @@ import axiosInstance from '@/_lib/axiosInstance'
 import { API_PATH } from '@/_constants/path'
 
 type Response = {
-  placeId: string
+  placeId: number
   message: string
 }
 
