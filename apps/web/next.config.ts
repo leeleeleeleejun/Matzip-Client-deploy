@@ -35,6 +35,11 @@ const nextConfig: NextConfig = {
         hostname: 'example.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: process.env.NEXT_PUBLIC_API_URL_HOST || '', //테스트용 주소
+        pathname: '/**',
+      },
     ],
   },
   async rewrites() {

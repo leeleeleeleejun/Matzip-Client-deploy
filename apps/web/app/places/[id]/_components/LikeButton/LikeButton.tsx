@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
 import { Icon } from '@repo/ui/components/Icon'
 import { useAddLike } from '@/_apis/mutations/useAddLike'
@@ -14,19 +14,36 @@ type Props = {
 export const LikeButton = ({ placeId, initIsLiked }: Props) => {
   const [isLiked, setIsLiked] = useState(initIsLiked)
   const [isAnimating, setIsAnimating] = useState(false)
-  const { mutate: addLike } = useAddLike()
-  const { mutate: removeLike } = useRemoveLike()
-  const toggleLikeMutate = isLiked ? removeLike : addLike
+  const { mutate: addLike, isPending: isAdding } = useAddLike()
+  const { mutate: removeLike, isPending: isRemoving } = useRemoveLike()
+
+  const isPending = isAdding || isRemoving
 
   const onClick = () => {
+    if (isPending) return
+
+    // 현재 상태 저장 (에러 시 롤백용)
+    const prevIsLiked = isLiked
+    // 낙관적 업데이트 (UI 먼저 변경)
+    const nextIsLiked = !prevIsLiked
+    setIsLiked(nextIsLiked)
+
+    const toggleLikeMutate = nextIsLiked ? addLike : removeLike
+
+    // 애니메이션 트리거
+    if (nextIsLiked) {
+      setIsAnimating(true)
+      setTimeout(() => setIsAnimating(false), 200)
+    }
+
     toggleLikeMutate(placeId, {
-      onSuccess: () => {
-        setIsLiked((prev) => !prev)
-        setIsAnimating(true)
-        setTimeout(() => setIsAnimating(false), 200) // 0.2초 동안 팝 애니메이션
-      },
+      onError: () => setIsLiked(prevIsLiked), // 실패 시 롤백
     })
   }
+
+  useEffect(() => {
+    setIsLiked(initIsLiked)
+  }, [initIsLiked])
 
   return (
     <motion.button

@@ -45,6 +45,7 @@ export const API_PATH = {
       `/auth/oauth2?code=${code}&redirectUri=${redirectUri}`,
     TOKEN: '/auth/token',
   },
+  USER: '/users/me',
 }
 
 export const CLIENT_PATH = {

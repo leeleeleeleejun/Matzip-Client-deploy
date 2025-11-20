@@ -2,22 +2,18 @@ import axiosInstance from '@/_lib/axiosInstance'
 import { API_PATH } from '@/_constants/path'
 
 type Response = {
-  placeId: string
+  placeId: number
   message: string
 }
 
 export const addLike = async (placeId: string): Promise<Response> => {
-  const { data: response } = await axiosInstance.post(
-    API_PATH.PLACES.LIKE.POST(placeId),
-  )
-  const { data } = response
+  const { data } = await axiosInstance.post(API_PATH.PLACES.LIKE.POST(placeId))
   return data
 }
 
 export const removeLike = async (placeId: string): Promise<Response> => {
-  const { data: response } = await axiosInstance.delete(
+  const { data } = await axiosInstance.delete(
     API_PATH.PLACES.LIKE.DELETE(placeId),
   )
-  const { data } = response
   return data
 }
