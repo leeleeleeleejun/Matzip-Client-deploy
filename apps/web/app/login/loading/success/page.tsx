@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
+import { Spinner } from '@heroui/react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { setCookie } from 'cookies-next'
 import axiosInstanceV2 from '@/_lib/axiosInstanceV2'
@@ -10,10 +11,16 @@ const Page = () => {
   const { replace } = useRouter()
   const searchParams = useSearchParams()
   const code = searchParams.get('code') || ''
-  const redirectUri =
-    (process.env.NEXT_PUBLIC_CLIENT_URL || '') + CLIENT_PATH.LOGIN_SUCCESS
+  const clientUrl = process.env.NEXT_PUBLIC_CLIENT_URL || ''
+  const redirectUri = clientUrl + CLIENT_PATH.LOGIN_SUCCESS
 
   useEffect(() => {
+    if (!code || !clientUrl) {
+      console.error('Authorization code is missing')
+      replace(`${CLIENT_PATH.LOGIN}?error=code-missing`)
+      return
+    }
+
     ;(async () => {
       try {
         const response = await axiosInstanceV2.get(
@@ -33,9 +40,9 @@ const Page = () => {
         replace(`${CLIENT_PATH.LOGIN}?error=auth-failed`)
       }
     })()
-  }, [code, redirectUri, replace])
+  }, [clientUrl, code, redirectUri, replace])
 
-  return null
+  return <Spinner className={'m-auto'} />
 }
 
 export default Page
