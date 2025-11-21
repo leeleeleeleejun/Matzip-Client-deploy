@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import type { UseFormSetValue } from 'react-hook-form'
+import { Spinner } from '@heroui/react'
 import { useCategoryQueries } from '@/_apis/queries/category'
 import type { NewPlaceRequest } from '@/_apis/schemas/place'
 import type { Category as CategoryType } from '@/_apis/schemas/category'
@@ -54,6 +55,14 @@ export const Category = ({ setValue, getValues, isLoading }: Props) => {
 
   return (
     <>
+      {isLoading && (
+        <Spinner
+          size={'lg'}
+          className={
+            'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform'
+          }
+        />
+      )}
       <Title
         title={'내가 알리고 싶은 맛집의 종류는?'}
         description={'어울리는 카테고리를 모두 골라주세요!'}
