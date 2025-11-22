@@ -8,7 +8,7 @@ export const PublicEventSchema = z.object({
 })
 
 export const PrivateEventSchema = z.object({
-  eventId: z.string(),
+  eventId: z.number().transform(String),
   prize: z.object({
     description: z.string(),
     imageUrl: z.string(),
