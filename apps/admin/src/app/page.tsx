@@ -4,6 +4,8 @@ import { OnlyLeftHeader } from '@repo/ui/components/Header'
 import { getRequests } from '@/app/_api/services/request'
 import type { Request } from '@/app/_api/types'
 
+export const dynamic = 'force-dynamic'
+
 export default async function Home() {
   const data = (await getRequests()) || []
   const singwan: Request[] = []
