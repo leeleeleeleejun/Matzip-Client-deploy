@@ -82,6 +82,14 @@ export const getSearchPlaceByKakao = async ({
   return data
 }
 
+// 타입 변경 필요
+export const getPlacesBySearch = async (
+  keyword: string,
+): Promise<PlaceDetail[]> => {
+  const { data } = await axiosInstance.get(API_PATH.PLACES.SEARCH(keyword))
+  return data
+}
+
 export const getPlaceByPreview = async (
   kakaoPlaceId: string,
 ): Promise<PlaceByPreview> => {
