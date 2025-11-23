@@ -20,7 +20,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
  * @returns searchFunc - 검색을 수행하는 함수
  */
 
-const useSearch = <T, P>(fetcher: (params: P) => Promise<T[]>) => {
+export const useSearch = <T, P>(fetcher: (params: P) => Promise<T[]>) => {
   const [searchResult, setSearchResult] = useState<T[]>([])
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
@@ -51,5 +51,3 @@ const useSearch = <T, P>(fetcher: (params: P) => Promise<T[]>) => {
 
   return { searchResult, searchFunc }
 }
-
-export default useSearch

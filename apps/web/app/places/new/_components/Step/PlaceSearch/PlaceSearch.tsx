@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { SearchPage } from '@/_components/SearchPage'
-import useSearch from '@/_hooks/useSearch'
+import { useSearch } from '@/_hooks/useSearch'
 import { getSearchPlaceByKakao } from '@/_apis/services/kakaoSearch'
 import type {
   KakaoSearchFuncParams,
