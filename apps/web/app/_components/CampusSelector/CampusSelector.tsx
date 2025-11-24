@@ -10,16 +10,24 @@ import {
 import { Text } from '@repo/ui/components/Text'
 import { Icon } from '@repo/ui/components/Icon'
 
-import { CAMPUS, CAMPUS_LIST, type CampusType } from '@/_constants/campus'
+import {
+  CAMPUS,
+  CAMPUS_LIST,
+  CAMPUS_LOCATION,
+  type CampusType,
+} from '@/_constants/campus'
 import { useCampusStore } from '@/_store/campus'
+import { useLastMapCenterStore } from '@/_store/lastMapCenter'
 
 export const CampusSelector = () => {
   const { campus, setCampus } = useCampusStore()
+  const { setLastMapCenter } = useLastMapCenterStore()
 
   const onSelectionChange = (keys: Selection) => {
     const newKey = Array.from(keys)[0] as string | undefined
     if (isCampusType(newKey)) {
       setTimeout(() => setCampus(newKey), 0)
+      setLastMapCenter(CAMPUS_LOCATION[newKey])
     }
   }
 
