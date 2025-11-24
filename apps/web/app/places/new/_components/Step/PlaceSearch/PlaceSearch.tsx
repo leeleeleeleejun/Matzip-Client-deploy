@@ -1,14 +1,10 @@
 import { useCallback } from 'react'
 import { SearchPage } from '@/_components/SearchPage'
 import { useSearch } from '@/_hooks/useSearch'
-import { getSearchPlaceByKakao } from '@/_apis/services/kakaoSearch'
-import type {
-  KakaoSearchFuncParams,
-  SearchPlaceByKakao,
-} from '@/_apis/schemas/kakaoSearch'
 import type { UseFormSetValue } from 'react-hook-form'
 import type { NewPlaceRequest } from '@/_apis/schemas/place'
 import { type CampusType, CAMPUS_LOCATION } from '@/_constants/campus'
+import { searchCafeAndRestaurant } from '@/places/new/_utils/searchCafeAndRestaurant'
 
 type Props = {
   campus: CampusType
@@ -17,33 +13,26 @@ type Props = {
 }
 
 export const PlaceSearch = ({ campus, setValue, nextStep }: Props) => {
-  const { searchResult: restaurantResult, searchFunc: restaurantSearchFunc } =
-    useSearch<SearchPlaceByKakao, KakaoSearchFuncParams>(getSearchPlaceByKakao)
-  const { searchResult: cafeResult, searchFunc: cafeSearchFunc } = useSearch<
-    SearchPlaceByKakao,
-    KakaoSearchFuncParams
-  >(getSearchPlaceByKakao)
+  const { searchResult, searchFunc } = useSearch(searchCafeAndRestaurant)
 
-  const places = [...restaurantResult, ...cafeResult].map((item) => ({
+  const places = [...searchResult].map((item) => ({
     id: item.id,
     name: item.place_name,
     address: item.address_name,
   }))
 
-  const searchFunc = useCallback(
+  const handleSearch = useCallback(
     (query: string) => {
       const { longitude: x, latitude: y } = CAMPUS_LOCATION[campus]
-      const location = { x, y }
-      cafeSearchFunc({ query, categoryCode: 'cafe', location })
-      restaurantSearchFunc({ query, categoryCode: 'restaurant', location })
+      searchFunc({ query, location: { x, y } })
     },
-    [cafeSearchFunc, campus, restaurantSearchFunc],
+    [campus, searchFunc],
   )
 
   return (
     <SearchPage
       places={places}
-      searchFunc={searchFunc}
+      searchFunc={handleSearch}
       onSelectPlace={(id) => {
         setValue('kakaoPlaceId', id)
         nextStep()
