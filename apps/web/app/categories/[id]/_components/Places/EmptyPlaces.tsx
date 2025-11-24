@@ -77,7 +77,7 @@ export const EmptyPlaces = () => {
   }, [])
 
   return (
-    <Column className={'my-auto items-center gap-2 pb-40'}>
+    <Column className={'h-full items-center justify-center gap-2 pb-40'}>
       {/* 낙하 영역: 상대 좌표계 */}
       <div ref={containerRef} className={'h-25 w-25'}>
         {/* 실제 보이는 "텅" (DOM 요소를 물리 좌표에 맞춰 translate) */}

@@ -48,7 +48,7 @@ export const CategoryDetailPage = () => {
       />
       {/*Todo: 맛집 리스트 스켈레톤으로 변경하기*/}
       <Suspense fallback={<Spinner className={'my-auto'} />}>
-        <Places id={activeCategoryId} />
+        <Places id={activeCategoryId} setIdFunc={setIdFunc} />
       </Suspense>
     </>
   )

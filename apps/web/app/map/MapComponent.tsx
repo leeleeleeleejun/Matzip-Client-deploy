@@ -6,7 +6,7 @@ import { Container, NaverMap } from 'react-naver-maps'
 
 import { CAMPUS_LOCATION } from '@/_constants/campus'
 import { useCampusStore } from '@/_store/campus'
-import { useLastMapCenterStore } from '@/_store/prevMapCenter'
+import { useLastMapCenterStore } from '@/_store/lastMapCenter'
 import { usePlaceQueries } from '@/_apis/queries/place'
 import type { MapBounds } from '@/_apis/schemas/place'
 
