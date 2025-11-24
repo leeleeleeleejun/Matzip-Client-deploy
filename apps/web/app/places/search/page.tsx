@@ -5,11 +5,11 @@ import { SearchPage } from '@/_components/SearchPage'
 import { getPlacesBySearch } from '@/_apis/services/place'
 import { useSearch } from '@/_hooks/useSearch'
 import { CLIENT_PATH } from '@/_constants/path'
-import type { PlaceDetail } from '@/_apis/schemas/place'
+import type { PlaceBySearch } from '@/_apis/schemas/place'
 
 const Page = () => {
   const { replace } = useRouter()
-  const { searchResult, searchFunc } = useSearch<PlaceDetail, string>(
+  const { searchResult, searchFunc } = useSearch<PlaceBySearch, string>(
     getPlacesBySearch,
   )
 
