@@ -6,6 +6,7 @@ import { Text } from '@repo/ui/components/Text'
 import { Icon } from '@repo/ui/components/Icon'
 import { Chip } from '@repo/ui/components/Chip'
 import { Column, Flex } from '@repo/ui/components/Layout'
+import { PlaceListItemSkeleton } from './PlaceListItemSkeleton'
 
 type Props = {
   showCategory?: boolean
@@ -53,3 +54,5 @@ export const PlaceListItem = ({
     </li>
   )
 }
+
+PlaceListItem.Skeleton = PlaceListItemSkeleton
