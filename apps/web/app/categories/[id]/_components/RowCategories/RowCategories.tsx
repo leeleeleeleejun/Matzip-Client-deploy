@@ -5,11 +5,15 @@ import { cn } from '@repo/ui/utils/cn'
 
 type Props = {
   categories: Category[]
-  id: string
-  setIdFunc: (id: string) => void
+  categoryId: string
+  setCategoryId: (id: string) => void
 }
 
-export const RowCategories = ({ id, categories, setIdFunc }: Props) => {
+export const RowCategories = ({
+  categoryId,
+  categories,
+  setCategoryId,
+}: Props) => {
   return (
     <div className={'relative px-5 py-2.5'}>
       <Flex className={'scrollbar-hide gap-4 overflow-x-auto'}>
@@ -17,9 +21,9 @@ export const RowCategories = ({ id, categories, setIdFunc }: Props) => {
           <CategoryItem
             key={category.id}
             category={category}
-            isActive={id === category.id}
+            isActive={categoryId === category.id}
             onClick={() => {
-              setIdFunc(category.id)
+              setCategoryId(category.id)
             }}
           />
         ))}
