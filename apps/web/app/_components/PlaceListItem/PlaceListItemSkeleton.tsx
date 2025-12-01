@@ -16,11 +16,11 @@ export const PlaceListItemSkeleton = ({ count = 3 }: Props) => {
           key={index}
           className='border-b-1 w-full gap-3 border-gray-50 pb-4 pt-2.5'
         >
-          <Skeleton className='h-4 w-14 rounded-lg' />
-          <Skeleton className='w-26 h-4 rounded-lg' />
+          <Skeleton className='w-18 h-5 rounded-full' />
+          <Skeleton className='w-26 h-4 rounded-full' />
           <Flex className={'gap-1'}>
-            <Skeleton className='h-4 w-14 rounded-lg' />
-            <Skeleton className='h-4 w-14 rounded-lg' />
+            <Skeleton className='w-18 h-6 rounded-full' />
+            <Skeleton className='w-18 h-6 rounded-full' />
           </Flex>
         </Column>
       ))}
