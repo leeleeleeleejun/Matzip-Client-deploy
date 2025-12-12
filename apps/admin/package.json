@@ -32,7 +32,7 @@
     "@tailwindcss/postcss": "catalog:",
     "@types/navermaps": "catalog:",
     "postcss": "catalog:",
-    "tailwindcss":"catalog:",
+    "tailwindcss": "catalog:",
     "autoprefixer": "catalog:",
     "eslint": "catalog:"
   }
