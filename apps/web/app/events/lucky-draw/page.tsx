@@ -12,14 +12,7 @@ export const dynamic = 'force-dynamic'
 
 const Page = () => {
   return (
-    <HydrationBoundaryPage
-      prefetch={async (queryClient) => {
-        await Promise.all([
-          queryClient.prefetchQuery(useEventQueries.privateInfo()),
-          queryClient.prefetchQuery(useEventQueries.result()),
-        ])
-      }}
-    >
+    <>
       <Header
         left={<HeaderBackButton />}
         center={
@@ -31,8 +24,17 @@ const Page = () => {
         right={<InfoPopover />}
         className={'border-b-1 border-gray-50'}
       />
-      <LuckyDraw />
-    </HydrationBoundaryPage>
+      <HydrationBoundaryPage
+        prefetch={async (queryClient) => {
+          await Promise.all([
+            queryClient.prefetchQuery(useEventQueries.privateInfo()),
+            queryClient.prefetchQuery(useEventQueries.result()),
+          ])
+        }}
+      >
+        <LuckyDraw />
+      </HydrationBoundaryPage>
+    </>
   )
 }
 
