@@ -27,12 +27,14 @@ const Page = () => {
           API_PATH.AUTH.AUTHORIZE(code, redirectUri),
         )
 
-        const accessToken = response?.data?.data
+        const accessToken = response.data.data
+
         if (accessToken) {
           setCookie('accessToken', accessToken, {
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'lax',
             path: '/',
+            expires: new Date(Date.now() + 1800000),
           })
           replace(CLIENT_PATH.MAIN)
         } else {
