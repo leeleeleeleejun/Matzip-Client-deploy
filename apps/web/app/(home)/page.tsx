@@ -7,16 +7,16 @@ import { Flex, VerticalScrollArea } from '@repo/ui/components/Layout'
 import { Icon } from '@repo/ui/components/Icon'
 import { Text } from '@repo/ui/components/Text'
 import { Divider } from '@repo/ui/components/Divider'
-import { RankingPlaceList } from '@/_components/RankingPlaceList'
+import { RankingPlaceList } from '@/(home)/_components/RankingPlaceList'
 import { HydrationBoundaryPage } from '@/HydrationBoundaryPage'
 import { Banner } from '@repo/ui/components/Banner'
 import { Categories } from '@/_components/Categories'
-import { CampusSelector } from '@/_components/CampusSelector'
+import { CampusSelector } from '@/(home)/_components/CampusSelector'
 import { BottomNavigation } from '@/_components/BottomNavigation'
 import {
   FoodSlotMachineBanner,
   LuckyDrawBanner,
-} from '@/_components/eventBanners'
+} from '@/(home)/_components/eventBanners'
 
 export const dynamic = 'force-dynamic'
 
