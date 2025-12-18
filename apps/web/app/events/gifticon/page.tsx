@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Image from 'next/image'
 import { CLIENT_PATH } from '@/_constants/path'
 import { Column } from '@repo/ui/components/Layout'
@@ -19,10 +20,9 @@ export default Page
 
 const Gifticon = () => (
   <Column
-    as={'a'}
+    as={Link}
     href={CLIENT_PATH.EVENT_GIFTICON_DETAIL('1')}
     className={cn(
-      'w-fit',
       'p-2.5',
       'gap-2.5',
       'rounded-xl',
@@ -37,8 +37,10 @@ const Gifticon = () => (
       height={180}
     />
     <Column>
-      <Text variant={'caption1'}>BBQ</Text>
-      <Text fontSize={'sm'} fontWeight={'semibold'}>
+      <Text variant={'caption1'} className={'truncate'}>
+        BBQ
+      </Text>
+      <Text fontSize={'sm'} fontWeight={'semibold'} className={'truncate'}>
         황금올리브 치킨
       </Text>
       <Text variant={'caption1'} className={'text-gray-200'}>
