@@ -24,9 +24,9 @@ export const PlaceListItem = ({
         href={CLIENT_PATH.REQUEST_DETAIL(placeId)}
         className={cn('gap-1', 'py-3.5', 'border-b-1 border-gray-50')}
       >
-        <Column as={'div'}>
+        <Column as={'div'} className={'max-w-2/3'}>
           <Flex className={'gap-1'}>
-            <Text as={'span'} variant={'title2'}>
+            <Text as={'span'} variant={'title2'} className={'flex-1 truncate'}>
               {placeName}
             </Text>
             <Icon type={mainCategoryIcon} size={18} />
