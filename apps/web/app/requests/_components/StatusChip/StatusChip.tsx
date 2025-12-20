@@ -18,6 +18,7 @@ export const StatusChip = ({
       'rounded-full',
       'my-auto',
       'px-2.5 py-2',
+      'shrink-0',
     )}
   >
     {STATUS_LABEL[registerStatus]}

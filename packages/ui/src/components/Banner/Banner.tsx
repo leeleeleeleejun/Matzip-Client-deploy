@@ -109,7 +109,8 @@ export const Banner = ({
         <div
           className={cn(
             'ui:absolute',
-            'ui:bottom-0 ui:right-3',
+            'ui:bottom-2',
+            'ui:right-3',
             'ui:gap-2',
             'ui:bg-gray-50',
             'ui:text-gray-300',
