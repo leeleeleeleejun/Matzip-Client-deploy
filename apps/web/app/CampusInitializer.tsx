@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { useCampusStore } from '@/_store/campus'
-import { CampusType, CAMPUS_LIST } from '@/_constants/campus' // CAMPUS_LIST가 있다고 가정
+import { CampusType, CAMPUS_LIST } from '@/_constants/campus'
 
 const isValidCampus = (value: string | null): value is CampusType => {
   if (!value) return false
@@ -18,10 +18,16 @@ export const CampusInitializer = () => {
   useEffect(() => {
     if (initialized.current) return
 
-    const param = searchParams.get('campus')
+    const paramCampus = searchParams.get('campus')
+    const storedCampus = localStorage.getItem('campus')
+    let targetCampus: CampusType = 'SINGWAN'
 
-    // 유효한 값이면 그걸 쓰고, 아니면 기본값 'SINGWAN'
-    const targetCampus: CampusType = isValidCampus(param) ? param : 'SINGWAN'
+    if (isValidCampus(paramCampus)) {
+      targetCampus = paramCampus
+      localStorage.setItem('campus', targetCampus)
+    } else if (isValidCampus(storedCampus)) {
+      targetCampus = storedCampus
+    }
 
     setCampus(targetCampus)
     initialized.current = true
