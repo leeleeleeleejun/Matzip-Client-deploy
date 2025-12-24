@@ -28,6 +28,7 @@
     "axios": "catalog:",
     "cookies-next": "^6.1.1",
     "framer-motion": "catalog:",
+    "import-in-the-middle": "^2.0.1",
     "matter-js": "^0.20.0",
     "motion": "catalog:",
     "next": "catalog:",
@@ -36,6 +37,7 @@
     "react-hook-form": "^7.62.0",
     "react-naver-maps": "catalog:",
     "react-spring-bottom-sheet": "^3.5.0-alpha.0",
+    "require-in-the-middle": "^8.0.1",
     "zod": "catalog:",
     "zustand": "catalog:"
   },
