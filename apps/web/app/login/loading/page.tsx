@@ -12,7 +12,7 @@ const Page = () => {
   const searchParams = useSearchParams()
   const code = searchParams.get('code') || ''
   const clientUrl = process.env.NEXT_PUBLIC_CLIENT_URL || ''
-  const redirectUri = clientUrl + CLIENT_PATH.LOGIN_SUCCESS
+  const redirectUri = clientUrl + CLIENT_PATH.LOGIN_LOADING
 
   useEffect(() => {
     if (!code || !clientUrl) {

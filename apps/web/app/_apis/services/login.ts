@@ -10,10 +10,10 @@ export const getKakaoInga = async () => {
   // const isiOS = /(iPhone|iPad|iPod)/.test(navigator.userAgent);
   try {
     if (isAndroid) {
-      window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_CLIENT_ID}&redirect_uri=${CLIENT_URL + CLIENT_PATH.LOGIN_SUCCESS}&response_type=code`
+      window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_CLIENT_ID}&redirect_uri=${CLIENT_URL + CLIENT_PATH.LOGIN_LOADING}&response_type=code`
     } else {
       await window.Kakao.Auth.authorize({
-        redirectUri: CLIENT_URL + CLIENT_PATH.LOGIN_SUCCESS,
+        redirectUri: CLIENT_URL + CLIENT_PATH.LOGIN_LOADING,
       })
     }
   } catch (error) {

@@ -67,5 +67,5 @@ export const CLIENT_PATH = {
   EVENT_GIFTICON: '/events/gifticon',
   EVENT_GIFTICON_DETAIL: (id: string | number) => `/events/gifticon/${id}`,
   LOGIN: '/login',
-  LOGIN_SUCCESS: '/login/loading/success', // Todo: path 변경 필요
+  LOGIN_LOADING: '/login/loading',
 }
