@@ -25,6 +25,8 @@ import { FingerUp } from './assets/icons/tag/fingerUp'
 import { Calculator } from './assets/icons/tag/calculator'
 import { BlingBling } from './assets/icons/tag/blingBling'
 import { Waiter } from './assets/icons/tag/waiter'
+import { Lightning } from './assets/icons/tag/lightning'
+import { Pig } from './assets/icons/tag/pig'
 // 헤더
 import { MarkerWithMap } from './assets/icons/header/markerWithMap'
 import { Logo } from './assets/icons/header/logo'
@@ -95,6 +97,8 @@ export const iconMap = {
   calculator: Calculator,
   blingBling: BlingBling,
   waiter: Waiter,
+  lightning: Lightning,
+  pig: Pig,
 
   // 헤더
   logo: Logo,
