@@ -10,14 +10,8 @@ import { HeaderBackButton } from '@/_components/HeaderBackButton'
 import { Text } from '@repo/ui/components/Text'
 import { Header } from '@repo/ui/components/Header'
 import { Column, VerticalScrollArea } from '@repo/ui/components/Layout'
-import {
-  Section,
-  Description,
-  LikeButton,
-  Location,
-  Menus,
-  Tags,
-} from './_components'
+import { Section } from '@/_components/Section'
+import { Description, LikeButton, Location, Menus, Tags } from './_components'
 
 export const PlaceDetailPage = ({ id }: { id: string }) => {
   const { data } = useSuspenseQuery(usePlaceQueries.detail(id))
