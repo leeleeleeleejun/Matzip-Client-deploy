@@ -20,6 +20,7 @@
     "@heroui/system": "catalog:",
     "@heroui/theme": "catalog:",
     "@hookform/resolvers": "^5.2.1",
+    "@next/third-parties": "^16.1.1",
     "@repo/ui": "workspace:*",
     "@sentry/nextjs": "^10",
     "@suspensive/react": "^3.3.2",

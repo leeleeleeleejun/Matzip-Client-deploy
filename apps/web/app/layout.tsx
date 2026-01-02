@@ -11,6 +11,7 @@ import { Column } from '@repo/ui/components/Layout'
 import { NaverMapProvider } from '@/NaverMapProvider'
 import { HeroProvider } from '@/HeroProvider'
 import { CampusInitializer } from '@/CampusInitializer'
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 
 const SITE_URL = new URL('https://knu-matzip.vercel.app')
 
@@ -29,9 +30,9 @@ export const metadata: Metadata = {
     url: '/',
     type: 'website',
   },
-  // verification: {
-  //   google: "",
-  // },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS,
+  },
 }
 
 const pretendard = localFont({
@@ -96,6 +97,14 @@ export default async function RootLayout({
   return (
     <html lang='ko' suppressHydrationWarning={true}>
       <body className={pretendard.className}>
+        {process.env.NODE_ENV === 'production' &&
+          process.env.NEXT_PUBLIC_GA_ID && (
+            <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GA_ID} />
+          )}
+        {process.env.NODE_ENV === 'production' &&
+          process.env.NEXT_PUBLIC_GA_ID && (
+            <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+          )}
         {/*<MSWProvider>*/}
         <QueryProvider>
           <HeroProvider>
