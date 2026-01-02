@@ -46,7 +46,11 @@ export const PlaceListItem = ({
           {address}
         </Text>
         {tags.length > 0 && (
-          <Flex className={'gap-1 overflow-x-auto'}>
+          <Flex
+            className={'gap-1 overflow-x-auto'}
+            onPointerDown={(e) => e.stopPropagation()}
+            onTouchStart={(e) => e.stopPropagation()}
+          >
             {tags.map((tag) => (
               <Chip key={tag.id} icon={tag.iconKey} label={tag.name} />
             ))}
