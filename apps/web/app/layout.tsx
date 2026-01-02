@@ -11,7 +11,7 @@ import { Column } from '@repo/ui/components/Layout'
 import { NaverMapProvider } from '@/NaverMapProvider'
 import { HeroProvider } from '@/HeroProvider'
 import { CampusInitializer } from '@/CampusInitializer'
-import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const SITE_URL = new URL(process.env.NEXT_PUBLIC_CLIENT_URL || '')
 
@@ -101,14 +101,6 @@ export default async function RootLayout({
   return (
     <html lang='ko' suppressHydrationWarning={true}>
       <body className={pretendard.className}>
-        {process.env.NODE_ENV === 'production' &&
-          process.env.NEXT_PUBLIC_GA_ID && (
-            <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GA_ID} />
-          )}
-        {process.env.NODE_ENV === 'production' &&
-          process.env.NEXT_PUBLIC_GA_ID && (
-            <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
-          )}
         {/*<MSWProvider>*/}
         <QueryProvider>
           <HeroProvider>
@@ -125,6 +117,10 @@ export default async function RootLayout({
           </HeroProvider>
         </QueryProvider>
         {/*</MSWProvider>*/}
+        {process.env.NODE_ENV === 'production' &&
+          process.env.NEXT_PUBLIC_GA_ID && (
+            <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+          )}
         <Script
           src='https://t1.kakaocdn.net/kakao_js_sdk/2.7.9/kakao.min.js'
           integrity='sha384-JpLApTkB8lPskhVMhT+m5Ln8aHlnS0bsIexhaak0jOhAkMYedQoVghPfSpjNi9K1'
