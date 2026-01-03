@@ -53,14 +53,7 @@ export const Tags = ({ tags }: Props) => {
 
   return (
     <>
-      <Flex
-        ref={containerRef}
-        className={cn('gap-1 overflow-hidden')}
-        // 이벤트 전파 방지
-        onClick={(e) => e.preventDefault()}
-        onPointerDown={(e) => e.stopPropagation()}
-        onTouchStart={(e) => e.stopPropagation()}
-      >
+      <Flex ref={containerRef} className={cn('gap-1 overflow-hidden')}>
         {visibleTags.map((tag) => (
           <Chip key={tag.id} icon={tag.iconKey} label={tag.name} />
         ))}
