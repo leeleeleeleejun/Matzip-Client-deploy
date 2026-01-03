@@ -28,8 +28,7 @@ export const Tags = ({ tags }: Props) => {
     let count = 0
 
     for (let i = 0; i < tagNodes.length; i++) {
-      const tagWidth = tagNodes[i].offsetWidth
-
+      const tagWidth = tagNodes[i]?.offsetWidth ?? 0
       const isLastItem = i === tagNodes.length - 1
       const spaceNeeded = tagWidth + (isLastItem ? 0 : GAP + BADGE_WIDTH)
 
@@ -81,7 +80,11 @@ export const Tags = ({ tags }: Props) => {
       </Flex>
 
       {/*2. 측정용 보이지 않는 영역 (모든 태그를 렌더링해서 너비 측정) */}
-      <Flex ref={measureRef} className='h-0 gap-1 opacity-0' aria-hidden>
+      <Flex
+        ref={measureRef}
+        className='h-0 gap-1 overflow-x-hidden opacity-0'
+        aria-hidden
+      >
         {tags.map((tag) => (
           <Chip key={tag.id} icon={tag.iconKey} label={tag.name} />
         ))}
