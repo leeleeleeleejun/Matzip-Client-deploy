@@ -6,7 +6,7 @@ type Props = {
   children: React.ReactNode
 }
 
-const SWIPE_CONFIDENCE_THRESHOLD = 20
+const SWIPE_CONFIDENCE_THRESHOLD = 10000
 
 export const SwipeableArea = ({
   categoryId,
@@ -42,6 +42,7 @@ export const SwipeableArea = ({
           left: NumberToCategoryId >= 15 ? 0 : undefined,
         }}
         dragElastic={0.2}
+        dragSnapToOrigin
         onDragEnd={onDragEnd}
         className='relative h-full w-full bg-white'
       >
