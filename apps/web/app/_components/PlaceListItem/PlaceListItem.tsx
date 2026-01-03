@@ -4,9 +4,9 @@ import type { BasePlace } from '@/_apis/schemas/place'
 import { cn } from '@repo/ui/utils/cn'
 import { Text } from '@repo/ui/components/Text'
 import { Icon } from '@repo/ui/components/Icon'
-import { Chip } from '@repo/ui/components/Chip'
 import { Column, Flex } from '@repo/ui/components/Layout'
 import { PlaceListItemSkeleton } from './PlaceListItemSkeleton'
+import { Tags } from './Tags'
 
 type Props = {
   showCategory?: boolean
@@ -45,18 +45,7 @@ export const PlaceListItem = ({
         <Text variant={'caption2'} className={'truncate text-gray-300'}>
           {address}
         </Text>
-        {tags.length > 0 && (
-          <Flex
-            className={'-my-3 h-14 gap-1 overflow-x-auto'}
-            onClick={(e) => e.preventDefault()}
-            onPointerDown={(e) => e.stopPropagation()}
-            onTouchStart={(e) => e.stopPropagation()}
-          >
-            {tags.map((tag) => (
-              <Chip key={tag.id} icon={tag.iconKey} label={tag.name} />
-            ))}
-          </Flex>
-        )}
+        {tags.length > 0 && <Tags tags={tags} />}
       </Column>
     </li>
   )
