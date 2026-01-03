@@ -11,6 +11,7 @@ import { Column, Flex, VerticalScrollArea } from '@repo/ui/components/Layout'
 import { Icon } from '@repo/ui/components/Icon'
 import { AlreadyRegistered } from './AlreadyRegistered'
 import { Title } from '@/places/new/_components/Title'
+import { Section } from '@/_components/Section'
 
 type Props = {
   getValues: UseFormGetValues<NewPlaceRequest>
@@ -49,23 +50,27 @@ export const PlacePreview = ({ getValues, setValue, nextStep }: Props) => {
           </Text>
           <Icon type={'blingBling'} />
         </Flex>
-        <Banner
-          contents={photos.map((photo) => (
-            <Image
-              key={photo.displayOrder}
-              src={photo.photoUrl}
-              alt={`place-photo-${photo.displayOrder}`}
-              width={450}
-              height={180}
-              className={'max-h-[180px] object-contain'}
-            />
-          ))}
-          showIndicator={true}
-          minHeight={180}
-        />
         <Column className={'flex-1 justify-around gap-4'}>
-          <Location location={location} />
-          <Menus menus={menus} />
+          <Banner
+            contents={photos.map((photo) => (
+              <Image
+                key={photo.displayOrder}
+                src={photo.photoUrl}
+                alt={`place-photo-${photo.displayOrder}`}
+                width={450}
+                height={180}
+                className={'max-h-[180px] object-contain'}
+              />
+            ))}
+            showIndicator={true}
+            minHeight={180}
+          />
+          <Section icon={'pin'} title={'위치'}>
+            <Location location={location} />
+          </Section>
+          <Section icon={'note'} title={'메뉴'}>
+            <Menus menus={menus} />
+          </Section>
           <Button
             size={'medium'}
             type={'button'}
