@@ -2,24 +2,26 @@
 
 import { useState } from 'react'
 import { useDisclosure } from '@heroui/react'
-import { useSuspenseQuery } from '@tanstack/react-query'
-import { useEventQueries } from '@/_apis/queries/event'
+// import { useSuspenseQuery } from '@tanstack/react-query'
+// import { useEventQueries } from '@/_apis/queries/event'
 import { Text } from '@repo/ui/components/Text'
 import { Button } from '@repo/ui/components/Button'
 import { Column } from '@repo/ui/components/Layout'
 import { LottoBalls } from '../../LottoBalls'
 import { ParticipationStatus } from '../../ParticipationStatus'
 import { ResultModal } from './ResultModal'
-import { NoResult } from './NoResult'
+// import { NoResult } from './NoResult'
 
 export const Result = () => {
   const [isRunning, setIsRunning] = useState(false)
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
-  const { data } = useSuspenseQuery(useEventQueries.result())
+  // const { data } = useSuspenseQuery(useEventQueries.result())
 
-  if (!data) return <NoResult />
+  // if (!data) return <NoResult />
 
-  const { isWinner, participantsCount, usedTicketsCount } = data
+  const isWinner = true,
+    participantsCount = 20,
+    usedTicketsCount = 5
 
   const stopRunning = () => {
     setIsRunning(false)
