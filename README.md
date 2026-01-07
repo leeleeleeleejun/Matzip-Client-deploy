@@ -18,6 +18,10 @@
 
 ![React](https://go-skill-icons.vercel.app/api/icons?i=ts,nextjs,zustand,reactquery,tailwind,storybook,pnpm,turborepo,googleanalytics,sentry&perline=5)
 
+#### Back-end
+
+![React](https://go-skill-icons.vercel.app/api/icons?i=java,spring,mysql,aws)
+
 ### 📱 주요 기능
 
 #### 1. 맛집 탐색
