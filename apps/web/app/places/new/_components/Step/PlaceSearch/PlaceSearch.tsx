@@ -1,6 +1,5 @@
 import { useCallback } from 'react'
 import { SearchPage } from '@/_components/SearchPage'
-import { useSearch } from '@/_hooks/useSearch'
 import type { UseFormSetValue } from 'react-hook-form'
 import type { NewPlaceRequest } from '@/_apis/schemas/place'
 import { type CampusType, CAMPUS_LOCATION } from '@/_constants/campus'
@@ -13,27 +12,26 @@ type Props = {
 }
 
 export const PlaceSearch = ({ campus, setValue, nextStep }: Props) => {
-  const { searchResult, searchFunc } = useSearch(searchCafeAndRestaurant)
-
-  const places = [...searchResult].map((item) => ({
-    id: item.id,
-    name: item.place_name,
-    address: item.address_name,
-  }))
-
   const handleSearch = useCallback(
-    (query: string) => {
+    async (query: string) => {
       const { longitude: x, latitude: y } = CAMPUS_LOCATION[campus]
-      searchFunc({ query, location: { x, y } })
+      const result = await searchCafeAndRestaurant({
+        query,
+        location: { x, y },
+      })
+      return result.map((item) => ({
+        id: item.id,
+        name: item.place_name,
+        address: item.address_name,
+      }))
     },
-    [campus, searchFunc],
+    [campus],
   )
 
   return (
     <SearchPage
-      places={places}
       searchFunc={handleSearch}
-      onSelectPlace={(id) => {
+      onSelectPlace={(id: string) => {
         setValue('kakaoPlaceId', id)
         nextStep()
       }}
