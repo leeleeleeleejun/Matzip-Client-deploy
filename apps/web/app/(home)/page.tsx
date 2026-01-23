@@ -7,8 +7,8 @@ import { Flex, VerticalScrollArea } from '@repo/ui/components/Layout'
 import { Icon } from '@repo/ui/components/Icon'
 import { Text } from '@repo/ui/components/Text'
 import { Divider } from '@repo/ui/components/Divider'
-import { HydrationBoundaryPage } from '@/HydrationBoundaryPage'
-import { Banner } from '@repo/ui/components/Banner'
+import { HydrationBoundaryPage } from '@/_components/HydrationBoundaryPage'
+import { Carousel } from '@repo/ui/components/Carousel'
 import { Categories } from '@/_components/Categories'
 import { BottomNavigation } from '@/_components/BottomNavigation'
 import { RankingSection } from './_components/RankingSection'
@@ -47,12 +47,10 @@ export default function Page() {
         >
           <Categories />
         </HydrationBoundaryPage>
-        <Banner
-          contents={[
-            <FoodSlotMachineBanner key='banner-1' />,
-            <LuckyDrawBanner key='banner-2' />,
-          ]}
-        />
+        <Carousel>
+          <FoodSlotMachineBanner />
+          <LuckyDrawBanner />
+        </Carousel>
         <RankingSection
           title={'찜많은 맛집'}
           icon={'fireHeart'}

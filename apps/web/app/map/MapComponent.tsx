@@ -7,6 +7,7 @@ import { Container, NaverMap } from 'react-naver-maps'
 import { CAMPUS_LOCATION } from '@/_constants/campus'
 import { useCampusStore } from '@/_store/campus'
 import { useLastMapCenterStore } from '@/_store/lastMapCenter'
+import { BOTTOM_OFFSET } from './constants/CurrentLocationButton'
 import { usePlaceQueries } from '@/_apis/queries/place'
 import type { MapBounds } from '@/_apis/schemas/place'
 
@@ -17,14 +18,15 @@ import { PlaceList } from './_components/PlaceList'
 import { CampusButtonBox } from './_components/CampusButtom'
 import { UserMarker, PlaceMarker } from './_components/Marker'
 import { CurrentLocationButton } from './_components/CurrentLocationButton'
-import { PreviewPlace } from './_components/PreviewPlace'
+import { PlaceSummaryCard } from './_components/PlaceSummaryCard'
 import { RefreshButton } from './_components/RefreshButton'
+import { useDebounced } from '@/_hooks/useDebounced'
 
 const MapComponent = () => {
   const [map, setMap] = useState<naver.maps.Map | null>(null)
   const [isCenteredOnUser, setIsCenteredOnUser] = useState(false)
   const [currentBounds, setCurrentBounds] = useState<MapBounds | null>(null)
-  const [previewPlaceId, setPreviewPlaceId] = useState<string | null>(null)
+  const [selectedPlaceId, setSelectedPlaceId] = useState<string | null>(null)
   const [showUpdateButton, setShowUpdateButton] = useState(false)
 
   const { campus } = useCampusStore()
@@ -33,8 +35,8 @@ const MapComponent = () => {
   const { data = [] } = useQuery(usePlaceQueries.byMap(currentBounds))
 
   const defaultCenter = toLatLng(lastMapCenter || CAMPUS_LOCATION[campus])
-  const previewPlace = previewPlaceId
-    ? data.find((place) => place.placeId === previewPlaceId)!
+  const selectedPlace = selectedPlaceId
+    ? data.find((place) => place.placeId === selectedPlaceId)!
     : null
 
   const refreshMapBounds = useCallback(() => {
@@ -66,18 +68,11 @@ const MapComponent = () => {
     setIsCenteredOnUser(false)
   }
 
-  const onCenterChanged = () => {
+  const onCenterChanged = useDebounced(() => {
     setIsCenteredOnUser(false)
     setShowUpdateButton(true)
-  }
-
-  const handlePreviewPlace = (placeId: string) => {
-    setPreviewPlaceId(placeId)
-  }
-
-  const resetPreviewPlace = () => {
-    setPreviewPlaceId(null)
-  }
+    setSelectedPlaceId(null)
+  }, 200)
 
   useEffect(refreshMapBounds, [refreshMapBounds])
   useEffect(() => {
@@ -97,21 +92,18 @@ const MapComponent = () => {
       <CurrentLocationButton
         onClick={centerMapToUserLocation}
         isCenteredOnUser={isCenteredOnUser}
-        previewPlaceId={previewPlaceId}
+        bottomOffset={
+          selectedPlaceId ? BOTTOM_OFFSET.WITH_SUMMARY_CARD : undefined
+        }
       />
       <CampusButtonBox map={map} centerMapToCampus={centerMapToCampus} />
-      <Container
-        className={cn('map-wrapper', 'w-full', 'h-full')}
-        onClick={resetPreviewPlace}
-        onTouchEnd={onCenterChanged}
-        onMouseUp={onCenterChanged}
-      >
+      <Container className={cn('map-wrapper', 'w-full', 'h-full')}>
         <NaverMap
           defaultZoom={15}
           minZoom={12}
           ref={setMap}
           defaultCenter={defaultCenter}
-          onZoomChanged={onCenterChanged}
+          onCenterChanged={onCenterChanged}
         >
           {userLocation && <UserMarker position={userLocation} />}
           {data.map((place) => (
@@ -119,15 +111,15 @@ const MapComponent = () => {
               key={place.placeId}
               position={place.location}
               icon={place.categories[0]?.iconKey || 'logo'}
-              handlePreviewPlace={() => {
-                handlePreviewPlace(place.placeId)
+              onClick={() => {
+                setSelectedPlaceId(place.placeId)
               }}
             />
           ))}
         </NaverMap>
       </Container>
-      {previewPlace ? (
-        <PreviewPlace place={previewPlace} />
+      {selectedPlace ? (
+        <PlaceSummaryCard place={selectedPlace} />
       ) : (
         <PlaceList places={data} />
       )}
