@@ -36,11 +36,11 @@ export const UserMarker = ({ position }: { position: Coord }) => {
 export const PlaceMarker = ({
   icon,
   position,
-  handlePreviewPlace = () => {},
+  onClick = () => {},
 }: {
   icon: IconType
   position: Coord
-  handlePreviewPlace?: VoidFunction
+  onClick?: VoidFunction
 }) => {
   const naverMaps = useNavermaps()
   const MarkerIcon = ReactDOMServer.renderToString(
@@ -54,7 +54,7 @@ export const PlaceMarker = ({
     <Marker
       onClick={(e) => {
         e.pointerEvent.stopPropagation()
-        handlePreviewPlace()
+        onClick()
       }}
       position={new naverMaps.LatLng(toLatLng(position))}
       icon={{

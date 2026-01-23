@@ -119,7 +119,7 @@ const MapComponent = () => {
               key={place.placeId}
               position={place.location}
               icon={place.categories[0]?.iconKey || 'logo'}
-              handlePreviewPlace={() => {
+              onClick={() => {
                 handlePreviewPlace(place.placeId)
               }}
             />
