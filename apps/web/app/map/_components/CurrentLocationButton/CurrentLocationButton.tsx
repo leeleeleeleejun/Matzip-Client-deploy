@@ -3,22 +3,23 @@
 import { motion } from 'motion/react'
 import { Icon } from '@repo/ui/components/Icon'
 import { cn } from '@repo/ui/utils/cn'
+import { BOTTOM_OFFSET } from '@/map/constants/CurrentLocationButton'
 
 type Props = {
   onClick: VoidFunction
   isCenteredOnUser: boolean
-  previewPlaceId: string | null
+  bottomOffset?: number
 }
-const windowHeight = Math.floor(window.innerHeight * 0.2) + 10
+
 export const CurrentLocationButton = ({
   onClick,
   isCenteredOnUser,
-  previewPlaceId,
+  bottomOffset,
 }: Props) => {
   return (
     <motion.button
-      initial={{ bottom: windowHeight }}
-      animate={{ bottom: previewPlaceId ? 220 : windowHeight }}
+      initial={{ bottom: BOTTOM_OFFSET.WITH_BOTTOM_SHEET }}
+      animate={{ bottom: bottomOffset ?? BOTTOM_OFFSET.WITH_BOTTOM_SHEET }}
       transition={{
         duration: 0.5,
         ease: 'easeOut',
