@@ -1,4 +1,4 @@
-import type { Props } from './SearchPage'
+import { BasePlace } from './SearchPage'
 import { Column, Flex } from '@repo/ui/components/Layout'
 import { Icon } from '@repo/ui/components/Icon'
 import { Text } from '@repo/ui/components/Text'
@@ -12,7 +12,7 @@ export const SearchPlaceListItem = ({
   onClick,
 }: {
   inputValue: string
-  place: Props['places'][0]
+  place: BasePlace
   onClick: VoidFunction
 }) => {
   return (
@@ -33,14 +33,21 @@ export const SearchPlaceListItem = ({
 }
 
 /**
+ * 정규식 특수 문자를 이스케이프 처리하는 함수
+ * 예: "[" -> "\[", "?" -> "\?"
+ */
+const escapeRegExp = (string: string) =>
+  string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+
+/**
  * 검색어 강조 처리
- * @param inputValue 검색어
- * @param placeName 장소 이름
+ * @param keyword 검색어
+ * @param text 검색 결과
  * @returns JSX.Element[]
  */
-const highlightWord = (inputValue: string, placeName: string) => {
-  const regex = new RegExp(`(${inputValue})`, 'gi')
-  const parts = placeName.split(regex)
+const highlightWord = (keyword: string, text: string) => {
+  const regex = new RegExp(`(${escapeRegExp(keyword)})`, 'gi')
+  const parts = text.split(regex)
 
   return parts.map((part, index) =>
     regex.test(part) ? (
