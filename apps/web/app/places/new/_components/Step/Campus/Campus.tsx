@@ -1,5 +1,5 @@
 import { RadioGroup, Radio } from '@heroui/react'
-import { type Control, Controller } from 'react-hook-form'
+import { Controller, useFormContext } from 'react-hook-form'
 import type { NewPlaceRequest } from '@/_apis/schemas/place'
 import { CAMPUS, CAMPUS_LIST } from '@/_constants/campus'
 import { Title } from '@/places/new/_components/Title'
@@ -7,11 +7,12 @@ import { Button } from '@repo/ui/components/Button'
 import { Text } from '@repo/ui/components/Text'
 
 type Props = {
-  control: Control<NewPlaceRequest>
   nextStep: VoidFunction
 }
 
-export const Campus = ({ control, nextStep }: Props) => {
+export const Campus = ({ nextStep }: Props) => {
+  const { control } = useFormContext<NewPlaceRequest>()
+
   return (
     <>
       <Title

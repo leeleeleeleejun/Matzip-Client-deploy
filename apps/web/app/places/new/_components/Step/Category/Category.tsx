@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useSuspenseQuery } from '@tanstack/react-query'
-import type { UseFormGetValues, UseFormSetValue } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 import { Spinner } from '@heroui/react'
 import { useCategoryQueries } from '@/_apis/queries/category'
 import type { NewPlaceRequest } from '@/_apis/schemas/place'
@@ -11,12 +11,11 @@ import { Title } from '../../Title'
 import { Button } from '@repo/ui/components/Button'
 
 type Props = {
-  setValue: UseFormSetValue<NewPlaceRequest>
-  getValues: UseFormGetValues<NewPlaceRequest>
   isLoading: boolean
 }
 
-export const Category = ({ setValue, getValues, isLoading }: Props) => {
+export const Category = ({ isLoading }: Props) => {
+  const { getValues, setValue } = useFormContext<NewPlaceRequest>()
   const { data: categories } = useSuspenseQuery(useCategoryQueries.list())
   const initialValues = getValues().categoryIds
   const initialCategory = categories.filter((category) =>

@@ -1,6 +1,11 @@
 'use client'
 
-import { type FieldErrors, type SubmitHandler, useForm } from 'react-hook-form'
+import {
+  type FieldErrors,
+  type SubmitHandler,
+  useForm,
+  FormProvider,
+} from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { addToast } from '@heroui/react'
 import {
@@ -53,14 +58,7 @@ const PlaceNewPage = () => {
   const { Step, nextStep } = useFunnel<StepType>(STEP_ORDER)
   const { campus: initCampus } = useCampusStore()
   const { mutate, isPending } = useCreateNewPlace()
-  const {
-    handleSubmit,
-    control,
-    setValue,
-    getValues,
-    trigger,
-    formState: { errors, isSubmitting },
-  } = useForm<NewPlaceRequest>({
+  const methods = useForm<NewPlaceRequest>({
     resolver: zodResolver(NewPlaceRequestSchema),
     defaultValues: {
       campus: initCampus,
@@ -71,6 +69,13 @@ const PlaceNewPage = () => {
       categoryIds: [],
     },
   })
+
+  const {
+    getValues,
+    handleSubmit,
+    trigger,
+    formState: { errors, isSubmitting },
+  } = methods
 
   const onSubmit: SubmitHandler<NewPlaceRequest> = async (data) => {
     mutate(data)
@@ -85,7 +90,7 @@ const PlaceNewPage = () => {
   }
 
   return (
-    <>
+    <FormProvider {...methods}>
       <Header
         left={<HeaderBackButton />}
         center={
@@ -110,7 +115,6 @@ const PlaceNewPage = () => {
         </Step>
         <Step name={'CAMPUS'}>
           <Campus
-            control={control}
             nextStep={() => {
               nextStep('PLACE_SEARCH')
             }}
@@ -118,8 +122,6 @@ const PlaceNewPage = () => {
         </Step>
         <Step name={'PLACE_SEARCH'}>
           <PlaceSearch
-            campus={getValues().campus}
-            setValue={setValue}
             nextStep={() => {
               nextStep('PLACE_PREVIEW')
             }}
@@ -127,8 +129,6 @@ const PlaceNewPage = () => {
         </Step>
         <Step name={'PLACE_PREVIEW'}>
           <PlacePreview
-            getValues={getValues}
-            setValue={setValue}
             nextStep={() => {
               const step =
                 getValues().menus.length > 0
@@ -140,8 +140,6 @@ const PlaceNewPage = () => {
         </Step>
         <Step name={'RECOMMENDED_MENU'}>
           <RecommendedMenu
-            control={control}
-            getValues={getValues}
             nextStep={() => {
               nextStep('DESCRIPTION')
             }}
@@ -149,8 +147,6 @@ const PlaceNewPage = () => {
         </Step>
         <Step name={'DESCRIPTION'}>
           <Description
-            control={control}
-            getValues={getValues}
             nextStep={async () => {
               const valid = await trigger('description')
               if (!valid) {
@@ -164,14 +160,10 @@ const PlaceNewPage = () => {
           />
         </Step>
         <Step name={'CATEGORY'}>
-          <Category
-            setValue={setValue}
-            getValues={getValues}
-            isLoading={isSubmitting || isPending}
-          />
+          <Category isLoading={isSubmitting || isPending} />
         </Step>
       </Column>
-    </>
+    </FormProvider>
   )
 }
 

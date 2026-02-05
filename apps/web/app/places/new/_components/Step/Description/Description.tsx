@@ -1,21 +1,16 @@
 import { Title } from '@/places/new/_components/Title'
 import { Textarea } from '@repo/ui/components/Textarea'
 import { Button } from '@repo/ui/components/Button'
-import {
-  type Control,
-  type UseFormGetValues,
-  Controller,
-} from 'react-hook-form'
+import { Controller, useFormContext } from 'react-hook-form'
 import type { NewPlaceRequest } from '@/_apis/schemas/place'
 import { Tags } from '@/places/new/_components/Step/Description/Tags'
 
 type Props = {
-  control: Control<NewPlaceRequest>
-  getValues: UseFormGetValues<NewPlaceRequest>
   nextStep: VoidFunction
 }
 
-export const Description = ({ control, getValues, nextStep }: Props) => {
+export const Description = ({ nextStep }: Props) => {
+  const { control, getValues } = useFormContext<NewPlaceRequest>()
   const tagInitialValues = getValues().tagIds
 
   return (
