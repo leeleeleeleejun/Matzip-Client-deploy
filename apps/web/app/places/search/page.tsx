@@ -19,6 +19,7 @@ const Page = () => {
 
   return (
     <SearchPage
+      placeholder={'식당을 검색해주세요'}
       useBackHandler={true}
       searchFunc={handleSearch}
       onSelectPlace={(id) => {
