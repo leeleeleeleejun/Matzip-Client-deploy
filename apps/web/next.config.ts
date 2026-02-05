@@ -46,6 +46,10 @@ const nextConfig: NextConfig = {
         hostname: 'cdn.011st.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: process.env.NEXT_PUBLIC_API_URL_HOST || '',
+      },
     ],
   },
   async rewrites() {
