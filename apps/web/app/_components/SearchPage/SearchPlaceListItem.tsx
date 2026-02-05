@@ -1,4 +1,4 @@
-import { BasePlace } from './SearchPage'
+import type { BasePlace } from './SearchPage'
 import { Column, Flex } from '@repo/ui/components/Layout'
 import { Icon } from '@repo/ui/components/Icon'
 import { Text } from '@repo/ui/components/Text'
