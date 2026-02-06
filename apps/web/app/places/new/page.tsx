@@ -1,6 +1,11 @@
 'use client'
 
-import { type FieldErrors, type SubmitHandler, useForm } from 'react-hook-form'
+import {
+  type FieldErrors,
+  type SubmitHandler,
+  useForm,
+  FormProvider,
+} from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { addToast } from '@heroui/react'
 import {
@@ -34,8 +39,6 @@ export type StepType =
   | 'RECOMMENDED_MENU'
   | 'DESCRIPTION'
   | 'CATEGORY'
-  | 'SUCCESS'
-  | 'FAIL'
 
 const STEP_ORDER: Record<StepType, string> = {
   EVENT_WELCOME: 'welcome',
@@ -45,22 +48,13 @@ const STEP_ORDER: Record<StepType, string> = {
   RECOMMENDED_MENU: '4',
   DESCRIPTION: '5',
   CATEGORY: '6',
-  SUCCESS: 'success',
-  FAIL: 'fail',
 }
 
 const PlaceNewPage = () => {
   const { Step, nextStep } = useFunnel<StepType>(STEP_ORDER)
   const { campus: initCampus } = useCampusStore()
   const { mutate, isPending } = useCreateNewPlace()
-  const {
-    handleSubmit,
-    control,
-    setValue,
-    getValues,
-    trigger,
-    formState: { errors, isSubmitting },
-  } = useForm<NewPlaceRequest>({
+  const methods = useForm<NewPlaceRequest>({
     resolver: zodResolver(NewPlaceRequestSchema),
     defaultValues: {
       campus: initCampus,
@@ -71,6 +65,12 @@ const PlaceNewPage = () => {
       categoryIds: [],
     },
   })
+
+  const {
+    getValues,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = methods
 
   const onSubmit: SubmitHandler<NewPlaceRequest> = async (data) => {
     mutate(data)
@@ -96,81 +96,63 @@ const PlaceNewPage = () => {
         }
         right={<HeaderHomeButton />}
       />
-      <Column
-        as={'form'}
-        onSubmit={handleSubmit(onSubmit, onError)}
-        className={'min-h-0 flex-1 p-5'}
-      >
-        <Step name={'EVENT_WELCOME'}>
-          <EventWelcome
-            nextStep={() => {
-              nextStep('CAMPUS')
-            }}
-          />
-        </Step>
-        <Step name={'CAMPUS'}>
-          <Campus
-            control={control}
-            nextStep={() => {
-              nextStep('PLACE_SEARCH')
-            }}
-          />
-        </Step>
-        <Step name={'PLACE_SEARCH'}>
-          <PlaceSearch
-            campus={getValues().campus}
-            setValue={setValue}
-            nextStep={() => {
-              nextStep('PLACE_PREVIEW')
-            }}
-          />
-        </Step>
-        <Step name={'PLACE_PREVIEW'}>
-          <PlacePreview
-            getValues={getValues}
-            setValue={setValue}
-            nextStep={() => {
-              const step =
-                getValues().menus.length > 0
-                  ? 'RECOMMENDED_MENU'
-                  : 'DESCRIPTION'
-              nextStep(step)
-            }}
-          />
-        </Step>
-        <Step name={'RECOMMENDED_MENU'}>
-          <RecommendedMenu
-            control={control}
-            getValues={getValues}
-            nextStep={() => {
-              nextStep('DESCRIPTION')
-            }}
-          />
-        </Step>
-        <Step name={'DESCRIPTION'}>
-          <Description
-            control={control}
-            getValues={getValues}
-            nextStep={async () => {
-              const valid = await trigger('description')
-              if (!valid) {
-                addToast({
-                  title: errors.description?.message || '설명을 입력해주세요!',
-                })
-                return
-              }
-              nextStep('CATEGORY')
-            }}
-          />
-        </Step>
-        <Step name={'CATEGORY'}>
-          <Category
-            setValue={setValue}
-            getValues={getValues}
-            isLoading={isSubmitting || isPending}
-          />
-        </Step>
-      </Column>
+      <FormProvider {...methods}>
+        <Column
+          as={'form'}
+          onSubmit={handleSubmit(onSubmit, onError)}
+          className={'min-h-0 flex-1 p-5'}
+        >
+          <Step name={'EVENT_WELCOME'}>
+            <EventWelcome
+              nextStep={() => {
+                nextStep('CAMPUS')
+              }}
+            />
+          </Step>
+          <Step name={'CAMPUS'}>
+            <Campus
+              nextStep={() => {
+                nextStep('PLACE_SEARCH')
+              }}
+            />
+          </Step>
+          <Step name={'PLACE_SEARCH'}>
+            <PlaceSearch
+              nextStep={() => {
+                nextStep('PLACE_PREVIEW')
+              }}
+            />
+          </Step>
+          <Step name={'PLACE_PREVIEW'}>
+            <PlacePreview
+              nextStep={() => {
+                const step =
+                  getValues().menus.length > 0
+                    ? 'RECOMMENDED_MENU'
+                    : 'DESCRIPTION'
+                nextStep(step)
+              }}
+            />
+          </Step>
+          <Step name={'RECOMMENDED_MENU'}>
+            <RecommendedMenu
+              nextStep={() => {
+                nextStep('DESCRIPTION')
+              }}
+            />
+          </Step>
+          <Step name={'DESCRIPTION'}>
+            <Description
+              nextStep={() => {
+                nextStep('CATEGORY')
+              }}
+            />
+          </Step>
+          <Step name={'CATEGORY'}>
+            <Category isLoading={isSubmitting || isPending} />
+          </Step>
+        </Column>
+      </FormProvider>
     </>
   )
 }

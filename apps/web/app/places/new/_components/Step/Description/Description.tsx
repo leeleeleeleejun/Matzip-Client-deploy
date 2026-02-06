@@ -1,22 +1,36 @@
+import { addToast } from '@heroui/react'
+import { Controller, useFormContext } from 'react-hook-form'
+import type { NewPlaceRequest } from '@/_apis/schemas/place'
 import { Title } from '@/places/new/_components/Title'
 import { Textarea } from '@repo/ui/components/Textarea'
 import { Button } from '@repo/ui/components/Button'
-import {
-  type Control,
-  type UseFormGetValues,
-  Controller,
-} from 'react-hook-form'
-import type { NewPlaceRequest } from '@/_apis/schemas/place'
 import { Tags } from '@/places/new/_components/Step/Description/Tags'
 
 type Props = {
-  control: Control<NewPlaceRequest>
-  getValues: UseFormGetValues<NewPlaceRequest>
   nextStep: VoidFunction
 }
 
-export const Description = ({ control, getValues, nextStep }: Props) => {
+export const Description = ({ nextStep }: Props) => {
+  const {
+    control,
+    getValues,
+    trigger,
+    formState: { errors },
+  } = useFormContext<NewPlaceRequest>()
   const tagInitialValues = getValues().tagIds
+
+  const handleNext = async () => {
+    const valid = await trigger('description')
+
+    if (!valid) {
+      addToast({
+        title: errors.description?.message || '설명을 입력해주세요!',
+      })
+      return
+    }
+
+    nextStep()
+  }
 
   return (
     <>
@@ -36,7 +50,7 @@ export const Description = ({ control, getValues, nextStep }: Props) => {
         size={'medium'}
         type={'button'}
         className={'ui:min-w-full mt-auto'}
-        onClick={nextStep}
+        onClick={handleNext}
       >
         다음
       </Button>

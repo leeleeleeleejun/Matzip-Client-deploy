@@ -1,9 +1,5 @@
 import { CheckboxGroup, Checkbox } from '@heroui/react'
-import {
-  type Control,
-  type UseFormGetValues,
-  Controller,
-} from 'react-hook-form'
+import { Controller, useFormContext } from 'react-hook-form'
 import type { NewPlaceRequest } from '@/_apis/schemas/place'
 import { formatPrice } from '@/_utils/formatPrice'
 import { Title } from '@/places/new/_components/Title'
@@ -12,12 +8,12 @@ import { JustifyBetween, VerticalScrollArea } from '@repo/ui/components/Layout'
 import { Button } from '@repo/ui/components/Button'
 
 type Props = {
-  control: Control<NewPlaceRequest>
-  getValues: UseFormGetValues<NewPlaceRequest>
   nextStep: VoidFunction
 }
 
-export const RecommendedMenu = ({ control, getValues, nextStep }: Props) => {
+export const RecommendedMenu = ({ nextStep }: Props) => {
+  const { control, getValues } = useFormContext<NewPlaceRequest>()
+
   return (
     <>
       <Title

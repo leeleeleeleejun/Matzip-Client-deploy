@@ -1,17 +1,18 @@
 import { useCallback } from 'react'
 import { SearchPage } from '@/_components/SearchPage'
-import type { UseFormSetValue } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 import type { NewPlaceRequest } from '@/_apis/schemas/place'
-import { type CampusType, CAMPUS_LOCATION } from '@/_constants/campus'
+import { CAMPUS_LOCATION } from '@/_constants/campus'
 import { searchCafeAndRestaurant } from '@/places/new/_utils/searchCafeAndRestaurant'
 
 type Props = {
-  campus: CampusType
-  setValue: UseFormSetValue<NewPlaceRequest>
   nextStep: VoidFunction
 }
 
-export const PlaceSearch = ({ campus, setValue, nextStep }: Props) => {
+export const PlaceSearch = ({ nextStep }: Props) => {
+  const { getValues, setValue } = useFormContext<NewPlaceRequest>()
+  const campus = getValues().campus
+
   const handleSearch = useCallback(
     async (query: string) => {
       const { longitude: x, latitude: y } = CAMPUS_LOCATION[campus]
