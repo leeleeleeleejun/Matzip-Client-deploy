@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { useSuspenseQuery } from '@tanstack/react-query'
-import type { UseFormGetValues, UseFormSetValue } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 import type { NewPlaceRequest } from '@/_apis/schemas/place'
 import { usePlaceQueries } from '@/_apis/queries/place'
 import { Carousel } from '@repo/ui/components/Carousel'
@@ -14,12 +14,11 @@ import { Title } from '@/places/new/_components/Title'
 import { Section } from '@/_components/Section'
 
 type Props = {
-  getValues: UseFormGetValues<NewPlaceRequest>
-  setValue: UseFormSetValue<NewPlaceRequest>
   nextStep: VoidFunction
 }
 
-export const PlacePreview = ({ getValues, setValue, nextStep }: Props) => {
+export const PlacePreview = ({ nextStep }: Props) => {
+  const { getValues, setValue } = useFormContext<NewPlaceRequest>()
   const { data } = useSuspenseQuery(
     usePlaceQueries.byPreview(getValues().kakaoPlaceId),
   )
