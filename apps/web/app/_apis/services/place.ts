@@ -8,12 +8,14 @@ import {
   type MapBounds,
   type PlaceByMap,
   type PlaceByNameSearch,
+  type PlaceByMenuSearch,
   type PlaceByPreview,
   type NewPlaceRequest,
   type NewPlaceResponse,
   BasePlaceSchema,
   PlaceByMapSchema,
   PlaceByNameSearchSchema,
+  PlaceByMenuSearchSchema,
   PlaceDetailSchema,
   PlaceByPreviewSchema,
 } from '../schemas/place'
@@ -62,6 +64,15 @@ export const getPlacesByNameSearch = async (
     API_PATH.PLACES.SEARCH.BY_NAME(keyword),
   )
   return PlaceByNameSearchSchema.array().parse(data)
+}
+
+export const getPlacesByMenuSearch = async (
+  keyword: string,
+): Promise<PlaceByMenuSearch[]> => {
+  const { data } = await axiosInstance.get(
+    API_PATH.PLACES.SEARCH.BY_MENU(keyword),
+  )
+  return PlaceByMenuSearchSchema.array().parse(data)
 }
 
 export const getPlaceDetail = async (id: string): Promise<PlaceDetail> => {

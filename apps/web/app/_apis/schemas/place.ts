@@ -43,6 +43,12 @@ export const PlaceByNameSearchSchema = BasePlaceSchema.pick({
   address: true,
 })
 
+export const PlaceByMenuSearchSchema = z.object({
+  placeId: z.number().transform(String),
+  placeName: z.string(),
+  menuName: z.string(),
+})
+
 export const PlaceDetailSchema = BasePlaceSchema.extend({
   location,
   isLiked: z.boolean(),
@@ -82,6 +88,7 @@ export type MapBounds = {
 export type BasePlace = z.infer<typeof BasePlaceSchema>
 export type PlaceByMap = z.infer<typeof PlaceByMapSchema>
 export type PlaceByNameSearch = z.infer<typeof PlaceByNameSearchSchema>
+export type PlaceByMenuSearch = z.infer<typeof PlaceByMenuSearchSchema>
 export type PlaceDetail = z.infer<typeof PlaceDetailSchema>
 export type PlaceByPreview = z.infer<typeof PlaceByPreviewSchema>
 export type NewPlaceRequest = z.infer<typeof NewPlaceRequestSchema>

@@ -28,6 +28,7 @@ export const API_PATH = {
     },
     SEARCH: {
       BY_NAME: (keyword: string) => `/places/search?keyword=${keyword}`,
+      BY_MENU: (keyword: string) => `/places/search/menu?keyword=${keyword}`,
     },
   },
   KAKAO: {
