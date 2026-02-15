@@ -60,18 +60,22 @@ export const getPlacesByMap = async ({
 export const getPlacesByNameSearch = async (
   keyword: string,
 ): Promise<PlaceByNameSearch[]> => {
-  const { data } = await axiosInstance.get(
-    API_PATH.PLACES.SEARCH.BY_NAME(keyword),
-  )
+  const { data } = await axiosInstance.get(API_PATH.PLACES.SEARCH.BY_NAME, {
+    params: {
+      keyword,
+    },
+  })
   return PlaceByNameSearchSchema.array().parse(data)
 }
 
 export const getPlacesByMenuSearch = async (
   keyword: string,
 ): Promise<PlaceByMenuSearch[]> => {
-  const { data } = await axiosInstance.get(
-    API_PATH.PLACES.SEARCH.BY_MENU(keyword),
-  )
+  const { data } = await axiosInstance.get(API_PATH.PLACES.SEARCH.BY_MENU, {
+    params: {
+      keyword,
+    },
+  })
   return PlaceByMenuSearchSchema.array().parse(data)
 }
 
