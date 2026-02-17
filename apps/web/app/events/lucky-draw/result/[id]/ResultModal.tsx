@@ -1,7 +1,8 @@
-import { Modal, ModalContent } from '@heroui/react'
+import { Input, Modal, ModalContent } from '@heroui/react'
 import { Icon, type IconType } from '@repo/ui/components/Icon'
 import { Column } from '@repo/ui/components/Layout'
 import { Text } from '@repo/ui/components/Text'
+import { Button } from '@repo/ui/components/Button'
 
 type Props = {
   isWinner: boolean
@@ -20,8 +21,8 @@ type ModalContent = {
 const SuccessModalContent: ModalContent = {
   icon: 'congratulation',
   title: '축하합니다!',
-  subTitle: '이번주 행운의 주인공으로 선정되셨습니다!',
-  description: '마이페이지에서 상품을 확인하실 수 있습니다',
+  subTitle: '행운의 주인공으로 선정되셨습니다!',
+  description: '전화번호를 입력하시면 3일 이내 기프티콘이 도착해요!',
 }
 
 const FailModalContent: ModalContent = {
@@ -80,8 +81,24 @@ export const ResultModal = ({
               {modalContent.description}
             </Text>
           </Column>
+          {isWinner && <WinnerInfoForm />}
         </Column>
       </ModalContent>
     </Modal>
+  )
+}
+
+const WinnerInfoForm = () => {
+  // Todo: 전송하기 버튼에 api 연동 필요
+
+  return (
+    <Column className={'items-center gap-2'}>
+      <Input
+        type={'tel'}
+        placeholder={'010-1234-5678'}
+        className={'w-[140px]'}
+      />
+      <Button size={'small'}>전송하기</Button>
+    </Column>
   )
 }
