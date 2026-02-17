@@ -5,16 +5,16 @@ import { Column, JustifyBetween } from '@repo/ui/components/Layout'
 import { NavBarItem } from './_components/NavBarItem'
 import { Participation, Result } from './_components/Pages'
 
-export type StepType = 'participation' | 'result'
+export type StepType = 'inProgress' | 'finished'
 
 const STEP_NAME = {
-  participation: '진행중인 이벤트',
-  result: '종료된 이벤트',
+  inProgress: '진행중인 이벤트',
+  finished: '종료된 이벤트',
 }
-const TABS: StepType[] = ['participation', 'result']
+const TABS: StepType[] = ['inProgress', 'finished']
 
 export const LuckyDraw = () => {
-  const [currentTab, setCurrentTab] = useState<StepType>('participation')
+  const [currentTab, setCurrentTab] = useState<StepType>('inProgress')
 
   return (
     <>
@@ -31,8 +31,8 @@ export const LuckyDraw = () => {
             />
           ))}
         </JustifyBetween>
-        {currentTab === 'participation' && <Participation />}
-        {currentTab === 'result' && <Result />}
+        {currentTab === 'inProgress' && <Participation />}
+        {currentTab === 'finished' && <Result />}
       </Column>
     </>
   )
