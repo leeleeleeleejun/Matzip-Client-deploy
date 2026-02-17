@@ -8,8 +8,8 @@ import { Participation, Result } from './_components/Pages'
 export type StepType = 'participation' | 'result'
 
 const STEP_NAME = {
-  participation: '응모 하기',
-  result: '응모 결과',
+  participation: '진행중인 이벤트',
+  result: '종료된 이벤트',
 }
 const TABS: StepType[] = ['participation', 'result']
 
