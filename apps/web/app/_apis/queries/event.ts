@@ -9,7 +9,8 @@ export const EventQueryKeys = {
   all: () => ['event'] as const,
   publicInfo: () => [...EventQueryKeys.all(), 'info', 'public'] as const,
   privateInfo: () => [...EventQueryKeys.all(), 'info', 'private'] as const,
-  result: () => [...EventQueryKeys.all(), 'result'] as const,
+  result: (eventId: string) =>
+    [...EventQueryKeys.all(), 'result', eventId] as const,
 }
 
 export const useEventQueries = {
@@ -25,7 +26,7 @@ export const useEventQueries = {
     }),
   result: (eventId: string) =>
     queryOptions({
-      queryKey: EventQueryKeys.result(),
+      queryKey: EventQueryKeys.result(eventId),
       queryFn: () => getEventResult(eventId),
     }),
 }
