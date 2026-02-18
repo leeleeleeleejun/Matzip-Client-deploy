@@ -80,6 +80,12 @@ const MapButton = ({ onClick, imageSrc, alt }: MapButtonProps) => (
     )}
     onClick={onClick}
   >
-    <Image src={imageSrc} alt={alt} width={20} height={20} />
+    <Image
+      src={imageSrc}
+      alt={alt}
+      width={20}
+      height={20}
+      className={'rounded-sm'}
+    />
   </button>
 )
