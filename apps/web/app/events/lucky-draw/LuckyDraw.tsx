@@ -18,7 +18,7 @@ export const LuckyDraw = () => {
 
   return (
     <>
-      <Column className={'h-full p-5'}>
+      <Column className={'h-full min-h-0 p-5'}>
         <JustifyBetween as={'nav'} className={'gap-10'}>
           {TABS.map((tab) => (
             <NavBarItem

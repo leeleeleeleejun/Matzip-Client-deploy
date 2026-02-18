@@ -13,7 +13,7 @@ export const FinishedEvent = () => {
       fallbackTitle={'아직 종료된 이벤트가 없어요.'}
       fallbackDescription={'진행 중인 이벤트에 참여하고 행운을 잡아보세요!'}
     >
-      <Column as={'ul'}>
+      <Column as={'ul'} className={'h-full overflow-y-auto py-2'}>
         <FinishedEventItem />
         <FinishedEventItem />
       </Column>
