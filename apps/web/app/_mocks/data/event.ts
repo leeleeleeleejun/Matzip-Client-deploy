@@ -1,6 +1,6 @@
-import type { Event, EventResult } from '@/_apis/schemas/event'
+import type { PrivateEvent, EventResult } from '@/_apis/schemas/event'
 
-export const event: Event = {
+export const event: PrivateEvent = {
   eventId: '1',
   prize: {
     description: 'BHC 뿌링클 치킨 기프티콘 1장',
