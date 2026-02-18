@@ -9,7 +9,7 @@ import { Japanese } from './assets/icons/menu/japanese'
 import { Korean } from './assets/icons/menu/korean'
 import { Lunchbox } from './assets/icons/menu/lunchbox'
 import { Meat } from './assets/icons/menu/meat'
-import { Mexican } from './assets/icons/menu/mexican'
+import { Beer } from './assets/icons/menu/beer'
 import { Pizza } from './assets/icons/menu/pizza'
 import { Salad } from './assets/icons/menu/salad'
 import { Soup } from './assets/icons/menu/soup'
@@ -79,7 +79,7 @@ export const iconMap = {
   korean: Korean, // 한식
   lunchbox: Lunchbox, // 도시락
   meat: Meat, // 고기·구이
-  mexican: Mexican, // 멕시칸
+  beer: Beer, // 술집·야식
   pizza: Pizza, // 피자
   salad: Salad, // 샐러드
   soup: Soup, // 찜·탕
