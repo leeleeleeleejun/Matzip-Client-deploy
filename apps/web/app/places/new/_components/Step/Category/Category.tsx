@@ -18,9 +18,9 @@ export const Category = ({ isLoading }: Props) => {
   const { getValues, setValue } = useFormContext<NewPlaceRequest>()
   const { data: categories } = useSuspenseQuery(useCategoryQueries.list())
   const initialValues = getValues().categoryIds
-  const initialCategory = categories.filter((category) =>
-    initialValues.includes(category.id),
-  )
+  const initialCategory = initialValues
+    .map((id) => categories.find((category) => category.id === id))
+    .filter((category): category is CategoryType => category !== undefined)
   const [choiceCategories, setChoiceCategories] =
     useState<CategoryType[]>(initialCategory)
 
