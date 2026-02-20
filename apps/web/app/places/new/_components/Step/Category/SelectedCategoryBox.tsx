@@ -1,20 +1,20 @@
 import type { Category as CategoryType } from '@/_apis/schemas/category'
 import { JustifyAround } from '@repo/ui/components/Layout'
 import { AnimatePresence, motion } from 'motion/react'
-import { ChoiceCategoryItem } from '@/places/new/_components/Step/Category/ChoiceCategoryItem'
+import { SelectedCategoryItem } from '@/places/new/_components/Step/Category/SelectedCategoryItem'
 
 type Props = {
-  choiceCategories: CategoryType[]
+  selectedCategories: CategoryType[]
   removeCategory: (category: CategoryType) => void
 }
 
-export const ChoiceCategoryBox = ({
-  choiceCategories,
+export const SelectedCategoryBox = ({
+  selectedCategories,
   removeCategory,
 }: Props) => {
   const MAX_COUNT = 5
   const slots = Array.from({ length: MAX_COUNT }, (_, index) => {
-    return choiceCategories[index] || null
+    return selectedCategories[index] || null
   })
 
   return (
@@ -37,7 +37,7 @@ export const ChoiceCategoryBox = ({
                   ease: 'easeInOut',
                 }}
               >
-                <ChoiceCategoryItem
+                <SelectedCategoryItem
                   category={category}
                   onClick={() => removeCategory(category)}
                 />

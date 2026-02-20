@@ -9,7 +9,7 @@ type Props = {
   onClick: VoidFunction
 }
 
-export const ChoiceCategoryItem = ({ category, onClick }: Props) => {
+export const SelectedCategoryItem = ({ category, onClick }: Props) => {
   const { iconKey, name } = category
 
   return (
