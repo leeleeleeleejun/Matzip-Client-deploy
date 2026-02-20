@@ -6,10 +6,10 @@ import { cn } from '@repo/ui/utils/cn'
 
 type Props = {
   category: CategoryType
-  removeCategory: VoidFunction
+  onClick: VoidFunction
 }
 
-export const ChoiceCategoryItem = ({ category, removeCategory }: Props) => {
+export const ChoiceCategoryItem = ({ category, onClick }: Props) => {
   const { iconKey, name } = category
 
   return (
@@ -20,7 +20,7 @@ export const ChoiceCategoryItem = ({ category, removeCategory }: Props) => {
         'min-w-16.5 items-center rounded-md bg-gray-50 py-1',
         'border-3 border-blue',
       )}
-      onClick={removeCategory}
+      onClick={onClick}
     >
       <Icon type={iconKey} size={40} />
       <Text fontSize={'sm'} fontWeight={'semibold'}>

@@ -9,6 +9,8 @@ import { CategoryBox } from './CategoryBox'
 import { ChoiceCategoryBox } from './ChoiceCategoryBox'
 import { Title } from '../../Title'
 import { Button } from '@repo/ui/components/Button'
+import { Column } from '@repo/ui/components/Layout'
+import { Text } from '@repo/ui/components/Text'
 
 type Props = {
   isLoading: boolean
@@ -66,10 +68,15 @@ export const Category = ({ isLoading }: Props) => {
         title={'내가 알리고 싶은 맛집의 종류는?'}
         description={'어울리는 카테고리를 모두 골라주세요!'}
       />
-      <ChoiceCategoryBox
-        choiceCategories={choiceCategories}
-        removeCategory={removeCategory}
-      />
+      <Column className={'mb-5 gap-2'}>
+        <ChoiceCategoryBox
+          choiceCategories={choiceCategories}
+          removeCategory={removeCategory}
+        />
+        <Text variant={'body3'} className={'ml-auto text-gray-300'}>
+          첫 번째 카테고리가 대표 카테고리로 선택돼요!
+        </Text>
+      </Column>
       <CategoryBox
         categories={categories}
         addCategory={addCategory}
