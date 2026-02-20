@@ -15,14 +15,21 @@ export const CategoryBox = ({
   removeCategory,
   includeInCategories,
 }: Props) => {
+  const onToggle = (category: CategoryType) => {
+    if (includeInCategories(category)) {
+      removeCategory(category)
+    } else {
+      addCategory(category)
+    }
+  }
+
   return (
     <div className={cn('grid grid-flow-row grid-cols-5 gap-y-6', 'py-2.5')}>
       {categories.map((category) => (
         <CategoryItem
           key={category.id}
           category={category}
-          addCategory={() => addCategory(category)}
-          removeCategory={() => removeCategory(category)}
+          onClick={() => onToggle(category)}
           includeInCategories={includeInCategories(category)}
         />
       ))}
