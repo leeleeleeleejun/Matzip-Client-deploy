@@ -9,6 +9,8 @@ import {
   getPlacesByNameSearch,
 } from '@/_apis/services/place'
 import { CLIENT_PATH } from '@/_constants/path'
+import type { CampusType } from '@/_constants/campus'
+import { useCampusStore } from '@/_store/campus'
 
 const SEARCH_TYPE = {
   NAME: 'NAME',
@@ -16,13 +18,25 @@ const SEARCH_TYPE = {
 } as const
 
 type SearchType = keyof typeof SEARCH_TYPE
+type TypeConfig = Record<
+  SearchType,
+  {
+    label: string
+    placeholder: string
+    searchFunc: (
+      campus: CampusType,
+    ) => (
+      query: string,
+    ) => Promise<Array<{ id: string; name: string; address: string }>>
+  }
+>
 
-const TYPE_CONFIG = {
+const TYPE_CONFIG: TypeConfig = {
   [SEARCH_TYPE.NAME]: {
     label: '가게',
     placeholder: '식당 이름을 검색해주세요',
-    searchFunc: async (query: string) => {
-      const result = await getPlacesByNameSearch(query)
+    searchFunc: (campus: CampusType) => async (query: string) => {
+      const result = await getPlacesByNameSearch(query, campus)
       return result.map((place) => ({
         id: place.placeId,
         name: place.placeName,
@@ -33,8 +47,8 @@ const TYPE_CONFIG = {
   [SEARCH_TYPE.MENU]: {
     label: '메뉴',
     placeholder: '메뉴 이름을 검색해주세요',
-    searchFunc: async (query: string) => {
-      const result = await getPlacesByMenuSearch(query)
+    searchFunc: (campus: CampusType) => async (query: string) => {
+      const result = await getPlacesByMenuSearch(query, campus)
       return result.map((place) => ({
         id: place.placeId,
         name: place.menuName,
@@ -48,6 +62,7 @@ const Page = () => {
   const { replace } = useRouter()
   const [searchType, setSearchType] = useState<SearchType>('NAME')
   const currentConfig = TYPE_CONFIG[searchType]
+  const { campus } = useCampusStore()
 
   return (
     <>
@@ -60,10 +75,10 @@ const Page = () => {
         }))}
       />
       <SearchPage
-        key={searchType}
+        key={`${searchType}-${campus}`}
         useBackHandler={true}
         placeholder={currentConfig.placeholder}
-        searchFunc={currentConfig.searchFunc}
+        searchFunc={currentConfig.searchFunc(campus)}
         onSelectPlace={(id) => {
           replace(CLIENT_PATH.PLACE_DETAIL(id))
         }}
