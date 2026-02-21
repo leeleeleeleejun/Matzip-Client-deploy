@@ -27,12 +27,6 @@ export const Category = ({ isLoading }: Props) => {
     useState<CategoryType[]>(initialCategory)
 
   const addCategory = (category: CategoryType) => {
-    const currentIds = getValues().categoryIds || []
-
-    if (selectedCategories.length >= 5 || currentIds.includes(category.id)) {
-      // Todo: Toast 처리
-      return
-    }
     const updated = [...selectedCategories, category]
     setSelectedCategories(updated)
     setValue(
@@ -52,6 +46,14 @@ export const Category = ({ isLoading }: Props) => {
 
   const includeInCategories = (category: CategoryType) => {
     return selectedCategories.some((c) => c.id === category.id)
+  }
+
+  const onToggle = (category: CategoryType) => {
+    if (includeInCategories(category)) {
+      removeCategory(category)
+    } else if (selectedCategories.length < 5) {
+      addCategory(category)
+    }
   }
 
   return (
@@ -79,9 +81,8 @@ export const Category = ({ isLoading }: Props) => {
       </Column>
       <CategoryBox
         categories={categories}
-        addCategory={addCategory}
-        removeCategory={removeCategory}
-        includeInCategories={includeInCategories}
+        onCategoryClick={onToggle}
+        isSelected={includeInCategories}
       />
       <Button
         type='submit'

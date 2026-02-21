@@ -4,33 +4,23 @@ import { CategoryItem } from '@/places/new/_components/Step/Category/CategoryIte
 
 type Props = {
   categories: CategoryType[]
-  addCategory: (category: CategoryType) => void
-  removeCategory: (category: CategoryType) => void
-  includeInCategories: (category: CategoryType) => boolean
+  onCategoryClick: (category: CategoryType) => void
+  isSelected: (category: CategoryType) => boolean
 }
 
 export const CategoryBox = ({
   categories,
-  addCategory,
-  removeCategory,
-  includeInCategories,
+  onCategoryClick,
+  isSelected,
 }: Props) => {
-  const onToggle = (category: CategoryType) => {
-    if (includeInCategories(category)) {
-      removeCategory(category)
-    } else {
-      addCategory(category)
-    }
-  }
-
   return (
     <div className={cn('grid grid-flow-row grid-cols-5 gap-y-6', 'py-2.5')}>
       {categories.map((category) => (
         <CategoryItem
           key={category.id}
           category={category}
-          onClick={() => onToggle(category)}
-          isSelected={includeInCategories(category)}
+          onClick={() => onCategoryClick(category)}
+          isSelected={isSelected(category)}
         />
       ))}
     </div>
