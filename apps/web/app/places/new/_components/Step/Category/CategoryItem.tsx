@@ -1,4 +1,4 @@
-import { type Category } from '@/_apis/schemas/category'
+import type { Category } from '@/_apis/schemas/category'
 import { Icon } from '@repo/ui/components/Icon'
 import { Text } from '@repo/ui/components/Text'
 import { Column } from '@repo/ui/components/Layout'
@@ -6,15 +6,13 @@ import { cn } from '@repo/ui/utils/cn'
 
 type Props = {
   category: Category
-  addCategory: VoidFunction
-  removeCategory: VoidFunction
+  onClick: VoidFunction
   includeInCategories: boolean
 }
 
 export const CategoryItem = ({
   category,
-  addCategory,
-  removeCategory,
+  onClick,
   includeInCategories,
 }: Props) => {
   const { name, iconKey } = category
@@ -25,7 +23,7 @@ export const CategoryItem = ({
       className={cn('items-center gap-1', {
         'opacity-40': includeInCategories,
       })}
-      onClick={includeInCategories ? removeCategory : addCategory}
+      onClick={onClick}
     >
       <Icon type={iconKey} size={40} />
       <Text

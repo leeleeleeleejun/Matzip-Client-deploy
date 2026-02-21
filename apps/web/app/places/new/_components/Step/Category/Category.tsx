@@ -6,9 +6,11 @@ import { useCategoryQueries } from '@/_apis/queries/category'
 import type { NewPlaceRequest } from '@/_apis/schemas/place'
 import type { Category as CategoryType } from '@/_apis/schemas/category'
 import { CategoryBox } from './CategoryBox'
-import { ChoiceCategoryBox } from './ChoiceCategoryBox'
+import { SelectedCategoryBox } from './SelectedCategoryBox'
 import { Title } from '../../Title'
 import { Button } from '@repo/ui/components/Button'
+import { Column } from '@repo/ui/components/Layout'
+import { Text } from '@repo/ui/components/Text'
 
 type Props = {
   isLoading: boolean
@@ -21,18 +23,18 @@ export const Category = ({ isLoading }: Props) => {
   const initialCategory = initialValues
     .map((id) => categories.find((category) => category.id === id))
     .filter((category): category is CategoryType => category !== undefined)
-  const [choiceCategories, setChoiceCategories] =
+  const [selectedCategories, setSelectedCategories] =
     useState<CategoryType[]>(initialCategory)
 
   const addCategory = (category: CategoryType) => {
     const currentIds = getValues().categoryIds || []
 
-    if (choiceCategories.length >= 5 || currentIds.includes(category.id)) {
+    if (selectedCategories.length >= 5 || currentIds.includes(category.id)) {
       // Todo: Toast 처리
       return
     }
-    const updated = [...choiceCategories, category]
-    setChoiceCategories(updated)
+    const updated = [...selectedCategories, category]
+    setSelectedCategories(updated)
     setValue(
       'categoryIds',
       updated.map((c) => c.id),
@@ -40,8 +42,8 @@ export const Category = ({ isLoading }: Props) => {
   }
 
   const removeCategory = (category: CategoryType) => {
-    const updated = choiceCategories.filter((c) => c.id !== category.id)
-    setChoiceCategories(updated)
+    const updated = selectedCategories.filter((c) => c.id !== category.id)
+    setSelectedCategories(updated)
     setValue(
       'categoryIds',
       updated.map((c) => c.id),
@@ -49,7 +51,7 @@ export const Category = ({ isLoading }: Props) => {
   }
 
   const includeInCategories = (category: CategoryType) => {
-    return choiceCategories.some((c) => c.id === category.id)
+    return selectedCategories.some((c) => c.id === category.id)
   }
 
   return (
@@ -66,10 +68,15 @@ export const Category = ({ isLoading }: Props) => {
         title={'내가 알리고 싶은 맛집의 종류는?'}
         description={'어울리는 카테고리를 모두 골라주세요!'}
       />
-      <ChoiceCategoryBox
-        choiceCategories={choiceCategories}
-        removeCategory={removeCategory}
-      />
+      <Column className={'mb-5 gap-2'}>
+        <SelectedCategoryBox
+          selectedCategories={selectedCategories}
+          removeCategory={removeCategory}
+        />
+        <Text variant={'body3'} className={'ml-auto text-gray-300'}>
+          첫 번째 카테고리가 대표 카테고리로 선택돼요!
+        </Text>
+      </Column>
       <CategoryBox
         categories={categories}
         addCategory={addCategory}
