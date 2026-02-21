@@ -7,21 +7,17 @@ import { cn } from '@repo/ui/utils/cn'
 type Props = {
   category: Category
   onClick: VoidFunction
-  includeInCategories: boolean
+  isSelected: boolean
 }
 
-export const CategoryItem = ({
-  category,
-  onClick,
-  includeInCategories,
-}: Props) => {
+export const CategoryItem = ({ category, onClick, isSelected }: Props) => {
   const { name, iconKey } = category
   return (
     <Column
       as={'button'}
       type={'button'}
       className={cn('items-center gap-1', {
-        'opacity-40': includeInCategories,
+        'opacity-40': isSelected,
       })}
       onClick={onClick}
     >

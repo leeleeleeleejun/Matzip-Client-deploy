@@ -30,7 +30,7 @@ export const CategoryBox = ({
           key={category.id}
           category={category}
           onClick={() => onToggle(category)}
-          includeInCategories={includeInCategories(category)}
+          isSelected={includeInCategories(category)}
         />
       ))}
     </div>
