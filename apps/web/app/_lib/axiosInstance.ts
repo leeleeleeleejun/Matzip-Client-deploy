@@ -6,6 +6,7 @@ import axios, {
 import * as Sentry from '@sentry/nextjs'
 import { getToken } from '@/_apis/services/login'
 import { getCookie } from '@/_utils/getCookie'
+import { setCookie } from 'cookies-next'
 
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -54,6 +55,7 @@ axiosInstance.interceptors.response.use(
 
       try {
         const { accessToken: newAccessToken } = await getToken()
+        setCookie('accessToken', newAccessToken)
 
         if (originalRequest.headers) {
           originalRequest.headers.Authorization = newAccessToken
