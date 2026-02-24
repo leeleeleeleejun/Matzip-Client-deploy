@@ -73,9 +73,9 @@ const handleTokenRefresh = async (
     })
 
     // 3. 백엔드 쿠키(Set-Cookie) 포워딩
-    const backendSetCookie = response.headers.get('set-cookie')
-    if (backendSetCookie) {
-      res.headers.append('set-cookie', backendSetCookie)
+    const backendSetCookies = response.headers.getSetCookie()
+    for (const cookie of backendSetCookies) {
+      res.headers.append('set-cookie', cookie)
     }
 
     return res
