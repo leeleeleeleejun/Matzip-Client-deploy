@@ -25,7 +25,6 @@ export const config = {
     '/profile',
     '/requests',
     '/requests/:path*',
-    '/events/lucky-draw',
     '/events/gifticon',
     '/events/gifticon/:path*',
   ],
