@@ -1,19 +1,17 @@
-import { LuckyDraw } from './LuckyDraw'
-import { HydrationBoundaryPage } from '@/_components/HydrationBoundaryPage'
-import { useEventQueries } from '@/_apis/queries/event'
+import { cookies } from 'next/headers'
+import { MemberView } from './_components/Pages/MemberView'
+import { GuestView } from './_components/Pages/GuestView'
 
-export const dynamic = 'force-dynamic'
-
-const Page = () => {
-  return (
-    <HydrationBoundaryPage
-      prefetch={async (queryClient) => {
-        await queryClient.prefetchQuery(useEventQueries.privateInfo())
-      }}
-    >
-      <LuckyDraw />
-    </HydrationBoundaryPage>
+const Page = async () => {
+  const accessToken = await cookies().then(
+    (cookies) => cookies.get('accessToken')?.value,
   )
+
+  if (accessToken) {
+    return <MemberView />
+  } else {
+    return <GuestView />
+  }
 }
 
 export default Page
