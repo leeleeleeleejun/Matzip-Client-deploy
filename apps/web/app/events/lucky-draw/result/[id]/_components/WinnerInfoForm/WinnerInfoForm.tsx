@@ -2,8 +2,8 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Input } from '@heroui/react'
 import {
-  type WinnerPhoneNumber,
-  WinnerPhoneNumberSchema,
+  type EventWinnerPhone,
+  EventWinnerPhoneSchema,
 } from '@/_apis/schemas/event'
 import { useSubmitWinnerPhoneNumber } from '@/_apis/mutations/useSubmitWinnerPhoneNumber'
 import { Column } from '@repo/ui/components/Layout'
@@ -18,15 +18,15 @@ export const WinnerInfoForm = ({ eventId }: WinnerInfoFormProps) => {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<WinnerPhoneNumber>({
-    resolver: zodResolver(WinnerPhoneNumberSchema),
+  } = useForm<EventWinnerPhone>({
+    resolver: zodResolver(EventWinnerPhoneSchema),
   })
 
   const { mutateAsync: submitPhoneNumber } = useSubmitWinnerPhoneNumber({
     eventId,
   })
 
-  const onSubmit = async (data: WinnerPhoneNumber): Promise<void> => {
+  const onSubmit = async (data: EventWinnerPhone): Promise<void> => {
     await submitPhoneNumber(data.phoneNumber)
     // TODO: 성공 시 모달 닫기 처리
   }

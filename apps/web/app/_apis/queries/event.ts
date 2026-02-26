@@ -28,7 +28,7 @@ export const useEventQueries = {
     }),
   byEntry: () =>
     queryOptions({
-      queryKey: EventQueryKeys.entry(),
+      queryKey: EventQueryKeys.byEntry(),
       queryFn: getEventByEntries,
     }),
   result: (eventId: string) =>

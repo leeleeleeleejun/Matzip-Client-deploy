@@ -13,7 +13,7 @@ export const useParticipationEvent = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: EventQueryKeys.privateInfo(),
+        queryKey: EventQueryKeys.byPrivate(),
       })
       addToast({
         title: '응모가 성공적으로 완료되었습니다!',

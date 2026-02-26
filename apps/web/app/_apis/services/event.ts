@@ -25,7 +25,7 @@ export const participationEvent = async (body: {
   eventId: string
   ticketsCount: number
 }) => {
-  const { data } = await axiosInstance.post(API_PATH.EVENT.PARTICIPATIONS, body)
+  const { data } = await axiosInstance.post(API_PATH.EVENT.ENTRIES, body)
   return data
 }
 
