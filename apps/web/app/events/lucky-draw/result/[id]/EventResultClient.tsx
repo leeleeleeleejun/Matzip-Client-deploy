@@ -16,6 +16,8 @@ interface Props {
   eventId: string
 }
 
+const LOTTERY_ANIMATION_DURATION_MS = 800
+
 export const EventResultClient = ({ eventId }: Props) => {
   const [isRunning, setIsRunning] = useState(false)
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
@@ -37,7 +39,7 @@ export const EventResultClient = ({ eventId }: Props) => {
     setIsRunning(true)
     setTimeout(() => {
       onOpen()
-    }, 500)
+    }, LOTTERY_ANIMATION_DURATION_MS)
   }
 
   return (
