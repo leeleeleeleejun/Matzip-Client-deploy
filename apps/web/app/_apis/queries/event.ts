@@ -1,35 +1,35 @@
 import { queryOptions } from '@tanstack/react-query'
 import {
-  getPublicEventInfo,
-  getPrivateEventInfo,
+  getEventByPublic,
+  getEventByPrivate,
   getEventResult,
-  getEntriesEvent,
+  getEventByEntries,
 } from '@/_apis/services/event'
 
 export const EventQueryKeys = {
   all: () => ['event'] as const,
-  publicInfo: () => [...EventQueryKeys.all(), 'info', 'public'] as const,
-  privateInfo: () => [...EventQueryKeys.all(), 'info', 'private'] as const,
-  entry: () => [...EventQueryKeys.all(), 'entry'] as const,
+  byPublic: () => [...EventQueryKeys.all(), 'info', 'public'] as const,
+  byPrivate: () => [...EventQueryKeys.all(), 'info', 'private'] as const,
+  byEntry: () => [...EventQueryKeys.all(), 'entry'] as const,
   result: (eventId: string) =>
     [...EventQueryKeys.all(), 'result', eventId] as const,
 }
 
 export const useEventQueries = {
-  publicInfo: () =>
+  byPublic: () =>
     queryOptions({
-      queryKey: EventQueryKeys.publicInfo(),
-      queryFn: getPublicEventInfo,
+      queryKey: EventQueryKeys.byPublic(),
+      queryFn: getEventByPublic,
     }),
-  privateInfo: () =>
+  byPrivate: () =>
     queryOptions({
-      queryKey: EventQueryKeys.privateInfo(),
-      queryFn: getPrivateEventInfo,
+      queryKey: EventQueryKeys.byPrivate(),
+      queryFn: getEventByPrivate,
     }),
-  entry: () =>
+  byEntry: () =>
     queryOptions({
       queryKey: EventQueryKeys.entry(),
-      queryFn: getEntriesEvent,
+      queryFn: getEventByEntries,
     }),
   result: (eventId: string) =>
     queryOptions({

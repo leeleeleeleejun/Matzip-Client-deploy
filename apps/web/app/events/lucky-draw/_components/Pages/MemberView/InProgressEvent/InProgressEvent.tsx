@@ -14,7 +14,7 @@ import { EmptyEventState } from '../../EmptyEventState'
 
 export const InProgressEvent = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
-  const { data } = useSuspenseQuery(useEventQueries.privateInfo())
+  const { data } = useSuspenseQuery(useEventQueries.byPrivate())
 
   // 진행 중인 이벤트가 없는 경우
   if (!data) {

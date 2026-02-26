@@ -11,12 +11,12 @@ import {
   type EventByPublic,
 } from '@/_apis/schemas/event'
 
-export const getPublicEventInfo = async (): Promise<EventByPublic> => {
+export const getEventByPublic = async (): Promise<EventByPublic> => {
   const { data } = await axiosInstance.get(API_PATH.EVENT.INFO)
   return EventByPublicSchema.parse(data)
 }
 
-export const getPrivateEventInfo = async (): Promise<EventByPrivate> => {
+export const getEventByPrivate = async (): Promise<EventByPrivate> => {
   const { data } = await axiosInstance.get(API_PATH.EVENT.INFO)
   return EventByPrivateSchema.parse(data)
 }

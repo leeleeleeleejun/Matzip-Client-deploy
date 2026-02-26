@@ -39,7 +39,7 @@ const itemVariants: Variants = {
 
 export const EventWelcome = ({ nextStep }: Props) => {
   const { replace } = useRouter()
-  const { data } = useSuspenseQuery(useEventQueries.publicInfo())
+  const { data } = useSuspenseQuery(useEventQueries.byPublic())
 
   // 진행 중인 이벤트가 없는 경우, 첫 번째 단계로 리다이렉트
   useEffect(() => {

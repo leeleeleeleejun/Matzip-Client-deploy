@@ -12,7 +12,7 @@ import { Button } from '@repo/ui/components/Button'
 import { CLIENT_PATH } from '@/_constants/path'
 
 export const GuestView = () => {
-  const { data } = useSuspenseQuery(useEventQueries.publicInfo())
+  const { data } = useSuspenseQuery(useEventQueries.byPublic())
 
   if (!data) {
     return <EmptyEventState />
