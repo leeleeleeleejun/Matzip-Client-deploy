@@ -47,6 +47,6 @@ export const EventWinnerPhoneSchema = z.object({
 
 export type EventByPublic = z.infer<typeof EventByPublicSchema>
 export type EventByPrivate = z.infer<typeof EventByPrivateSchema>
-export type EventEntry = z.infer<typeof EventEntrySchema>
+export type EventByEntry = z.infer<typeof EventEntrySchema>
 export type EventResult = z.infer<typeof EventResultSchema>
 export type EventWinnerPhone = z.infer<typeof EventWinnerPhoneSchema>

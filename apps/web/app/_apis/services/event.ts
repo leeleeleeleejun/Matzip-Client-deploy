@@ -5,7 +5,7 @@ import {
   EventByPublicSchema,
   EventEntrySchema,
   EventResultSchema,
-  type EventEntry,
+  type EventByEntry,
   type EventResult,
   type EventByPrivate,
   type EventByPublic,
@@ -29,7 +29,7 @@ export const participationEvent = async (body: {
   return data
 }
 
-export const getEventByEntries = async (): Promise<EventEntry[]> => {
+export const getEventByEntries = async (): Promise<EventByEntry[]> => {
   const { data } = await axiosInstance.get(API_PATH.EVENT.ENTRIES)
   return EventEntrySchema.array().parse(data)
 }
