@@ -41,6 +41,7 @@ export const EventWelcome = ({ nextStep }: Props) => {
   const { replace } = useRouter()
   const { data } = useSuspenseQuery(useEventQueries.publicInfo())
 
+  // 진행 중인 이벤트가 없는 경우, 첫 번째 단계로 리다이렉트
   useEffect(() => {
     if (!data) {
       replace(`${CLIENT_PATH.PLACE_NEW}?step=1`)
