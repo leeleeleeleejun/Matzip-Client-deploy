@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Spinner } from '@heroui/react'
 import { Icon } from '@repo/ui/components/Icon'
+import { Text } from '@repo/ui/components/Text'
 import { Flex, VerticalScrollArea } from '@repo/ui/components/Layout'
 import { SearchPlaceListItem } from './SearchPlaceListItem'
 import { HeaderBackButton } from '@/_components/HeaderBackButton'
@@ -76,7 +77,12 @@ export const SearchPage = ({
           placeholder={placeholder}
         />
       </Flex>
-      {inputValue && (
+      {inputValue && places.length === 0 && (
+        <Text variant={'body1'} className={'m-auto text-center text-gray-300'}>
+          검색 결과를 찾을 수 없습니다.
+        </Text>
+      )}
+      {inputValue && places.length > 0 && (
         <VerticalScrollArea as={'ul'} className={'px-3.5'}>
           {places.map((place, index) => (
             <SearchPlaceListItem
