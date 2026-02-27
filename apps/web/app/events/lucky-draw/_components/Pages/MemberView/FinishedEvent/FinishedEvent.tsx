@@ -17,7 +17,10 @@ export const FinishedEvent = () => {
       fallbackTitle={'아직 종료된 이벤트가 없어요.'}
       fallbackDescription={'진행 중인 이벤트에 참여하고 행운을 잡아보세요!'}
     >
-      <Column as={'ul'} className={'h-full overflow-y-auto py-2'}>
+      <Text variant={'caption2'} className={'py-4 text-center text-gray-600'}>
+        참여하신 이벤트 기록만 모아서 보여드려요!
+      </Text>
+      <Column as={'ul'} className={'h-full overflow-y-auto'}>
         {data.map((item) => (
           <EventSummary key={item.eventId} event={item} />
         ))}
