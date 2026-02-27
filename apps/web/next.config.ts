@@ -1,7 +1,27 @@
 import { withSentryConfig } from '@sentry/nextjs'
 import type { NextConfig } from 'next'
+import NextPWA from '@ducanh2912/next-pwa'
 
 const nextConfig: NextConfig = {
+  ...(process.env.NODE_ENV === 'production'
+    ? {
+        headers: async () => [
+          {
+            source: '/sw.js',
+            headers: [
+              {
+                key: 'Cache-Control',
+                value: 'public, max-age=0, must-revalidate',
+              },
+              {
+                key: 'Service-Worker-Allowed',
+                value: '/',
+              },
+            ],
+          },
+        ],
+      }
+    : {}),
   images: {
     remotePatterns: [
       {
@@ -65,7 +85,11 @@ const nextConfig: NextConfig = {
   },
 }
 
-export default withSentryConfig(nextConfig, {
+const pwaConfig = NextPWA({
+  dest: 'public',
+})
+
+export default withSentryConfig(pwaConfig(nextConfig), {
   // For all available options, see:
   // https://www.npmjs.com/package/@sentry/webpack-plugin#options
 
