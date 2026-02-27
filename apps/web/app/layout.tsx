@@ -30,6 +30,7 @@ export const metadata: Metadata = {
     url: '/',
     type: 'website',
   },
+  manifest: '/manifest.json',
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS || '',
     other: {
