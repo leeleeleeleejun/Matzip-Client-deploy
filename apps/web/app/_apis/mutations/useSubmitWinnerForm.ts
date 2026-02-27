@@ -1,17 +1,24 @@
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { addToast } from '@heroui/react'
 
 import { submitWinnerForm } from '../services/event'
 import type { EventWinnerForm } from '@/_apis/schemas/event'
+import { EventQueryKeys } from '@/_apis/queries/event'
 
 type UseSubmitWinnerFormParams = {
   eventId: string
 }
 
 export const useSubmitWinnerForm = ({ eventId }: UseSubmitWinnerFormParams) => {
+  const queryClient = useQueryClient()
+
   return useMutation({
     mutationFn: (data: EventWinnerForm) => submitWinnerForm(eventId, data),
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [...EventQueryKeys.result(eventId)],
+      })
+
       addToast({
         title: '전화번호가 성공적으로 제출되었습니다!',
         severity: 'success',
