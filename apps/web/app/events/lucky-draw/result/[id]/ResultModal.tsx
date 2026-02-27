@@ -7,6 +7,7 @@ import { WinnerInfoForm } from './_components/WinnerInfoForm'
 type Props = {
   eventId: string
   isWinner: boolean
+  isPhoneSubmitted: boolean
   isOpen: boolean
   onOpenChange: VoidFunction
   onAnimationStop: VoidFunction
@@ -36,6 +37,7 @@ const FailModalContent: ModalContent = {
 export const ResultModal = ({
   eventId,
   isWinner,
+  isPhoneSubmitted,
   isOpen,
   onOpenChange,
   onAnimationStop,
@@ -84,7 +86,7 @@ export const ResultModal = ({
                 {modalContent.description}
               </Text>
             </Column>
-            {isWinner && (
+            {isWinner && !isPhoneSubmitted && (
               <WinnerInfoForm eventId={eventId} onSuccess={onClose} />
             )}
           </Column>

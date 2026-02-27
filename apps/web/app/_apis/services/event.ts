@@ -35,9 +35,7 @@ export const getEventByEntries = async (): Promise<EventByEntry[]> => {
   return EventEntrySchema.array().parse(data)
 }
 
-export const getEventResult = async (
-  eventId: string,
-): Promise<EventResult | null> => {
+export const getEventResult = async (eventId: string): Promise<EventResult> => {
   const { data } = await axiosInstance.get(API_PATH.EVENT.RESULT(eventId))
   return EventResultSchema.parse(data)
 }

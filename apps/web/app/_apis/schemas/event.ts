@@ -28,11 +28,10 @@ export const EventByPrivateSchema = z.nullable(
 
 export const EventEntrySchema = BaseEventSchema
 
-export const EventResultSchema = z.object({
-  eventId: z.number().transform(String),
+export const EventResultSchema = BaseEventSchema.extend({
   isWinner: z.boolean(),
-  participantsCount: z.number(),
   usedTicketsCount: z.number(),
+  isPhoneSubmitted: z.boolean(),
 })
 
 export const EventWinnerFormSchema = z.object({
