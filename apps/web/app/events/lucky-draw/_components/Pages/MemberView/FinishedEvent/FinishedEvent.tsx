@@ -5,7 +5,7 @@ import type { EventByEntry } from '@/_apis/schemas/event'
 import { useEventQueries } from '@/_apis/queries/event'
 import { CLIENT_PATH } from '@/_constants/path'
 import { Text } from '@repo/ui/components/Text'
-import { Column, Flex } from '@repo/ui/components/Layout'
+import { Column, Flex, VerticalScrollArea } from '@repo/ui/components/Layout'
 import { EmptyFallback } from '@/_components/EmptyFallback'
 
 export const FinishedEvent = () => {
@@ -20,11 +20,11 @@ export const FinishedEvent = () => {
       <Text variant={'caption2'} className={'py-4 text-center text-gray-600'}>
         참여하신 이벤트 기록만 모아서 보여드려요!
       </Text>
-      <Column as={'ul'} className={'h-full overflow-y-auto'}>
+      <VerticalScrollArea as={'ul'} className={'h-full'}>
         {data.map((item) => (
           <EventSummary key={item.eventId} event={item} />
         ))}
-      </Column>
+      </VerticalScrollArea>
     </EmptyFallback>
   )
 }
