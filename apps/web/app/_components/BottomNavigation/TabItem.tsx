@@ -23,7 +23,11 @@ export const TabItem = ({ path, label, icon, iconSize = 26 }: TabItemProps) => {
   const active = pathname === href
 
   return (
-    <Link href={href} className={'w-12.5 flex flex-col items-center'}>
+    <Link
+      href={href}
+      prefetch={false}
+      className={'w-12.5 flex flex-col items-center'}
+    >
       <Icon
         type={icon}
         size={iconSize}
