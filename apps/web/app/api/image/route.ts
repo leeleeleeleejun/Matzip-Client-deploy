@@ -24,11 +24,11 @@ export async function GET(request: NextRequest) {
 
     // 적절한 헤더로 이미지 가져오기
     const imageResponse = await fetch(decodedUrl, {
-      headers: {
-        'User-Agent':
-          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-        Accept: 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
-      },
+      // headers: {
+      //   'User-Agent':
+      //     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+      //   Accept: 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
+      // },
     })
 
     if (!imageResponse.ok) {
