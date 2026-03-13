@@ -1,16 +1,11 @@
-'use client'
-
 import { Suspense } from 'react'
 import { ErrorBoundary } from '@suspensive/react'
-import { useSuspenseQuery } from '@tanstack/react-query'
-import { useCampusStore } from '@/_store/campus'
-import { usePlaceQueries } from '@/_apis/queries/place'
 import { Icon, IconType } from '@repo/ui/components/Icon'
 import type { RankingPlaceSort } from '@/_apis/schemas/place'
 import { Column, Flex } from '@repo/ui/components/Layout'
 import { PlaceListItem } from '@/_components/PlaceListItem'
 import { Text } from '@repo/ui/components/Text'
-import { EmptyFallback } from '@/_components/EmptyFallback'
+import { RankingListFetcherClient } from './RankingListFetcherClient'
 
 type Props = {
   title: string
@@ -29,38 +24,10 @@ export const RankingSection = ({ title, icon, rankingPlaceSort }: Props) => {
       </Flex>
       <ErrorBoundary fallback={<ErrorFallback />}>
         <Suspense fallback={<PlaceListItem.Skeleton />}>
-          <RankingListFetcher rankingPlaceSort={rankingPlaceSort} />
+          <RankingListFetcherClient rankingPlaceSort={rankingPlaceSort} />
         </Suspense>
       </ErrorBoundary>
     </Column>
-  )
-}
-
-const RankingListFetcher = ({
-  rankingPlaceSort,
-}: {
-  rankingPlaceSort: RankingPlaceSort
-}) => {
-  const { campus } = useCampusStore()
-  const { data: places } = useSuspenseQuery(
-    usePlaceQueries.byRanking(rankingPlaceSort, campus),
-  )
-
-  return (
-    <EmptyFallback
-      isEmpty={places.length === 0}
-      fallbackDescription={'아직 집계된 추천 맛집이 없습니다'}
-    >
-      <ul className={'px-3'}>
-        {places.map((place, index) => (
-          <PlaceListItem
-            key={place.placeId}
-            {...place}
-            showBorder={index !== places.length - 1}
-          />
-        ))}
-      </ul>
-    </EmptyFallback>
   )
 }
 
