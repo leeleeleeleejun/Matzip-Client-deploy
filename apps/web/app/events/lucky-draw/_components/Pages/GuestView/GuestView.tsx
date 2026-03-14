@@ -6,7 +6,7 @@ import { useEventQueries } from '@/_apis/queries/event'
 import { EmptyEventState } from '../EmptyEventState'
 import { EventTitle } from '@/events/lucky-draw/_components/EventTitle'
 import { EventPrizeCard } from '@/events/lucky-draw/_components/EventPrizeCard'
-import { Column } from '@repo/ui/components/Layout'
+import { Column, VerticalScrollArea } from '@repo/ui/components/Layout'
 import { Button } from '@repo/ui/components/Button'
 import { CLIENT_PATH } from '@/_constants/path'
 
@@ -20,7 +20,7 @@ export const GuestView = () => {
   const { prize, totalWinnersCount, participantsCount } = data
 
   return (
-    <Column className={'h-full min-h-0 justify-between gap-10 p-5'}>
+    <VerticalScrollArea className={'h-full min-h-0 justify-between gap-10 p-5'}>
       <EventTitle />
       <Column className={'gap-3'}>
         <EventPrizeCard
@@ -37,6 +37,6 @@ export const GuestView = () => {
       >
         참여하기
       </Button>
-    </Column>
+    </VerticalScrollArea>
   )
 }
