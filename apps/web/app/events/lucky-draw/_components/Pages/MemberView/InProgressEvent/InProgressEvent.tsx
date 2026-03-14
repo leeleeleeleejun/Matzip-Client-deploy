@@ -37,21 +37,15 @@ export const InProgressEvent = () => {
           </Text>
           <EventCountdown eventEndDate={eventEndDate} />
         </Column>
-        <Column className={'items-center gap-3'}>
-          <Column className={'items-center gap-5'}>
-            <Column className={'items-center gap-3'}>
-              <EventPrizeCard
-                participantsCount={participantsCount}
-                totalWinnersCount={totalWinnersCount}
-                imageUrl={prize.imageUrl}
-                description={prize.description}
-              />
-            </Column>
-          </Column>
-        </Column>
+        <EventPrizeCard
+          participantsCount={participantsCount}
+          totalWinnersCount={totalWinnersCount}
+          imageUrl={prize.imageUrl}
+          description={prize.description}
+        />
         <Column className={'mt-auto w-full items-center gap-4'}>
-          <Flex>
-            <Icon type={'ticket'} className='mx-1' />
+          <Flex className={'gap-1'}>
+            <Icon type={'ticket'} />
             <Text variant='body1'>
               내가 넣은 응모권은{' '}
               <Text as='span' className='text-yellow'>
