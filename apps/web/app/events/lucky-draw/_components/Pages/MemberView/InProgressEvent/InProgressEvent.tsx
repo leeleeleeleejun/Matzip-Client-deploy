@@ -4,11 +4,11 @@ import Link from 'next/link'
 import { CLIENT_PATH } from '@/_constants/path'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useEventQueries } from '@/_apis/queries/event'
-import { Column } from '@repo/ui/components/Layout'
+import { Flex, Column } from '@repo/ui/components/Layout'
+import { Icon } from '@repo/ui/components/Icon'
 import { Text } from '@repo/ui/components/Text'
 import { EventCountdown } from './EventCountdown'
 import { PrizeInfo } from '@/events/lucky-draw/_components/PrizeInfo'
-import { ParticipationStatus } from '@/events/lucky-draw/_components/ParticipationStatus'
 import { EmptyEventState } from '../../EmptyEventState'
 import { Button } from '@repo/ui/components/Button'
 
@@ -38,33 +38,37 @@ export const InProgressEvent = () => {
           <EventCountdown eventEndDate={eventEndDate} />
         </Column>
         <Column className={'items-center gap-3'}>
-          <Text fontSize={'2xl'} fontWeight={'bold'}>
-            이번주 행운의 상품은?
-          </Text>
           <Column className={'items-center gap-5'}>
             <Column className={'items-center gap-3'}>
               <PrizeInfo
+                participantsCount={participantsCount}
+                totalWinnersCount={totalWinnersCount}
                 imageUrl={prize.imageUrl}
                 description={prize.description}
               />
-              <Text variant={'title3'} className='text-gray-800'>
-                총 당첨자: {totalWinnersCount}명
-              </Text>
             </Column>
-            <ParticipationStatus
-              participantsCount={participantsCount}
-              usedTicketsCount={usedTicketsCount}
-            />
           </Column>
         </Column>
-        <Button
-          as={Link}
-          href={CLIENT_PATH.PLACE_NEW}
-          size={'medium'}
-          fullWidth={true}
-        >
-          참여하기
-        </Button>
+        <Column className={'mt-auto w-full items-center gap-4'}>
+          <Flex>
+            <Icon type={'ticket'} className='mx-1' />
+            <Text variant='body1'>
+              내가 넣은 응모권은{' '}
+              <Text as='span' className='text-yellow'>
+                {usedTicketsCount.toLocaleString()}
+              </Text>
+              개
+            </Text>
+          </Flex>
+          <Button
+            as={Link}
+            href={CLIENT_PATH.PLACE_NEW}
+            size={'medium'}
+            fullWidth={true}
+          >
+            참여하기
+          </Button>
+        </Column>
       </Column>
     </>
   )
