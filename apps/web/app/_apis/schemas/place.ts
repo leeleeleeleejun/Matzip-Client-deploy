@@ -77,7 +77,7 @@ export const NewPlaceRequestSchema = z.object({
   menus,
 })
 
-export type RankingPlaceSort = 'views' | 'likes'
+export type RankingPlaceSort = 'views' | 'likes' | 'latest'
 export type MapBounds = {
   minLatitude: number
   minLongitude: number

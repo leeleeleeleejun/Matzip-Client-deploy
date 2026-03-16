@@ -44,15 +44,21 @@ export default function Page() {
           <FoodSlotMachineBanner />
         </Carousel>
         <RankingSection
-          title={'찜많은 맛집'}
-          icon={'fireHeart'}
-          rankingPlaceSort={'likes'}
+          title={'새로운 맛집'}
+          icon={'new'}
+          rankingPlaceSort={'latest'}
         />
         <Divider />
         <RankingSection
           title={'오늘의 맛집'}
           icon={'fire'}
           rankingPlaceSort={'views'}
+        />
+        <Divider />
+        <RankingSection
+          title={'찜많은 맛집'}
+          icon={'fireHeart'}
+          rankingPlaceSort={'likes'}
         />
       </VerticalScrollArea>
       <BottomNavigation />
