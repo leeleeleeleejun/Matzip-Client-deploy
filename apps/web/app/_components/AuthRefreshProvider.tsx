@@ -28,6 +28,14 @@ export const AuthRefreshProvider = ({
           return
         }
 
+        const hasRefreshToken = document.cookie
+          .split('; ')
+          .some((cookie) => cookie.startsWith('refreshToken='))
+
+        if (!hasRefreshToken) {
+          return
+        }
+
         const { accessToken: newAccessToken, accessTokenExpiresIn } =
           await getToken()
 
