@@ -20,24 +20,32 @@ export const MemberView = () => {
 
   return (
     <VerticalScrollArea className={'h-full min-h-0 p-5'}>
-      <JustifyBetween as={'nav'} className={'gap-10'}>
-        {TABS.map((tab) => (
-          <NavBarItem
-            key={tab}
-            isActive={currentTab === tab}
-            name={STEP_NAME[tab]}
-            onClick={() => {
-              setCurrentTab(tab)
-            }}
-          />
-        ))}
-      </JustifyBetween>
+      <Tabs value={currentTab} onSelect={setCurrentTab} />
       <Suspense fallback={<Spinner className={'m-auto'} />}>
-        {currentTab === 'inProgress' && <InProgressEvent />}
-      </Suspense>
-      <Suspense fallback={<Spinner className={'m-auto'} />}>
-        {currentTab === 'finished' && <FinishedEvent />}
+        {currentTab === 'inProgress' ? <InProgressEvent /> : <FinishedEvent />}
       </Suspense>
     </VerticalScrollArea>
+  )
+}
+
+type TabsProps = {
+  value: StepType
+  onSelect: (tab: StepType) => void
+}
+
+const Tabs = ({ value = 'inProgress', onSelect }: TabsProps) => {
+  return (
+    <JustifyBetween as={'nav'} className={'gap-10'}>
+      {TABS.map((tab) => (
+        <NavBarItem
+          key={tab}
+          isActive={value === tab}
+          name={STEP_NAME[tab]}
+          onClick={() => {
+            onSelect(tab)
+          }}
+        />
+      ))}
+    </JustifyBetween>
   )
 }
